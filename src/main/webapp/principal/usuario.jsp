@@ -1,3 +1,4 @@
+<%@page import="model.ModelLogin"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  
@@ -68,7 +69,51 @@
                                                                 <label class="float-label">E-mail:</label>
                                                             </div>
                                                             
-                                                           <div class="form-group form-default form-static-label">
+                                                            
+
+															<div class="form-group form-default form-static-label">
+															<select class="form-control"
+																aria-label="Default select example" name="permissao" >
+																<option disabled="disabled" >[Selecione o Perfil]</option>
+																
+																<option value="marlin" <% 
+																
+																
+																ModelLogin modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+																
+																
+																if (modelLogin != null && modelLogin.getPermissao().equals("marlin")) {
+																		out.print(" ");
+																		 out.print("selected=\"selected\"");
+																		out.print(" ");
+																} %> >Marlin</option>
+																
+																<option value="custos" <% 
+																		
+																   modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+																		
+																	if (modelLogin != null && modelLogin.getPermissao().equals("custos")) {
+																		out.print(" ");
+																		 out.print("selected=\"selected\"");
+																		out.print(" ");
+																	
+																} %>>Custos</option>
+																
+																<option value="todos" <% 
+																	modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+																				
+																	if (modelLogin != null && modelLogin.getPermissao().equals("todos")) {
+																		out.print(" ");
+																		 out.print("selected=\"selected\"");
+																		out.print(" ");
+																} %>>Todos</option>
+																
+															</select>
+															<span class="form-bar"></span>
+                                                                <label class="float-label">Permissão:</label>
+															</div>
+
+															<div class="form-group form-default form-static-label">
                                                                 <input type="text" name="login" id="login" class="form-control" required="required" autocomplete="off" value="${modolLogin.login}">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Login</label>
@@ -80,7 +125,43 @@
                                                                 <label class="float-label">Senha</label>
                                                             </div>
                                                             
-                                                            <button type="button" class="btn btn-primary waves-effect waves-light" onclick="limparForm();" >Novo</button>
+                                                          <div class="form-group form-default form-static-label">
+                                                             <input type="radio" name="sexo" checked="checked" value="MASCULINO"  
+                                                             
+                                                             <%
+                                                            
+                                                             modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+                                                                 
+                                                             if (modelLogin != null && modelLogin.getSexo().equals("MASCULINO")) {
+																	out.print(" ");
+																	 out.print("checked=\"checked\"");
+																	out.print(" ");
+															}
+                                                             
+                                                             %>
+                                                             >Masculino</>
+                                                             
+                                                             <input type="radio" name="sexo" value="FEMININO" <%
+                                                            
+                                                             modelLogin = (ModelLogin) request.getAttribute("modolLogin");
+                                                                 
+                                                             if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
+																	out.print(" ");
+																	 out.print("checked=\"checked\"");
+																	out.print(" ");
+															}
+                                                             
+                                                             %> >Feminino</>
+                                                            </div>  
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                         
+
+															<button type="button" class="btn btn-primary waves-effect waves-light" onclick="limparForm();" >Novo</button>
 												            <button  class="btn btn-success waves-effect waves-light">Salvar</button>
 												            <button type="button"  class="btn btn-info waves-effect waves-light" onclick="criarDeleteComAjax();" >Excluir</button>
 												            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalUsuario">Pesquisar</button>
@@ -98,6 +179,10 @@
 													<tr>
 														<th scope="col">ID</th>
 														<th scope="col">Nome</th>
+														<th scope="col">Email</th>
+														<th scope="col">Login</th>
+														<th scope="col">Senha</th>
+														<th scope="col">Sexo</th>
 														<th scope="col">Ver</th>
 													</tr>
 												</thead>
@@ -106,6 +191,10 @@
 													      <tr>
 													       <td><c:out value="${ml.id}"></c:out></td>
 													       <td><c:out value="${ml.nome}"></c:out></td>
+													       <td><c:out value="${ml.email}"></c:out></td>
+													       <td><c:out value="${ml.login}"></c:out></td>
+													       <td><c:out value="${ml.senha}"></c:out></td>
+													        <td><c:out value="${ml.sexo}"></c:out></td>
 													       <td><a class="btn btn-success" href="<%= request.getContextPath() %>/ServletUsuarioController?acao=buscarEditar&id=${ml.id}" >Ver</a></td>
 													      </tr>
 													</c:forEach>
@@ -152,9 +241,13 @@
 	<table class="table" id="tabelaresultados">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Ver</th>
+     <th scope="col">ID</th>
+														<th scope="col">Nome</th>
+														<th scope="col">Email</th>
+														<th scope="col">Login</th>
+														<th scope="col">Senha</th>
+														<th scope="col">Sexo</th>
+														<th scope="col">Ver</th>
     </tr>
   </thead>
   <tbody>
@@ -208,7 +301,7 @@ function buscarUsuario() {
 		 $('#tabelaresultados > tbody > tr').remove();
 		 
 		  for(var p = 0; p < json.length; p++){
-		      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+'</td> <td><button onclick="verEditar('+json[p].id+')" type="button" class="btn btn-info">Ver</button></td></tr>');
+		      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+'</td> <td> '+json[p].email+'</td><td> '+json[p].login+'</td><td> '+json[p].senha+'</td><td> '+json[p].sexo+'</td><td><button onclick="verEditar('+json[p].id+')" type="button" class="btn btn-info">Ver</button></td></tr>');
 		  }
 		  
 		  document.getElementById('totalResultados').textContent = 'Resultados: ' + json.length;

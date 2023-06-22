@@ -5,23 +5,50 @@ import java.io.Serializable;
 public class ModelLogin implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String nome;
 	private String email;
 	private String login;
 	private String senha;
-	
-	
+	private String permissao;
+
+	private String sexo;
+
+	private boolean useradmin;
+
+	public String getPermissao() {
+		return permissao;
+	}
+
+	public void setPermissao(String permissao) {
+		this.permissao = permissao;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setUseradmin(boolean useradmin) {
+		this.useradmin = useradmin;
+	}
+
+	public boolean getUseradmin() {
+		return useradmin;
+	}
+
 	public boolean isNovo() {
-		
+
 		if (this.id == null) {
-			return true; /*Inserir novo*/
-		}else if (this.id != null && this.id > 0) {
-			return false; /*Atualizar*/
+			return true; /* Inserir novo */
+		} else if (this.id != null && this.id > 0) {
+			return false; /* Atualizar */
 		}
-			
-		
+
 		return id == null;
 	}
 

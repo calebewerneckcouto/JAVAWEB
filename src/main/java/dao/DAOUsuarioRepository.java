@@ -3,7 +3,6 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,24 +19,27 @@ public class DAOUsuarioRepository {
 		connection = SingleConnectionBanco.getConnection();
 	}
 	
-	public ModelLogin gravarUsuario(ModelLogin objeto) throws Exception {
+	public ModelLogin gravarUsuario(ModelLogin objeto, Long userLogado) throws Exception {
 		
 		if (objeto.isNovo()) {/*Grava um novo*/
 		
-		String sql = "INSERT INTO model_login(login, senha, nome, email)  VALUES (?, ?, ?, ?);";
+		String sql = "INSERT INTO model_login(login, senha, nome, email, usuario_id, permissao, sexo)  VALUES (?, ?, ?, ?, ?, ?,?);";
 		PreparedStatement preparedSql = connection.prepareStatement(sql);
 		
 		preparedSql.setString(1, objeto.getLogin());
 		preparedSql.setString(2, objeto.getSenha());
 		preparedSql.setString(3, objeto.getNome());
 		preparedSql.setString(4, objeto.getEmail());
+		preparedSql.setLong(5, userLogado);
+		preparedSql.setString(6, objeto.getPermissao());
+		preparedSql.setString(7, objeto.getSexo());
 		
 		preparedSql.execute();
 		
 		connection.commit();
 		
 		}else {
-			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=? WHERE id =  "+objeto.getId()+";";
+			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, permissao=?, sexo=? WHERE id =  "+objeto.getId()+";";
 			
 			PreparedStatement prepareSql = connection.prepareStatement(sql);
 			
@@ -45,6 +47,8 @@ public class DAOUsuarioRepository {
 			prepareSql.setString(2, objeto.getSenha());
 			prepareSql.setString(3, objeto.getNome());
 			prepareSql.setString(4, objeto.getEmail());
+			prepareSql.setString(5, objeto.getPermissao());
+			prepareSql.setString(6, objeto.getSexo());
 			
 			prepareSql.executeUpdate();
 			
@@ -53,16 +57,16 @@ public class DAOUsuarioRepository {
 		}
 		
 		
-		return this.consultaUsuario(objeto.getLogin());
+		return this.consultaUsuario(objeto.getLogin(), userLogado);
 	}
 	
 	
 	
-	public List<ModelLogin> consultaUsuarioList() throws Exception {
+	public List<ModelLogin> consultaUsuarioList(Long userLogado) throws Exception {
 		
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		
-		String sql = "select * from model_login ";
+		String sql = "select * from model_login where useradmin is false and usuario_id = " + userLogado;
 		PreparedStatement statement = connection.prepareStatement(sql);
 		
 		ResultSet resultado = statement.executeQuery();
@@ -75,7 +79,9 @@ public class DAOUsuarioRepository {
 			modelLogin.setId(resultado.getLong("id"));
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setNome(resultado.getString("nome"));
-			//modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setPermissao(resultado.getString("permissao"));
+			modelLogin.setSexo(resultado.getString("sexo"));
 			
 			retorno.add(modelLogin);
 		}
@@ -85,13 +91,14 @@ public class DAOUsuarioRepository {
 	}
 	
 	
-	public List<ModelLogin> consultaUsuarioList(String nome) throws Exception {
+	public List<ModelLogin> consultaUsuarioList(String nome, Long userLogado) throws Exception {
 		
 		List<ModelLogin> retorno = new ArrayList<ModelLogin>();
 		
-		String sql = "select * from model_login  where upper(nome) like upper(?) ";
+		String sql = "select * from model_login  where upper(nome) like upper(?) and useradmin is false and usuario_id = ?";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, "%" + nome + "%");
+		statement.setLong(2, userLogado);
 		
 		ResultSet resultado = statement.executeQuery();
 		
@@ -103,7 +110,9 @@ public class DAOUsuarioRepository {
 			modelLogin.setId(resultado.getLong("id"));
 			modelLogin.setLogin(resultado.getString("login"));
 			modelLogin.setNome(resultado.getString("nome"));
-			//modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setSenha(resultado.getString("senha"));
+			modelLogin.setPermissao(resultado.getString("permissao"));
+			modelLogin.setSexo(resultado.getString("sexo"));
 			
 			retorno.add(modelLogin);
 		}
@@ -113,7 +122,7 @@ public class DAOUsuarioRepository {
 	}
 	
 	
-	public ModelLogin consultaUsuario(String login) throws Exception  {
+	public ModelLogin consultaUsuarioLogado(String login) throws Exception  {
 		
 		ModelLogin modelLogin = new ModelLogin();
 		
@@ -130,6 +139,9 @@ public class DAOUsuarioRepository {
 			modelLogin.setLogin(resutlado.getString("login"));
 			modelLogin.setSenha(resutlado.getString("senha"));
 			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
+			modelLogin.setPermissao(resutlado.getString("permissao"));;
+			modelLogin.setSexo(resutlado.getString("sexo"));
 		}
 		
 		
@@ -138,14 +150,15 @@ public class DAOUsuarioRepository {
 	}
 	
 	
-	public ModelLogin consultaUsuarioID(String id) throws Exception  {
+	
+	
+	public ModelLogin consultaUsuario(String login) throws Exception  {
 		
 		ModelLogin modelLogin = new ModelLogin();
 		
-		String sql = "select * from model_login where id = ? ";
+		String sql = "select * from model_login where upper(login) = upper('"+login+"') and useradmin is false ";
 		
 		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setLong(1, Long.parseLong(id));
 		
 		ResultSet resutlado =  statement.executeQuery();
 		
@@ -156,6 +169,66 @@ public class DAOUsuarioRepository {
 			modelLogin.setLogin(resutlado.getString("login"));
 			modelLogin.setSenha(resutlado.getString("senha"));
 			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
+			modelLogin.setPermissao(resutlado.getString("permissao"));
+			modelLogin.setSexo(resutlado.getString("sexo"));
+		}
+		
+		
+		return modelLogin;
+		
+	}
+	
+	
+	
+	public ModelLogin consultaUsuario(String login, Long userLogado) throws Exception  {
+		
+		ModelLogin modelLogin = new ModelLogin();
+		
+		String sql = "select * from model_login where upper(login) = upper('"+login+"') and useradmin is false and usuario_id = " + userLogado;
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		
+		ResultSet resutlado =  statement.executeQuery();
+		
+		while (resutlado.next()) /*Se tem resultado*/ {
+			
+			modelLogin.setId(resutlado.getLong("id"));
+			modelLogin.setEmail(resutlado.getString("email"));
+			modelLogin.setLogin(resutlado.getString("login"));
+			modelLogin.setSenha(resutlado.getString("senha"));
+			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setPermissao(resutlado.getString("permissao"));
+			modelLogin.setSexo(resutlado.getString("sexo"));
+		}
+		
+		
+		return modelLogin;
+		
+	}
+	
+	
+	public ModelLogin consultaUsuarioID(String id, Long userLogado) throws Exception  {
+		
+		ModelLogin modelLogin = new ModelLogin();
+		
+		String sql = "select * from model_login where id = ? and useradmin is false and usuario_id = ?";
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setLong(1, Long.parseLong(id));
+		statement.setLong(2, userLogado);
+		
+		ResultSet resutlado =  statement.executeQuery();
+		
+		while (resutlado.next()) /*Se tem resultado*/ {
+			
+			modelLogin.setId(resutlado.getLong("id"));
+			modelLogin.setEmail(resutlado.getString("email"));
+			modelLogin.setLogin(resutlado.getString("login"));
+			modelLogin.setSenha(resutlado.getString("senha"));
+			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setPermissao(resutlado.getString("permissao"));
+			modelLogin.setSexo(resutlado.getString("sexo"));
 		}
 		
 		
@@ -179,7 +252,7 @@ public class DAOUsuarioRepository {
 	
 	
 	public void deletarUser(String idUser) throws Exception {
-		String sql = "DELETE FROM model_login WHERE id = ?;";
+		String sql = "DELETE FROM model_login WHERE id = ? and useradmin is false;";
 		
 		PreparedStatement prepareSql = connection.prepareStatement(sql);
 		

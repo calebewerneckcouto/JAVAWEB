@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 
 import dao.DAOLoginRepository;
+import dao.DAOUsuarioRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,13 +13,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
 
-/*O chamando Controller são as servlets ou ServletLoginController*/
+/*O chamando Controller sao as servlets ou ServletLoginController*/
 @WebServlet(urlPatterns = {"/principal/ServletLogin", "/ServletLogin"}) /*Mapeamento de URL que vem da tela*/
 public class ServletLogin extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private DAOLoginRepository daoLoginRepository = new DAOLoginRepository();
+	private DAOUsuarioRepository daoUsuarioRepository = new DAOUsuarioRepository();
 
   
     public ServletLogin() {
@@ -32,7 +34,7 @@ public class ServletLogin extends HttpServlet {
 		 String acao = request.getParameter("acao");
 		 
 		 if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("logout")) {
-			 request.getSession().invalidate();// invalida a sessão
+			 request.getSession().invalidate();// invalida a sessao
 			 RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
 			 redirecionar.forward(request, response);
 		 }else {
@@ -59,7 +61,10 @@ public class ServletLogin extends HttpServlet {
 					
 					if (daoLoginRepository.validarAutenticacao(modelLogin)) { /*Simulando login*/
 						
+						modelLogin = daoUsuarioRepository.consultaUsuarioLogado(login);
+						
 						request.getSession().setAttribute("usuario", modelLogin.getLogin());
+						request.getSession().setAttribute("permissao", modelLogin.getPermissao());
 						
 						if (url == null || url.equals("null")) {
 							url = "principal/principal.jsp";
