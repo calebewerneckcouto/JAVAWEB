@@ -1,18 +1,24 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
+
+import org.apache.tomcat.jakartaee.commons.compress.utils.IOUtils;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOUsuarioRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import model.ModelLogin;
-
+@MultipartConfig
 @WebServlet( urlPatterns =  {"/ServletUsuarioController"})
 public class ServletUsuarioController extends ServletGenericUtil {
 	
@@ -75,7 +81,7 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			     List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
 			     request.setAttribute("modelLogins", modelLogins);
 			     
-			    request.setAttribute("msg", "Usu�rio em edi��o");
+			    request.setAttribute("msg", "Usuario em edição");
 				request.setAttribute("modolLogin", modelLogin);
 				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 		 }
@@ -84,7 +90,7 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			 
 			 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
 			 
-			 request.setAttribute("msg", "Usu�rios carregados");
+			 request.setAttribute("msg", "Usuarios carregados");
 		     request.setAttribute("modelLogins", modelLogins);
 			 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 			 
@@ -131,6 +137,16 @@ public class ServletUsuarioController extends ServletGenericUtil {
 		modelLogin.setSenha(senha);
 		modelLogin.setPermissao(permissao);
 		modelLogin.setSexo(sexo);
+		
+		
+		if(ServletFileUpload.isMultipartContent(request)) {
+			Part part = request.getPart("fileFoto");/*Pega a foto no frontend*/
+			byte[] foto = IOUtils.toByteArray(part.getInputStream());
+			String imagemBase64 = "data:image/" + part.getContentType()+";base64,"+ new org.apache.tomcat.util.codec.binary.Base64().encodeBase64String(foto);
+			
+			modelLogin.setFotouser(imagemBase64);
+			modelLogin.setExtensaofotouser(part.getContentType().split("\\/")[0]);
+		}
 		
 		
 		if (daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
