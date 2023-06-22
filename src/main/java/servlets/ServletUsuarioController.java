@@ -141,13 +141,15 @@ public class ServletUsuarioController extends ServletGenericUtil {
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
 			Part part = request.getPart("fileFoto");/*Pega a foto no frontend*/
+			
+			if(part.getSize() >0) {
 			byte[] foto = IOUtils.toByteArray(part.getInputStream());
 			String imagemBase64 = "data:image/" + part.getContentType()+";base64,"+ new org.apache.tomcat.util.codec.binary.Base64().encodeBase64String(foto);
 			
 			modelLogin.setFotouser(imagemBase64);
 			modelLogin.setExtensaofotouser(part.getContentType().split("\\/")[0]);
 		}
-		
+		}
 		
 		if (daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
 			msg = "Ja existe usuario com o mesmo login, informe outro login;";
