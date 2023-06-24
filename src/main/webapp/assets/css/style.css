@@ -201,7 +201,7 @@ b, strong {
       position: relative; }
       .card .card-header h5:after {
         content: "";
-        background-color: #448aff;
+        background-color: rgb(219, 235, 103);
         position: absolute;
         left: -20px;
         top: 0;
@@ -16003,7 +16003,7 @@ body.dark {
     color: #fff; }
   .pcoded[layout-type="dark"] .alert.background-primary,
   body.dark .alert.background-primary {
-    background-color: #448aff;
+    background-color: rgb(219, 235, 103);
     color: #fff; }
   .pcoded[layout-type="dark"] .alert.background-success,
   body.dark .alert.background-success {
@@ -16039,7 +16039,7 @@ body.dark {
     .pcoded[layout-type="dark"] .md-tabs .nav-item a.active:focus, .pcoded[layout-type="dark"] .md-tabs .nav-item a.active:hover,
     body.dark .md-tabs .nav-item a.active:focus,
     body.dark .md-tabs .nav-item a.active:hover {
-      color: #448aff; }
+      color: rgb(219, 235, 103); }
   .pcoded[layout-type="dark"] .nav-tabs,
   body.dark .nav-tabs {
     border-bottom: 1px solid #4c626d; }

@@ -44,11 +44,31 @@ position: absolute;
 <body>
 
 
-  
- <h5>CWC3D</h5> 
+  <style>
+    .image-container {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<div></div>  
+   <div></div>  
+   <div></div>  
+   <div></div>  
+   <div></div>  
+   <div></div>  
 
-
-
+<div class="image-container">
+    <img src="<%= request.getContextPath() %>/assets/images/icone.png" class="img-radius" height="240px" alt="User-Profile-Image">
+</div>
+   <div></div>  
+   <div></div>  
+   
+   <div></div>  
+   
+   <div></div>  
+   <div></div>  
+   <div></div>  
+   <div></div>  
 
 
 
@@ -58,10 +78,13 @@ position: absolute;
 <form action="<%=request.getContextPath() %>/ServletLogin" method="post" class="row g-3 needs-validation" novalidate>
 
 <input type="hidden" value="<%= request.getParameter("url") %>" name="url">
+ 
+  
 
+<div></div>  
 <div class="mb-3">
   <label class="form-label" for="login">Login</label>
-  <input class="form-control" id="login" name="login" type="text" required>
+  <input class="form-control" id="login" name="login" type="text" >
    <div class="invalid-feedback">
       Obrigatório
     </div>
@@ -72,7 +95,7 @@ position: absolute;
  
  <div class="mb-3">
   <label class="form-label" for="senha">Senha</label> 
-  <input class="form-control" id="senha" name="senha" type="password" required>
+  <input class="form-control" id="senha" name="senha" type="password" >
    <div class="invalid-feedback">
       Obrigatório
     </div>
@@ -81,7 +104,8 @@ position: absolute;
     </div>
  </div>
 
-  <input type="submit" value="Acessar" class="btn btn-primary">
+  <input type="submit" value="Acessar" class="btn btn-primary"  onclick="colocarrequerido('login'),colocarrequerido('senha')">
+   <input type="submit" method="get" value="Cadastrar" class="btn btn-primary" onclick="tirarequerio('login'),tirarequerio('senha')">
 
 </form>
 
@@ -93,6 +117,33 @@ position: absolute;
 
 <script type="text/javascript">
 //Example starter JavaScript for disabling form submissions if there are invalid fields
+
+
+function tirarequerio(elementId) {
+  var elemento = document.getElementById(elementId);
+  
+  if (elemento.hasAttribute('required')) {
+    elemento.removeAttribute('required');
+  } else {
+    elemento.setAttribute('required', 'required');
+  }
+}
+
+
+
+function colocarrequerido(elementId) {
+    var elemento = document.getElementById(elementId);
+    
+    elemento.setAttribute('required', 'required');
+  }
+
+
+
+
+
+
+
+
 (function () {
   'use strict'
 

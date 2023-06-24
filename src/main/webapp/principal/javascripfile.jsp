@@ -30,5 +30,5 @@
     <script src="<%= request.getContextPath() %>/assets/js/pcoded.min.js"></script>
     <script src="<%= request.getContextPath() %>/assets/js/vertical-layout.min.js "></script>
     <!-- custom js -->
-    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/pages/dashboard/custom-dashboard.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/assets/pages/Home/custom-dashboard.js"></script>
     <script type="text/javascript" src="<%= request.getContextPath() %>/assets/js/script.js "></script>
