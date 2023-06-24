@@ -53,7 +53,7 @@ public class ServletLogin extends HttpServlet {
 		
 		try {
 		
-				if (login == null && login.isEmpty() && senha == null && senha.isEmpty()) {
+				if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
 					
 					ModelLogin modelLogin = new ModelLogin();
 					modelLogin.setLogin(login);
@@ -75,7 +75,7 @@ public class ServletLogin extends HttpServlet {
 						
 					}else {
 						RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
-						request.setAttribute("msg", "Favor Efetuar o cadastro!");
+						request.setAttribute("msg", "Informe o login e senha corretamente!");
 						redirecionar.forward(request, response);
 					}
 					

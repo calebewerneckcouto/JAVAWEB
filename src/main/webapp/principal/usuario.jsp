@@ -117,33 +117,25 @@
 																	<option disabled="disabled">[Selecione o
 																		Perfil]</option>
 
-																	<option value="marlin"
+																	<option value="usuario"
 																		<%ModelLogin modelLogin = (ModelLogin) request.getAttribute("modolLogin");
 
-if (modelLogin != null && modelLogin.getPermissao().equals("marlin")) {
+if (modelLogin != null && modelLogin.getPermissao().equals("usuario")) {
 	out.print(" ");
 	out.print("selected=\"selected\"");
 	out.print(" ");
-}%>>Marlin</option>
+}%>>Usuario</option>
 
-																	<option value="custos"
+																	<option value="admin"
 																		<%modelLogin = (ModelLogin) request.getAttribute("modolLogin");
 
-if (modelLogin != null && modelLogin.getPermissao().equals("custos")) {
+if (modelLogin != null && modelLogin.getPermissao().equals("admin")) {
 	out.print(" ");
 	out.print("selected=\"selected\"");
 	out.print(" ");
 
-}%>>Custos</option>
+}%>>Admin</option>
 
-																	<option value="todos"
-																		<%modelLogin = (ModelLogin) request.getAttribute("modolLogin");
-
-if (modelLogin != null && modelLogin.getPermissao().equals("todos")) {
-	out.print(" ");
-	out.print("selected=\"selected\"");
-	out.print(" ");
-}%>>Todos</option>
 
 																</select> <span class="form-bar"></span> <label
 																	class="float-label">Permissão:</label>

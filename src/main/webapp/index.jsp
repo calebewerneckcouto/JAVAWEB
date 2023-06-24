@@ -84,7 +84,7 @@ position: absolute;
 <div></div>  
 <div class="mb-3">
   <label class="form-label" for="login">Login</label>
-  <input class="form-control" id="login" name="login" type="text" >
+  <input class="form-control" id="login" name="login" type="text" required>
    <div class="invalid-feedback">
       Obrigatório
     </div>
@@ -95,7 +95,7 @@ position: absolute;
  
  <div class="mb-3">
   <label class="form-label" for="senha">Senha</label> 
-  <input class="form-control" id="senha" name="senha" type="password" >
+  <input class="form-control" id="senha" name="senha" type="password" required>
    <div class="invalid-feedback">
       Obrigatório
     </div>
@@ -104,8 +104,8 @@ position: absolute;
     </div>
  </div>
 
-  <input type="submit" value="Acessar" class="btn btn-primary"  onclick="colocarrequerido('login'),colocarrequerido('senha')">
-   <input type="submit" method="get" value="Cadastrar" class="btn btn-primary" onclick="tirarequerio('login'),tirarequerio('senha')">
+  <input type="submit" value="Acessar" class="btn btn-primary"  >
+   <input type="submit" method="get" value="Cadastrar" class="btn btn-primary" >
 
 </form>
 
@@ -117,27 +117,6 @@ position: absolute;
 
 <script type="text/javascript">
 //Example starter JavaScript for disabling form submissions if there are invalid fields
-
-
-function tirarequerio(elementId) {
-  var elemento = document.getElementById(elementId);
-  
-  if (elemento.hasAttribute('required')) {
-    elemento.removeAttribute('required');
-  } else {
-    elemento.setAttribute('required', 'required');
-  }
-}
-
-
-
-function colocarrequerido(elementId) {
-    var elemento = document.getElementById(elementId);
-    
-    elemento.setAttribute('required', 'required');
-  }
-
-
 
 
 

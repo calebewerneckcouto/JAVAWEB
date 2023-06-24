@@ -32,9 +32,10 @@
                           <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"></div>
                           <ul class="pcoded-item pcoded-left-item">
                               <li class="active">
-                                  <a href="index.html" class="waves-effect waves-dark">
+                                  <a href="<%= request.getContextPath() %>/principal/principal.jsp" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                      <span class="pcoded-mtext" data-i18n="nav.dash.main">Home</span>
+                                       
+                                      <span class="pcoded-mtext" data-i18n="nav.dash.main">Página Principal</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>
@@ -46,7 +47,7 @@
                                   </a>
                                   
                                   <ul class="pcoded-submenu">
-                                   <c:if test="${permissao == 'todos'}">
+                                   <c:if test="${permissao == 'admin'}">
                                       <li class=" ">
                                           <a href="<%=request.getContextPath() %>/ServletUsuarioController?acao=listarUser" class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
