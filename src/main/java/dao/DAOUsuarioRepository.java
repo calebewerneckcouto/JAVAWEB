@@ -291,6 +291,40 @@ public int totalPagina(Long userLogado) throws Exception {
 	}
 	
 	
+	
+
+	public ModelLogin consultaUsuarioID(Long id) throws Exception  {
+		
+		ModelLogin modelLogin = new ModelLogin();
+		
+		String sql = "select * from model_login where id = ? and useradmin is false";
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		statement.setLong(1, id);
+		
+		
+		ResultSet resutlado =  statement.executeQuery();
+		
+		while (resutlado.next()) /*Se tem resultado*/ {
+			
+			modelLogin.setId(resutlado.getLong("id"));
+			modelLogin.setEmail(resutlado.getString("email"));
+			modelLogin.setLogin(resutlado.getString("login"));
+			modelLogin.setSenha(resutlado.getString("senha"));
+			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setPermissao(resutlado.getString("permissao"));
+			modelLogin.setSexo(resutlado.getString("sexo"));
+			modelLogin.setFotouser(resutlado.getString("fotouser"));
+		}
+		
+		
+		return modelLogin;
+		
+	}
+		
+	
+	
+	
 	public ModelLogin consultaUsuarioID(String id, Long userLogado) throws Exception  {
 		
 		ModelLogin modelLogin = new ModelLogin();

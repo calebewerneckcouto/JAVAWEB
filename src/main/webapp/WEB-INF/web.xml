@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-         id="WebApp_ID" version="4.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>curso-jsp</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ServletTelefone</display-name>
+    <servlet-name>ServletTelefone</servlet-name>
+    <servlet-class>servlets.ServletTelefone</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletTelefone</servlet-name>
+    <url-pattern>/ServletTelefone</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletTelefones</display-name>
+    <servlet-name>ServletTelefones</servlet-name>
+    <servlet-class>servlets.ServletTelefones</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletTelefones</servlet-name>
+    <url-pattern>/ServletTelefones</url-pattern>
+  </servlet-mapping>
 </web-app>
