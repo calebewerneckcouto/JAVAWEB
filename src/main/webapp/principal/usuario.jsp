@@ -206,13 +206,14 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 											<table class="table" id="tabelaresultadosview">
 												<thead>
 													<tr>
-														<th scope="col">ID</th>
-														<th scope="col">Nome</th>
-														<th scope="col">Email</th>
-														<th scope="col">Login</th>
-														<th scope="col">Senha</th>
-														<th scope="col">Sexo</th>
-														<th scope="col">Ver</th>
+															<th scope="col">ID</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Email</th>
+									<th scope="col">Login</th>
+									<th scope="col">Senha</th>
+									<th scope="col">Sexo</th>
+									<th scope="col">Permissão</th>									
+									<th scope="col">Ver</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -224,6 +225,7 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 															<td><c:out value="${ml.login}"></c:out></td>
 															<td><c:out value="${ml.senha}"></c:out></td>
 															<td><c:out value="${ml.sexo}"></c:out></td>
+															<td><c:out value="${ml.permissao}"></c:out></td>
 															<td><a class="btn btn-success"
 																href="<%= request.getContextPath() %>/ServletUsuarioController?acao=buscarEditar&id=${ml.id}">Ver</a></td>
 														</tr>
@@ -312,6 +314,7 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 									<th scope="col">Login</th>
 									<th scope="col">Senha</th>
 									<th scope="col">Sexo</th>
+									<th scope="col">Permissão</th>									
 									<th scope="col">Ver</th>
 								</tr>
 							</thead>
@@ -399,6 +402,8 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 								    + json[p].senha
 								    + '</td><td> '
 								    + json[p].sexo
+								    + '</td><td> '
+								    + json[p].permissao
 								    + '</td><td><button onclick="verEditar('
 								    + json[p].id
 								    + ')" type="button" class="btn btn-info">Ver</button></td></tr>');
