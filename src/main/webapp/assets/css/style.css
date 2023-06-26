@@ -42,6 +42,7 @@ ul {
 
 *:focus {
   outline: none; }
+  
 
 a {
   font-size: 13px;
@@ -167,6 +168,16 @@ b, strong {
       float: right;
       padding: 7px 0;
       position: absolute; }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       @media only screen and (max-width: 575px) {
         .card .card-header .card-header-right {
           display: none; } }
