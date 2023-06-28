@@ -13,7 +13,7 @@ public class ModelLogin implements Serializable {
 	private String senha;
 	private String permissao;
 
-	private String sexo;
+	
 
 	private boolean useradmin;
 	
@@ -51,13 +51,7 @@ public class ModelLogin implements Serializable {
 		this.permissao = permissao;
 	}
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
+	
 
 	public void setUseradmin(boolean useradmin) {
 		this.useradmin = useradmin;

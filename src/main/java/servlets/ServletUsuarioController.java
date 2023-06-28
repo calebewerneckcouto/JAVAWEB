@@ -156,7 +156,7 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 			String permissao = request.getParameter("permissao");
-			String sexo = request.getParameter("sexo");
+			
 
 			ModelLogin modelLogin = new ModelLogin();
 
@@ -166,7 +166,7 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			modelLogin.setLogin(login);
 			modelLogin.setSenha(senha);
 			modelLogin.setPermissao(permissao);
-			modelLogin.setSexo(sexo);
+			
 
 			if (ServletFileUpload.isMultipartContent(request)) {
 				Part part = request.getPart("fileFoto");/* Pega a foto no frontend */

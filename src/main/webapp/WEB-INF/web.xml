@@ -24,4 +24,14 @@
     <servlet-name>ServletTelefones</servlet-name>
     <url-pattern>/ServletTelefones</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletCadastroUsuario</display-name>
+    <servlet-name>ServletCadastroUsuario</servlet-name>
+    <servlet-class>servlets.ServletCadastroUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCadastroUsuario</servlet-name>
+    <url-pattern>/ServletCadastroUsuario</url-pattern>
+  </servlet-mapping>
 </web-app>

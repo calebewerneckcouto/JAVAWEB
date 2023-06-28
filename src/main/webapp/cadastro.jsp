@@ -75,13 +75,14 @@ position: absolute;
 
 
 
-<form action="<%=request.getContextPath() %>/ServletLogin" method="post" class="row g-3 needs-validation" novalidate>
+<form action="<%=request.getContextPath() %>/ServletCadU" method="post" class="row g-3 needs-validation" novalidate>
 
-<input type="hidden" value="<%= request.getParameter("url") %>" name="url">
+
  
-  
+     
 
 <div></div>  
+
 <div class="mb-3">
   <label class="form-label" for="login">Login</label>
   <input class="form-control" id="login" name="login" type="text" required>
@@ -103,9 +104,44 @@ position: absolute;
       ok
     </div>
  </div>
+ 
+ 
+ 
+ <div class="mb-3">
+  <label class="form-label" for="senha">Nome</label> 
+  <input class="form-control" id="nome" name="nome" type="text" required>
+   <div class="invalid-feedback">
+      Obrigatório
+    </div>
+    <div class="valid-feedback">
+      ok
+    </div>
+ </div>
+ 
+ <div class="mb-3">
+  <label class="form-label" for="email">Email</label>
+  <input class="form-control" id="email" name="email" type="email" required>
+   <div class="invalid-feedback">
+      Obrigatório
+    </div>
+     <div class="valid-feedback">
+      ok
+    </div>
+ </div> 
+ 
+ 
+ <div class="mb-3">
+  <label class="form-label" for="email">Permissão:</label>
+  <input class="form-control" id="permissao" name="permissao" type="texto" value="usuario" readonly="readonly" >
+      
+ </div> 
+ 
+ 
+ 
+ 
 
   <input type="submit" value="Acessar" class="btn btn-primary"  >
- <a href="cadastro.jsp" class="btn btn-primary waves-effect waves-light" >Cadastro de Usuarios</a>
+  
 
 </form>
 
@@ -116,32 +152,7 @@ position: absolute;
 
 
 <script type="text/javascript">
-//Example starter JavaScript for disabling form submissions if there are invalid fields
 
-
-
-
-
-
-(function () {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
 
 </script>
 </body>

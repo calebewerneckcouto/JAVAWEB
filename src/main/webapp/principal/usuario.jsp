@@ -110,11 +110,12 @@
 															</div>
 
 
-
+                                                              
 															<div class="form-group form-default form-static-label">
+															
 																<select class="form-control"
-																	aria-label="Default select example" name="permissao">
-																	<option disabled="disabled">[Selecione o
+																	aria-label="Default select example" name="permissao" >
+																	<option disabled="disabled" >[Selecione o
 																		Perfil]</option>
 
 																	<option value="usuario"
@@ -140,6 +141,8 @@ if (modelLogin != null && modelLogin.getPermissao().equals("admin")) {
 																</select> <span class="form-bar"></span> <label
 																	class="float-label">Permissão:</label>
 															</div>
+															
+															
 
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="login" id="login"
@@ -157,28 +160,7 @@ if (modelLogin != null && modelLogin.getPermissao().equals("admin")) {
 																	class="float-label">Senha</label>
 															</div>
 
-															<div class="form-group form-default form-static-label">
-																<input type="radio" name="sexo" checked="checked"
-																	value="MASCULINO"
-																	<%modelLogin = (ModelLogin) request.getAttribute("modolLogin");
-
-if (modelLogin != null && modelLogin.getSexo().equals("MASCULINO")) {
-	out.print(" ");
-	out.print("checked=\"checked\"");
-	out.print(" ");
-}%>>Masculino</>
-
-																<input type="radio" name="sexo" value="FEMININO"
-																	<%modelLogin = (ModelLogin) request.getAttribute("modolLogin");
-
-if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
-	out.print(" ");
-	out.print("checked=\"checked\"");
-	out.print(" ");
-}%>>Feminino</>
-															</div>
-
-
+															
 
 
 
@@ -216,7 +198,6 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 									<th scope="col">Email</th>
 									<th scope="col">Login</th>
 									<th scope="col">Senha</th>
-									<th scope="col">Sexo</th>
 									<th scope="col">Permissão</th>									
 									<th scope="col">Ver</th>
 													</tr>
@@ -229,7 +210,6 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 															<td><c:out value="${ml.email}"></c:out></td>
 															<td><c:out value="${ml.login}"></c:out></td>
 															<td><c:out value="${ml.senha}"></c:out></td>
-															<td><c:out value="${ml.sexo}"></c:out></td>
 															<td><c:out value="${ml.permissao}"></c:out></td>
 															<td><a class="btn btn-success"
 																href="<%= request.getContextPath() %>/ServletUsuarioController?acao=buscarEditar&id=${ml.id}">Ver</a></td>
@@ -318,7 +298,6 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 									<th scope="col">Email</th>
 									<th scope="col">Login</th>
 									<th scope="col">Senha</th>
-									<th scope="col">Sexo</th>
 									<th scope="col">Permissão</th>									
 									<th scope="col">Ver</th>
 								</tr>
@@ -405,8 +384,6 @@ if (modelLogin != null && modelLogin.getSexo().equals("FEMININO")) {
 								    + json[p].login
 								    + '</td><td> '
 								    + json[p].senha
-								    + '</td><td> '
-								    + json[p].sexo
 								    + '</td><td> '
 								    + json[p].permissao
 								    + '</td><td><button onclick="verEditar('

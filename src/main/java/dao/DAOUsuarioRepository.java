@@ -23,7 +23,7 @@ public class DAOUsuarioRepository {
 		
 		if (objeto.isNovo()) {/*Grava um novo*/
 		
-		String sql = "INSERT INTO model_login(login, senha, nome, email, usuario_id, permissao, sexo)  VALUES (?, ?, ?, ?, ?, ?,?);";
+		String sql = "INSERT INTO model_login(login, senha, nome, email, usuario_id, permissao)  VALUES (?, ?, ?, ?, ?, ?);";
 		PreparedStatement preparedSql = connection.prepareStatement(sql);
 		
 		preparedSql.setString(1, objeto.getLogin());
@@ -32,7 +32,7 @@ public class DAOUsuarioRepository {
 		preparedSql.setString(4, objeto.getEmail());
 		preparedSql.setLong(5, userLogado);
 		preparedSql.setString(6, objeto.getPermissao());
-		preparedSql.setString(7, objeto.getSexo());
+		
 		
 		preparedSql.execute();
 		
@@ -52,7 +52,7 @@ public class DAOUsuarioRepository {
 		
 		
 		}else {
-			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, permissao=?, sexo=? WHERE id =  "+objeto.getId()+";";
+			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, permissao=? WHERE id =  "+objeto.getId()+";";
 			
 			PreparedStatement prepareSql = connection.prepareStatement(sql);
 			
@@ -61,7 +61,7 @@ public class DAOUsuarioRepository {
 			prepareSql.setString(3, objeto.getNome());
 			prepareSql.setString(4, objeto.getEmail());
 			prepareSql.setString(5, objeto.getPermissao());
-			prepareSql.setString(6, objeto.getSexo());
+			
 			
 			prepareSql.executeUpdate();
 			
@@ -107,7 +107,7 @@ public class DAOUsuarioRepository {
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setPermissao(resultado.getString("permissao"));
-			modelLogin.setSexo(resultado.getString("sexo"));
+			
 			
 			retorno.add(modelLogin);
 		}
@@ -161,7 +161,7 @@ public int totalPagina(Long userLogado) throws Exception {
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setPermissao(resultado.getString("permissao"));
-			modelLogin.setSexo(resultado.getString("sexo"));
+			
 			
 			retorno.add(modelLogin);
 		}
@@ -192,7 +192,7 @@ public int totalPagina(Long userLogado) throws Exception {
 			modelLogin.setNome(resultado.getString("nome"));
 			modelLogin.setSenha(resultado.getString("senha"));
 			modelLogin.setPermissao(resultado.getString("permissao"));
-			modelLogin.setSexo(resultado.getString("sexo"));
+			
 			
 			retorno.add(modelLogin);
 		}
@@ -221,7 +221,6 @@ public int totalPagina(Long userLogado) throws Exception {
 			modelLogin.setNome(resutlado.getString("nome"));
 			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
 			modelLogin.setPermissao(resutlado.getString("permissao"));;
-			modelLogin.setSexo(resutlado.getString("sexo"));
 			modelLogin.setFotouser(resutlado.getString("fotouser"));
 		}
 		
@@ -252,7 +251,6 @@ public int totalPagina(Long userLogado) throws Exception {
 			modelLogin.setNome(resutlado.getString("nome"));
 			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
 			modelLogin.setPermissao(resutlado.getString("permissao"));
-			modelLogin.setSexo(resutlado.getString("sexo"));
 			modelLogin.setFotouser(resutlado.getString("fotouser"));
 		}
 		
@@ -281,7 +279,6 @@ public int totalPagina(Long userLogado) throws Exception {
 			modelLogin.setSenha(resutlado.getString("senha"));
 			modelLogin.setNome(resutlado.getString("nome"));
 			modelLogin.setPermissao(resutlado.getString("permissao"));
-			modelLogin.setSexo(resutlado.getString("sexo"));
 			modelLogin.setFotouser(resutlado.getString("fotouser"));
 		}
 		
@@ -313,7 +310,6 @@ public int totalPagina(Long userLogado) throws Exception {
 			modelLogin.setSenha(resutlado.getString("senha"));
 			modelLogin.setNome(resutlado.getString("nome"));
 			modelLogin.setPermissao(resutlado.getString("permissao"));
-			modelLogin.setSexo(resutlado.getString("sexo"));
 			modelLogin.setFotouser(resutlado.getString("fotouser"));
 		}
 		
@@ -345,8 +341,7 @@ public int totalPagina(Long userLogado) throws Exception {
 			modelLogin.setSenha(resutlado.getString("senha"));
 			modelLogin.setNome(resutlado.getString("nome"));
 			modelLogin.setPermissao(resutlado.getString("permissao"));
-			modelLogin.setSexo(resutlado.getString("sexo"));
-			modelLogin.setFotouser(resutlado.getString("fotouser"));
+		    modelLogin.setFotouser(resutlado.getString("fotouser"));
 		}
 		
 		
