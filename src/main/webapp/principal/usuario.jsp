@@ -52,6 +52,16 @@
 															method="post" id="formUser">
 
 															<input type="hidden" name="acao" id="acao" value="">
+															
+															
+															<div class="form-group form-default form-static-label">
+																<input type="text" name="idadmin" id="idadmin"
+																	class="form-control" readonly="readonly"
+																	value= 2 > <span
+																	class="form-bar"></span> <label class="float-label">ID Logado:</label>
+															</div>
+															
+													
 
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="id" id="id"
@@ -178,7 +188,7 @@ if (modelLogin != null && modelLogin.getPermissao().equals("admin")) {
 												             <c:if test="${modolLogin.id > 0}"> 
 												               <a href="<%= request.getContextPath() %>/SertvletTelefone?iduser=${modolLogin.id}" class="btn btn-primary waves-effect waves-light" >Telefone</a>
 												             </c:if>
-												                <c:if test="${modolLogin.id > 0}"> 
+												                 <c:if test="${modolLogin.id > 0}"> 
 												             <a href="<%= request.getContextPath() %>/SertvletVideos?iduser=${modolLogin.id}" class="btn btn-primary waves-effect waves-light" >Videos</a>
 																								             </c:if>
 															

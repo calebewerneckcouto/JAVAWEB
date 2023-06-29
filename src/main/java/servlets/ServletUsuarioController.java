@@ -40,11 +40,14 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
 
 				String idUser = request.getParameter("id");
+				String id =request.getParameter("id");
 
 				daoUsuarioRepository.deletarUser(idUser);
 
 				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
+				
 				request.setAttribute("modelLogins", modelLogins);
+			
 
 				request.setAttribute("msg", "Excluido com sucesso!");
 
