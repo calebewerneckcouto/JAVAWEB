@@ -34,4 +34,14 @@
     <servlet-name>ServletCadastroUsuario</servlet-name>
     <url-pattern>/ServletCadastroUsuario</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletVideos</display-name>
+    <servlet-name>ServletVideos</servlet-name>
+    <servlet-class>servlets.ServletVideos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVideos</servlet-name>
+    <url-pattern>/ServletVideos</url-pattern>
+  </servlet-mapping>
 </web-app>

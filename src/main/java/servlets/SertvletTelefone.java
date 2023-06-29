@@ -28,27 +28,6 @@ public class SertvletTelefone extends ServletGenericUtil {
 		
 		try {
 			
-		String acao = request.getParameter("acao");
-		
-		if (acao != null && !acao.isEmpty() && acao.equals("excluir")) {
-			
-			String idfone = request.getParameter("id");
-			
-			daoTelefoneRepository.deleteFone(Long.parseLong(idfone));
-			
-			String userpai = request.getParameter("userpai");
-			
-			ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioID(Long.parseLong(userpai));
-			
-			List<ModelTelefone> modelTelefones = daoTelefoneRepository.listFone(modelLogin.getId());
-			request.setAttribute("modelTelefones", modelTelefones);
-			
-			request.setAttribute("msg", "Telefone Excluido");
-			request.setAttribute("modelLogin", modelLogin);
-			request.getRequestDispatcher("principal/telefone.jsp").forward(request, response);
-			
-			return;
-		}
 		
 		
 			

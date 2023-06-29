@@ -71,10 +71,11 @@ Lembre-se de substituir "url_do_videoX" pelas URLs reais dos seus vídeos. Você p
                                      
                                     </div>
                                   <h1 class="text-center">3D Builder</h1>
-                                 <div class="video-wrapper">
-     
-       <iframe width="560" height="315" src="https://www.youtube.com/embed/jTgNUbRnuRY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                               
+                                                       <c:forEach items='${modelVideos}' var='ml'>
+														<tr>
+															<td><c:out value="${ml.link}"></c:out></td>
+															</tr>
+													</c:forEach>                
    
   </div>
                               </div>

@@ -1,3 +1,6 @@
+<%@page import="dao.DAOVideos"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.ModelVideos"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	
@@ -50,21 +53,9 @@
 															
 															 <form class="form-material"  action="<%= request.getContextPath() %>/SertvletVideos" method="post" id="formVideos" >
 
-															<div class="form-group form-default form-static-label">
-																<input type="text" name="id" id="id"
-																	class="form-control" readonly="readonly"
-																	value="${modelLogin.id}"> 
-																	<span class="form-bar"></span>
-																	 <label class="float-label">ID User:</label>
-															</div>
+														
 															
-															
-															<div class="form-group form-default form-static-label">
-                                                                <input readonly="readonly" type="text" name="nome" id="nome" class="form-control" required="required" value="${modelLogin.nome}">
-                                                                <span class="form-bar"></span>
-                                                                <label class="float-label">Nome:</label>
-                                                            </div>
-                                                            
+														
                                                             
                                                             <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="nomevideo" id="nomevideo" class="form-control" required="required" >
@@ -105,32 +96,7 @@
 										 <span id="msg">${msg}</span>
 										 
 										 
-										 <div style="height: 300px; overflow: scroll;">
-											<table class="table" id="tabelaresultadosview">
-												<thead>
-													<tr>
-														<th scope="col">ID</th>
-														<th scope="col">Nome do Video</th>
-														<th scope="col">Link</th>
-														<th scope="col">Pagina</th>
-														
-														<th scope="col">Excluir</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach items='${modelVideos}' var='mv'>
-													      <tr>
-													       <td><c:out value="${mv.id}"></c:out></td>
-													        <td><c:out value="${mv.nomevideo}"></c:out></td>
-													        <td><c:out value="${mv.link}"></c:out></td>
-													        <td><c:out value="${mv.pagina}"></c:out></td>
-													     
-													       <td><a class="btn btn-success" href="<%= request.getContextPath() %>/SertvletVideos?acao=excluir&id=${mv.id}&userpai=${modelLogin.id}" >Excluir</a></td>
-													      </tr>
-													</c:forEach>
-												</tbody>
-											</table>
-										</div>
+										
 										 
 										 
 									</div>

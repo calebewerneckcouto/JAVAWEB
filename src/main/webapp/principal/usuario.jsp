@@ -55,7 +55,7 @@
 
 															<input type="hidden" name="acao" id="acao" value="">
 															
-															 <span      id="more-details"><%= request.getSession().getId() %><i class="fa fa-caret-down"></i></span>
+															
 														
 
 															<div class="form-group form-default form-static-label">

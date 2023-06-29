@@ -15,7 +15,7 @@
                                   <img class="img-80 img-radius" src="<%= request.getContextPath() %>/assets/images/icone.png" alt="User-Profile-Image">
                                   <div class="user-details">
                                       <span id="more-details"><%= request.getSession().getAttribute("usuario") %><i class="fa fa-caret-down"></i></span>
-                                         <span id="more-details"><%= request.getSession().getAttribute("id") %><i class="fa fa-caret-down"></i></span>
+                                    
                                       
                                       
                                       
@@ -62,6 +62,16 @@
                                       </li>
                                       
                                       
+                                          <li class=" ">
+                                          <a href="<%= request.getContextPath() %>/principal/compilamarlin.jsp"  class="waves-effect waves-dark">
+                                              <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                              <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Compilação Marlin</span>
+                                              <span class="pcoded-mcaret"></span>
+                                          </a>
+                                      </li>
+                                      
+                                      
+                                      
                                       <li class=" ">
                                           <a href="<%= request.getContextPath() %>/principal/3dbuilder.jsp"  class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -86,6 +96,19 @@
                                           <a href="<%=request.getContextPath() %>/ServletUsuarioController?acao=listarUser"  class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                               <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Gerenciamento do Sistema</span>
+                                              <span class="pcoded-mcaret"></span>
+                                          </a>
+                                      </li>
+                                   </c:if>   
+                                      
+                                      
+                                      
+                                        
+                                   <c:if test="${permissao == 'admin'}">
+                                      <li class=" ">
+                                          <a href="<%= request.getContextPath() %>/principal/videos.jsp"  class="waves-effect waves-dark">
+                                              <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                              <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Videos e Tutoriais</span>
                                               <span class="pcoded-mcaret"></span>
                                           </a>
                                       </li>
