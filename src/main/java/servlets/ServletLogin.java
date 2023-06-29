@@ -56,6 +56,8 @@ public class ServletLogin extends HttpServlet {
 				if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
 					
 					ModelLogin modelLogin = new ModelLogin();
+					Long id = null;
+					modelLogin.setId(id);
 					modelLogin.setLogin(login);
 					modelLogin.setSenha(senha);
 					
@@ -63,6 +65,10 @@ public class ServletLogin extends HttpServlet {
 						
 						modelLogin = daoUsuarioRepository.consultaUsuarioLogado(login);
 						
+					
+						
+						
+					
 						request.getSession().setAttribute("usuario", modelLogin.getLogin());
 						request.getSession().setAttribute("permissao", modelLogin.getPermissao());
 						

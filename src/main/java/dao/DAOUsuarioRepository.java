@@ -179,8 +179,9 @@ public int totalPagina(Long userLogado) throws Exception {
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setString(1, "%" + nome + "%");
 		statement.setLong(2, userLogado);
-		
+	
 		ResultSet resultado = statement.executeQuery();
+	
 		
 		while (resultado.next()) { /*percorrer as linhas de resultado do SQL*/
 			
@@ -195,41 +196,17 @@ public int totalPagina(Long userLogado) throws Exception {
 			
 			
 			retorno.add(modelLogin);
+			
 		}
 		
 		
 		return retorno;
+		
+	
 	}
 	
 	
-	public ModelLogin consultaUsuarioLogado(String login) throws Exception  {
-		
-		ModelLogin modelLogin = new ModelLogin();
-		
-		String sql = "select * from model_login where upper(login) = upper('"+login+"')";
-		
-		PreparedStatement statement = connection.prepareStatement(sql);
-		
-		ResultSet resutlado =  statement.executeQuery();
-		
-		while (resutlado.next()) /*Se tem resultado*/ {
-			
-			modelLogin.setId(resutlado.getLong("id"));
-			modelLogin.setEmail(resutlado.getString("email"));
-			modelLogin.setLogin(resutlado.getString("login"));
-			modelLogin.setSenha(resutlado.getString("senha"));
-			modelLogin.setNome(resutlado.getString("nome"));
-			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
-			modelLogin.setPermissao(resutlado.getString("permissao"));;
-			modelLogin.setFotouser(resutlado.getString("fotouser"));
-		}
-		
-		
-		return modelLogin;
-		
-	}
-	
-public ModelLogin consultaUsuarioLogado(Long id) throws Exception  {
+	public ModelLogin consultaUsuarioLogado1(Long id) throws Exception  {
 		
 		ModelLogin modelLogin = new ModelLogin();
 		
@@ -256,6 +233,36 @@ public ModelLogin consultaUsuarioLogado(Long id) throws Exception  {
 		
 	}
 	
+public ModelLogin consultaUsuarioLogado(String login) throws Exception  {
+		
+		ModelLogin modelLogin = new ModelLogin();
+		
+		String sql = "select * from model_login where upper(login) = upper('"+login+"')";
+		
+		PreparedStatement statement = connection.prepareStatement(sql);
+		
+		ResultSet resutlado =  statement.executeQuery();
+		
+		while (resutlado.next()) /*Se tem resultado*/ {
+			
+			modelLogin.setId(resutlado.getLong("id"));
+			modelLogin.setEmail(resutlado.getString("email"));
+			modelLogin.setLogin(resutlado.getString("login"));
+			modelLogin.setSenha(resutlado.getString("senha"));
+			modelLogin.setNome(resutlado.getString("nome"));
+			modelLogin.setUseradmin(resutlado.getBoolean("useradmin"));
+			modelLogin.setPermissao(resutlado.getString("permissao"));;
+			modelLogin.setFotouser(resutlado.getString("fotouser"));
+		}
+		
+		
+		return modelLogin;
+		
+	}
+
+
+
+
 	
 	public ModelLogin consultaUsuario(String login) throws Exception  {
 		
@@ -367,10 +374,12 @@ public ModelLogin consultaUsuarioLogado(Long id) throws Exception  {
 			modelLogin.setNome(resutlado.getString("nome"));
 			modelLogin.setPermissao(resutlado.getString("permissao"));
 		    modelLogin.setFotouser(resutlado.getString("fotouser"));
+	
 		}
 		
 		
 		return modelLogin;
+		
 		
 	}
 	

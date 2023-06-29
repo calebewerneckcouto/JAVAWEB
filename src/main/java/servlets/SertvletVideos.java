@@ -52,6 +52,21 @@ public class SertvletVideos extends ServletGenericUtil {
 			return;
 		}
 		
+		else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {
+
+			String id = request.getParameter("id");
+
+			ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioID(id, super.getUserLogado(request));
+
+			List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
+			request.setAttribute("modelLogins", modelLogins);
+
+			request.setAttribute("msg", "Usuario em edição");
+			request.setAttribute("modolLogin", modelLogin);
+			request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
+			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+		}
+		
 		
 			
 		

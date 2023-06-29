@@ -85,7 +85,7 @@ position: absolute;
 
 <div class="mb-3">
   <label class="form-label" for="login">Login</label>
-  <input class="form-control" id="login" name="login" type="text" required>
+  <input class="form-control" id="login" name="login" type="text" required = "required">
    <div class="invalid-feedback">
       Obrigatório
     </div>
@@ -96,7 +96,7 @@ position: absolute;
  
  <div class="mb-3">
   <label class="form-label" for="senha">Senha</label> 
-  <input class="form-control" id="senha" name="senha" type="password" required>
+  <input class="form-control" id="senha" name="senha" type="password" required="required">
    <div class="invalid-feedback">
       Obrigatório
     </div>
@@ -109,7 +109,7 @@ position: absolute;
  
  <div class="mb-3">
   <label class="form-label" for="senha">Nome</label> 
-  <input class="form-control" id="nome" name="nome" type="text" required>
+  <input class="form-control" id="nome" name="nome" type="text" required="required">
    <div class="invalid-feedback">
       Obrigatório
     </div>
@@ -120,7 +120,7 @@ position: absolute;
  
  <div class="mb-3">
   <label class="form-label" for="email">Email</label>
-  <input class="form-control" id="email" name="email" type="email" required>
+  <input class="form-control" id="email" name="email" type="email" required="required">
    <div class="invalid-feedback">
       Obrigatório
     </div>
@@ -151,9 +151,37 @@ position: absolute;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 
-<script type="text/javascript">
 
+
+<script type="text/javascript">
+//Example starter JavaScript for disabling form submissions if there are invalid fields
+
+
+
+
+
+
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 
 </script>
+
 </body>
 </html>

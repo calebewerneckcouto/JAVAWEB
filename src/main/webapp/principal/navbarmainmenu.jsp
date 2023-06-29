@@ -15,6 +15,11 @@
                                   <img class="img-80 img-radius" src="<%= request.getContextPath() %>/assets/images/icone.png" alt="User-Profile-Image">
                                   <div class="user-details">
                                       <span id="more-details"><%= request.getSession().getAttribute("usuario") %><i class="fa fa-caret-down"></i></span>
+                                         <span id="more-details"><%= request.getSession().getAttribute("id") %><i class="fa fa-caret-down"></i></span>
+                                      
+                                      
+                                      
+                         
                                   </div>
                               </div>
         
@@ -46,7 +51,7 @@
                                   </a>
                                   
                                   <ul class="pcoded-submenu">
-                                  
+                                
                                  
                                       <li class=" ">
                                           <a href="<%= request.getContextPath() %>/principal/principal.jsp"  class="waves-effect waves-dark">
@@ -78,7 +83,7 @@
                                   
                                    <c:if test="${permissao == 'admin'}">
                                       <li class=" ">
-                                          <a href="<%=request.getContextPath() %>/ServletUsuarioController?acao=listarUser" class="waves-effect waves-dark">
+                                          <a href="<%=request.getContextPath() %>/ServletUsuarioController?acao=listarUser"  class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                               <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Gerenciamento do Sistema</span>
                                               <span class="pcoded-mcaret"></span>

@@ -49,19 +49,14 @@
 
 														<form class="form-material" enctype="multipart/form-data"
 															action="<%=request.getContextPath()%>/ServletUsuarioController"
+															
+														
 															method="post" id="formUser">
 
 															<input type="hidden" name="acao" id="acao" value="">
 															
-															
-															<div class="form-group form-default form-static-label">
-																<input type="text" name="idadmin" id="idadmin"
-																	class="form-control" readonly="readonly"
-																	value= 2 > <span
-																	class="form-bar"></span> <label class="float-label">ID Logado:</label>
-															</div>
-															
-													
+															 <span      id="more-details"><%= request.getSession().getId() %><i class="fa fa-caret-down"></i></span>
+														
 
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="id" id="id"
