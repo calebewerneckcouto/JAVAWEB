@@ -34,26 +34,11 @@
 
 						<jsp:include page="page-header.jsp"></jsp:include>
 
-						<!-- Page-header end -->
-						<div class="pcoded-inner-content">
-							<!-- Main-body start -->
-							<div class="main-body">
-								<div class="page-wrapper">
-									<!-- Page-body start -->
-									<div class="page-body">
-
-										<div class="row">
-											<div class="col-sm-12">
-												<!-- Basic Form Inputs card start -->
-												<div class="card">
 
 
-
-														<form class="form-material" 
-															 id="formUser">
-			<input type="hidden" name="acao" id="acao" value="">
+		
 															
-<h4 class="sub-title">Marlin</h4>
+
 												
     <%!
         private String compilarMarlin(String caminhoMarlin, String caminhoPlatformIO) throws IOException {
