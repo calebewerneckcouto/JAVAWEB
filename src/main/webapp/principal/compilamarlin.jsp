@@ -53,7 +53,9 @@
 <%
 try {
     // Defina o diretório do projeto Marlin
-   String marlinDirectory = "C:\\Users\\CHIP7\\Downloads\\Marlin-2.1.2.1";
+ String marlinDirectory = System.getProperty("user.home") + "\\Downloads\\Marlin-2.1.2.1";
+
+
 
 
     // Execute o comando de compilação usando o PlatformIO

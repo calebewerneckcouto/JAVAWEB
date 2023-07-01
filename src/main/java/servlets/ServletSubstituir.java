@@ -88,8 +88,9 @@ public class ServletSubstituir extends HttpServlet {
 	        FileWriter writer = new FileWriter(arquivo);
 	        writer.write(conteudo.toString());
 	        writer.close();
+	        
 	    }
 	    
-	    
+	  
 	    
 	}

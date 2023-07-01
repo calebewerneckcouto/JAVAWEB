@@ -1,56 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    
+
+                     
+       <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+
 <!DOCTYPE html>
 <html lang="en">
-
-
 <jsp:include page="head.jsp"></jsp:include>
 
-  <body>
+<body>
   <!-- Pre-loader start -->
-  
   <jsp:include page="theme-loader.jsp"></jsp:include>
-  
   <!-- Pre-loader end -->
-  <div id="pcoded" class="pcoded">
-      <div class="pcoded-overlay-box"></div>
-      <div class="pcoded-container navbar-wrapper">
-          
-          <jsp:include page="navbar.jsp"></jsp:include>
 
-          <div class="pcoded-main-container">
-              <div class="pcoded-wrapper">
-                  
-                  <jsp:include page="navbarmainmenu.jsp"></jsp:include>
-                  
-                  <div class="pcoded-content">
-                      <!-- Page-header start -->
-                      
-                      <jsp:include page="page-header.jsp"></jsp:include>
-                      
-                      <!-- Page-header end -->
-                        <div class="pcoded-inner-content">
-                            <!-- Main-body start -->
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <!-- Page-body start -->
-                                    <div class="page-body">
-                                        <div class="row">
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <form action="<%=request.getContextPath()%>/ServletSubstituir" method="post">
-        <label for="caminhoPasta">Caminho da Pasta:</label>
-        <input type="text" name="caminhoPasta" id="caminhoPasta" required>
-        <br><br>
-        <label for="novoValor">Selecione o Chipset:</label>
-        <select name="novoValor" id="novoValor" required>
-               <option selected="selected" value="">(Selecione o Chipset)</option>
-                                            <option value="Anet_ET4_OpenBLT">Anet_ET4_OpenBLT</option>
+  <div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+      <jsp:include page="navbar.jsp"></jsp:include>
+
+      <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+          <jsp:include page="navbarmainmenu.jsp"></jsp:include>
+
+          <div class="pcoded-content">
+            <!-- Page-header start -->
+            <jsp:include page="page-header.jsp"></jsp:include>
+            <!-- Page-header end -->
+
+            <div class="pcoded-inner-content">
+              <!-- Main-body start -->
+              <div class="main-body">
+                <div class="page-wrapper">
+                  <!-- Page-body start -->
+                  <div class="page-body">
+                    <div class="row">
+                    
+                    <div>
+                    <div>
+                    <div>
+                     
+                    <div>
+                    <div>
+                    <div>
+                    <div>
+                   
+                      <form action="<%=request.getContextPath()%>/ServletSubstituir" method="post">
+                        <label for="caminhoPasta">Caminho da Pasta:</label>
+                        <input type="text" name="caminhoPasta" id="caminhoPasta" required>
+                        <br><br>
+                        <label for="novoValor">Selecione o Chipset:</label>
+                        <select name="novoValor" id="novoValor" required>
+                          <option selected="selected" value="">(Selecione o Chipset)</option>
+                        
+                                               <option value="Anet_ET4_OpenBLT">Anet_ET4_OpenBLT</option>
                                             <option value="ARMED">ARMED</option>
                                             <option value="at90usb1286_cdc">at90usb1286_cdc</option>
                                             <option value="at90usb1286_dfu">at90usb1286_dfu</option>
@@ -152,47 +152,43 @@
                                             <option value="teensy36">teensy36</option>
                                             <option value="teensy41">teensy41</option>
                                             <option value="trigorilla_pro">trigorilla_pro</option>
-            <!-- Adicione outras opções conforme necessário -->
-        </select>
-        <br><br>
-        <input type="submit" value="Substituir">
-    </form>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                              	
-                                              	 <a href="<%= request.getContextPath() %>/principal/compilamarlin.jsp"  class="waves-effect waves-dark">Compilar Marlin</a>
-
-
-          								
-                                                          
-                                                            
-                                                            
-                                                             
-													
-                                        </div>
-                                    </div>
-                                    <!-- Page-body end -->
-                                </div>
-                                <div id="styleSelector"> </div>
-                            </div>
-                        </div>
+       
+                        
+                        
+                        
+                        
+                        
+                        
+                        </select>
+                        <br><br>
+                        <input type="submit" value="Montar Firmware" class="btn btn-primary waves-effect waves-light">
+                        </form>
+                         <div>
+                            <div>
+                               <div>
+                                  <div>
+                                     <div> 
+                                       <div> 
+                                         <div> 
+                                           <div>  
+                                            <div>
+                                               <a href="<%= request.getContextPath() %>/principal/compilamarlin.jsp" class="btn btn-primary waves-effect waves-light" >Compilar Marlin</a>
+                      
+                     <a href="https://github.com/MarlinFirmware/Marlin/archive/2.1.2.1.zip" class="btn btn-primary waves-effect waves-light" >Download Marlin 2.1.2.1</a>
+                    
                     </div>
+                  </div>
+                  <!-- Page-body end -->
                 </div>
+                <div id="styleSelector"> </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-   
-   
-<jsp:include page="javascripfile.jsp"></jsp:include>
-</body>
+  </div>
 
+  <jsp:include page="javascripfile.jsp"></jsp:include>
+</body>
 </html>
-    
