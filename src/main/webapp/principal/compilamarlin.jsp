@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.File" %>
 <%@ page import="java.io.IOException" %>
 <%@ page import="java.io.InputStreamReader" %>
-
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  	
 
 
 <!DOCTYPE html>
@@ -34,73 +32,61 @@
 
 						<jsp:include page="page-header.jsp"></jsp:include>
 
+						<!-- Page-header end -->
+						<div class="pcoded-inner-content">
+							<!-- Main-body start -->
+							<div class="main-body">
+								<div class="page-wrapper">
+									<!-- Page-body start -->
+									<div class="page-body">
+
+										<div class="row">
+											<div class="col-sm-12">
+												<!-- Basic Form Inputs card start -->
+												<div class="card">
+
+													<div class="card-block">
+														<h4 class="sub-title">Resultado CompilaÁ„o</h4>
 
 
-		
-															
 
-												
-    <%!
-        private String compilarMarlin(String caminhoMarlin, String caminhoPlatformIO) throws IOException {
-            ProcessBuilder processBuilder = new ProcessBuilder(caminhoPlatformIO, "run");
-            processBuilder.directory(new File(caminhoMarlin));
+<%
+try {
+    // Defina o diretÛrio do projeto Marlin
+   String marlinDirectory = "C:\\Users\\CHIP7\\Downloads\\Marlin-2.1.2.1";
 
-            Process process = processBuilder.start();
 
-            StringBuilder output = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("<br>");
-            }
+    // Execute o comando de compilaÁ„o usando o PlatformIO
+    Process process = Runtime.getRuntime().exec("platformio run -d " + marlinDirectory);
 
-            int exitCode;
-            try {
-                exitCode = process.waitFor();
-            } catch (InterruptedException e) {
-                throw new IOException("Erro durante a execu√ß√£o do processo de compila√ß√£o do Marlin.", e);
-            }
+    // Capture a saÌda do processo
+    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+    String line;
+    while ((line = reader.readLine()) != null) {
+        out.println(line + "<br/>");
+    }
 
-            if (exitCode == 0) {
-                output.append("<br>Compila√ß√£o do Marlin conclu√≠da com sucesso!");
-            } else {
-                output.append("<br>A compila√ß√£o do Marlin falhou. Verifique os logs para mais informa√ß√µes.");
-            }
+    // Aguarde atÈ que o processo seja concluÌdo
+    int exitCode = process.waitFor();
+    out.println("<br/>Processo de compilaÁ„o concluÌdo com cÛdigo de saÌda: " + exitCode);
+} catch (IOException | InterruptedException e) {
+    e.printStackTrace();
+}
+%>
 
-            return output.toString();
-        }
-    %>
+													</div>
 
-    <%
-    
-    
-    
-    
-    
-    
-        String caminhoMarlin = request.getParameter("caminhoMarlin");
-        String caminhoPlatformIO = request.getParameter("caminhoPlatformIO");
-
-        if (caminhoMarlin == null || caminhoPlatformIO == null) {
-            out.println("<p>Por favor, forne√ßa o caminho do Marlin e o caminho para o execut√°vel do PlatformIO.</p>");
-        } else {
-            try {
-                String compila√ß√£o = compilarMarlin(caminhoMarlin, caminhoPlatformIO);
-                out.println(compila√ß√£o);
-            } catch (IOException e) {
-                out.println("<p>Erro durante a compila√ß√£o do Marlin: " + e.getMessage() + "</p>");
-            }
-        }
-    %>
-
-    <form method="GET">
-        <label>Caminho do Marlin:</label>
-        <input type="text" name="caminhoMarlin"><br>
-        <label>Caminho do PlatformIO:</label>
-        <input type="text" name="caminhoPlatformIO"><br>
-        <input type="submit" value="Compilar">
-    </form>
-	 
+												</div>
+											</div>
+										</div>
+										
+										
+										 <span id="msg">${msg}</span>
+										 
+										 
+										
+										 
+										 
 									</div>
 
 								</div>
