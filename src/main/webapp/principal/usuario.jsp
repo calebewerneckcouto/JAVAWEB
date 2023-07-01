@@ -183,9 +183,7 @@ if (modelLogin != null && modelLogin.getPermissao().equals("admin")) {
 												             <c:if test="${modolLogin.id > 0}"> 
 												               <a href="<%= request.getContextPath() %>/SertvletTelefone?iduser=${modolLogin.id}" class="btn btn-primary waves-effect waves-light" >Telefone</a>
 												             </c:if>
-												                 <c:if test="${modolLogin.id > 0}"> 
-												             <a href="<%= request.getContextPath() %>/SertvletVideos?iduser=${modolLogin.id}" class="btn btn-primary waves-effect waves-light" >Videos</a>
-																								             </c:if>
+												             
 															
 															
 															<button type="button" class="btn btn-secondary"

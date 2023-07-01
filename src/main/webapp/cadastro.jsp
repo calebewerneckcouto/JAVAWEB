@@ -118,16 +118,18 @@ position: absolute;
     </div>
  </div>
  
+ 
  <div class="mb-3">
-  <label class="form-label" for="email">Email</label>
+  <label class="form-label" for="email">Email</label> 
   <input class="form-control" id="email" name="email" type="email" required="required">
    <div class="invalid-feedback">
       Obrigatório
     </div>
-     <div class="valid-feedback">
+    <div class="valid-feedback">
       ok
     </div>
- </div> 
+ </div>
+ 
  
  
  <div class="mb-3">
