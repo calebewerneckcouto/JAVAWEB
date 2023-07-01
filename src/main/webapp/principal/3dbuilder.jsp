@@ -7,18 +7,18 @@
 
 
 <jsp:include page="head.jsp"></jsp:include>
- <style>
+<style>
    .video-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 200vh;
 }
 
 iframe {
   width: 1000px; /* Defina a largura desejada */
-  height: 3000px; /* Defina a altura desejada */
+  height: 9000px; /* Defina a altura desejada */
   margin-bottom: 20px; /* Espaçamento entre os vídeos */
 }
 Nesse exemplo, um <div> com a classe .video-wrapper é usado como um invólucro para os <iframe> dos vídeos. O CSS define que o conteúdo deve ser exibido em coluna (flex-direction: column;), centralizado vertical e horizontalmente (justify-content: center; align-items: center;) dentro do contêiner. A altura do contêiner é definida como 100vh (100% da altura da tela).
@@ -57,7 +57,7 @@ Lembre-se de substituir "url_do_videoX" pelas URLs reais dos seus vídeos. Você p
                       <!-- Page-header start -->
                       
                       <jsp:include page="page-header.jsp"></jsp:include>
-                      
+                     
                       <!-- Page-header end -->
                         <div class="pcoded-inner-content">
                             <!-- Main-body start -->
@@ -66,13 +66,59 @@ Lembre-se de substituir "url_do_videoX" pelas URLs reais dos seus vídeos. Você p
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <div class="row">
-                                            
-                                        </div>
-                                     
-                                    </div>
-                               
-  </div>
-                              </div>
+                                                  <div class="video-wrapper">
+ 
+</head>
+<body>
+    <%-- Importar classes necessárias --%>
+    <%@ page import="java.sql.*" %>
+
+    <%-- Configurar informações do banco de dados --%>
+    <% String jdbcUrl = "jdbc:postgresql://localhost:5432/curso-jsp?autoReconnect=true";
+       String username = "postgres";
+       String password = "admin";
+
+       // Estabelecer conexão com o banco de dados
+       Connection conn = null;
+       try {
+           Class.forName("org.postgresql.Driver");
+           conn = DriverManager.getConnection(jdbcUrl, username, password);
+
+           // Criar uma instrução SQL parametrizada para recuperar os iframes
+           String sql = "SELECT link FROM videos WHERE pagina = ?";
+           PreparedStatement statement = conn.prepareStatement(sql);
+           statement.setString(1, "3dbuilder.jsp");
+
+           // Executar a consulta SQL e obter o resultado
+           ResultSet resultSet = statement.executeQuery();
+
+           // Exibir os iframes
+           while (resultSet.next()) {
+               String link = resultSet.getString("link");
+               out.println(link);
+                    }
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           // Fechar a conexão com o banco de dados
+           if (conn != null) {
+               try {
+                   conn.close();
+               } catch (SQLException e) {
+                   e.printStackTrace();
+               }
+           }
+       }
+    %>
+</body>
+</html>
+ 
+        
+       
+                            
+                                 
+                                
+                             
                                 
                                 
                                 

@@ -67,15 +67,52 @@ Lembre-se de substituir "url_do_videoX" pelas URLs reais dos seus vídeos. Você p
                                     <div class="page-body">
                                         <div class="row">
                                                   <div class="video-wrapper">
-     
-                           
-   
-  </div>
-                          
  
-  
+</head>
+<body>
+    <%-- Importar classes necessárias --%>
+    <%@ page import="java.sql.*" %>
+
+    <%-- Configurar informações do banco de dados --%>
+    <% String jdbcUrl = "jdbc:postgresql://localhost:5432/curso-jsp?autoReconnect=true";
+       String username = "postgres";
+       String password = "admin";
+
+       // Estabelecer conexão com o banco de dados
+       Connection conn = null;
+       try {
+           Class.forName("org.postgresql.Driver");
+           conn = DriverManager.getConnection(jdbcUrl, username, password);
+
+           // Criar uma instrução SQL parametrizada para recuperar os iframes
+           String sql = "SELECT link FROM videos WHERE pagina = ?";
+           PreparedStatement statement = conn.prepareStatement(sql);
+           statement.setString(1, "solidworks.jsp");
+
+           // Executar a consulta SQL e obter o resultado
+           ResultSet resultSet = statement.executeQuery();
+
+           // Exibir os iframes
+           while (resultSet.next()) {
+               String link = resultSet.getString("link");
+               out.println(link);
+                    }
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           // Fechar a conexão com o banco de dados
+           if (conn != null) {
+               try {
+                   conn.close();
+               } catch (SQLException e) {
+                   e.printStackTrace();
+               }
+           }
+       }
+    %>
+</body>
+</html>
  
-                           </div>
         
        
                             
