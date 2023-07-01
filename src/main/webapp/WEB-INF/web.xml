@@ -44,4 +44,14 @@
     <servlet-name>ServletVideos</servlet-name>
     <url-pattern>/ServletVideos</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletSubstituir</display-name>
+    <servlet-name>ServletSubstituir</servlet-name>
+    <servlet-class>servlets.ServletSubstituir</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletSubstituir</servlet-name>
+    <url-pattern>/ServletSubstituir</url-pattern>
+  </servlet-mapping>
 </web-app>
