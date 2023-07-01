@@ -71,13 +71,21 @@
                                                             </div>
                                                             
                                                             
+										                        <select name="pagina" id="pagina"  required>
+										                          <option selected="selected" value="">(Selecione a Página)</option>
+										                        
+                                                                <option value="3dbuilder.jsp">3D Builder</option>
+                                                                <option value="fusion360.jsp">Fusion 360</option>
+                                                                <option value="autocad.jsp">Autocad</option>
+                                                                <option value="solidworks.jsp">Solidworks</option>
                                                             
-                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="pagina" id="pagina" class="form-control" required="required" >
-                                                                <span class="form-bar"></span>
-                                                                <label class="float-label">Pagina:</label>
-                                                            </div>
-                                                            
+                                                             
+                                                              
+                                                              
+                                                              
+                                                              </select>
+                                                              
+                                                          
                                                             
                                                             
                                                             
