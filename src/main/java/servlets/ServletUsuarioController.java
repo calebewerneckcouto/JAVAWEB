@@ -40,7 +40,7 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
 
 				String idUser = request.getParameter("id");
-				String id =request.getParameter("id");
+				
 
 				daoUsuarioRepository.deletarUser(idUser);
 
@@ -50,6 +50,11 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			
 
 				request.setAttribute("msg", "Excluido com sucesso!");
+				
+				
+				
+			
+		
 
 				request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
 
@@ -59,8 +64,16 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				String idUser = request.getParameter("id");
 
 				daoUsuarioRepository.deletarUser(idUser);
+				
 
+				
+				
+			
+
+				
+				
 				response.getWriter().write("Excluido com sucesso!");
+			  
 
 			}
 
@@ -76,6 +89,13 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				String json = mapper.writeValueAsString(dadosJsonUser);
 
 				response.getWriter().write(json);
+				
+				
+				
+				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
+				request.setAttribute("modelLogins", modelLogins);
+				request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
+				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
 
 			}
 

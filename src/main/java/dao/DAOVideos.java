@@ -44,6 +44,31 @@ public class DAOVideos {
 
 	}
 	
+	public List<ModelVideos> buscarVideos() throws Exception {
+	    List<ModelVideos> videos = new ArrayList<>();
+
+	    String sql = "select id,nomevideo,pagina  from videos";
+
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelVideos video = new ModelVideos();
+	        video.setId(resultSet.getLong("id"));
+	        video.setNomevideo(resultSet.getString("nomevideo"));
+	        video.setPagina(resultSet.getString("pagina"));
+	        
+	        videos.add(video);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return videos;
+	}
+
+	
 	
 
 	

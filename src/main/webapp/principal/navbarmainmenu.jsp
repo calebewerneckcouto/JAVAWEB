@@ -126,7 +126,7 @@
                                         
                                    <c:if test="${permissao == 'admin'}">
                                       <li class=" ">
-                                          <a href="<%= request.getContextPath() %>/principal/videos.jsp"  class="waves-effect waves-dark">
+                                          <a href="<%= request.getContextPath() %>/ServletVideos?acao=listarVideos"   class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                               <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Videos e Tutoriais</span>
                                               <span class="pcoded-mcaret"></span>
