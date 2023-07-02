@@ -160,8 +160,8 @@
                         
                         </select>
                         <br><br>
-                        <input type="submit" value="Montar Firmware" class="btn btn-primary waves-effect waves-light">
-                        <a href="<%= request.getContextPath() %>/principal/compilamarlin.jsp" class="btn btn-primary waves-effect waves-light">Compilar Marlin</a>
+                        <input type="submit" value="Montar Firmware" class="btn btn-info waves-effect waves-light">
+                        <a href="<%= request.getContextPath() %>/principal/compilamarlin.jsp" class="btn btn-success waves-effect waves-light">Compilar Marlin</a>
                         <input href="https://github.com/MarlinFirmware/Marlin/archive/2.1.2.1.zip" type="button" value="Download do Marlin 2.1.2.1" class="btn btn-primary waves-effect waves-light">
                        
                         
