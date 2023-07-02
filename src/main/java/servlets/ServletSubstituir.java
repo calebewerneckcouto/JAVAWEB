@@ -6,6 +6,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +17,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/SertvletSubstituir")
+@WebServlet("/ServletSubstituir")
 public class ServletSubstituir extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -29,50 +33,54 @@ public class ServletSubstituir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-       
 
         String caminhoPasta = System.getProperty("user.home") + "\\Downloads\\Marlin-2.1.2.1";
+        String placa = request.getParameter("placa");
         String novoValor = request.getParameter("novoValor");
 
         try {
-            substituirValor(caminhoPasta, novoValor);
+            substituirValor(caminhoPasta, placa,novoValor);
             request.setAttribute("mensagem", "Firmware Montado com Sucesso!");
             request.getRequestDispatcher("principal/paginacompilarmarlin.jsp").forward(request, response);
         } catch (IOException e) {
-        	 request.setAttribute("mensagem", "Erro ao Montar Firmware!");
-        	  request.getRequestDispatcher("principal/paginacompilarmarlin.jsp").forward(request, response);
+            request.setAttribute("mensagem", "Erro ao Montar Firmware!");
+            request.getRequestDispatcher("principal/paginacompilarmarlin.jsp").forward(request, response);
         }
     }
 
-    private static void substituirValor(String caminhoPasta, String novoValor) throws IOException {
+    private static void substituirValor(String caminhoPasta, String placa,String novoValor) throws IOException {
         File pasta = new File(caminhoPasta);
-        substituirValorRecursivo(pasta, novoValor);
+        substituirValorRecursivo(pasta, placa,novoValor);
     }
 
-    private static void substituirValorRecursivo(File arquivoOuDiretorio, String novoValor) throws IOException {
+    private static void substituirValorRecursivo(File arquivoOuDiretorio, String placa,String novoValor) throws IOException {
         if (arquivoOuDiretorio.isDirectory()) {
             File[] arquivos = arquivoOuDiretorio.listFiles();
             if (arquivos != null) {
                 for (File arquivo : arquivos) {
-                    substituirValorRecursivo(arquivo, novoValor);
+                    substituirValorRecursivo(arquivo, placa,novoValor);
                 }
             }
         } else if (arquivoOuDiretorio.isFile()) {
-            substituirValorNoArquivo(arquivoOuDiretorio, novoValor);
+            substituirValorNoArquivo(arquivoOuDiretorio, placa, novoValor);
         }
     }
 
-    private static void substituirValorNoArquivo(File arquivo, String novoValor) throws IOException {
+    private static void substituirValorNoArquivo(File arquivo, String placa,String novoValor) throws IOException {
         StringBuilder conteudo = new StringBuilder();
-        BufferedReader reader = new BufferedReader(new FileReader(arquivo));
-        String linha;
-        while ((linha = reader.readLine()) != null) {
-            if (linha.startsWith("default_envs =")) {
+        Scanner scanner = new Scanner(arquivo);
+
+        while (scanner.hasNextLine()) {
+            String linha = scanner.nextLine();
+            if (linha.startsWith("  #define MOTHERBOARD")) {
+                linha = "  #define MOTHERBOARD " + placa;
+            }
+            if (linha.startsWith("default_envs = ")) {
                 linha = "default_envs = " + novoValor;
             }
             conteudo.append(linha).append(System.lineSeparator());
         }
-        reader.close();
+        scanner.close();
 
         FileWriter writer = new FileWriter(arquivo);
         writer.write(conteudo.toString());
