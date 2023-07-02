@@ -178,7 +178,7 @@ if (modelLogin != null && modelLogin.getPermissao().equals("admin")) {
 															<button class="btn btn-success waves-effect waves-light">Salvar</button>
 															<button type="button"
 																class="btn btn-info waves-effect waves-light"
-																onclick="criarDeleteComAjax();">Excluir</button>
+																onclick="criarDelete();">Excluir</button>
 																 
 												             <c:if test="${modolLogin.id > 0}"> 
 												               <a href="<%= request.getContextPath() %>/SertvletTelefone?iduser=${modolLogin.id}" class="btn btn-primary waves-effect waves-light" >Telefone</a>
