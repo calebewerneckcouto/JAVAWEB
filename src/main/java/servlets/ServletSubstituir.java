@@ -29,7 +29,7 @@ public class ServletSubstituir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+       
 
         String caminhoPasta = System.getProperty("user.home") + "\\Downloads\\Marlin-2.1.2.1";
         String novoValor = request.getParameter("novoValor");
