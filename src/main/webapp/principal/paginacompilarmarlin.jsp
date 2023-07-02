@@ -43,8 +43,7 @@
                     <div>
                    
                       <form action="<%=request.getContextPath()%>/ServletSubstituir" method="post">
-                        <label for="caminhoPasta">Caminho da Pasta:</label>
-                        <input type="text" name="caminhoPasta" id="caminhoPasta" required>
+                       
                         <br><br>
                         <label for="novoValor">Selecione o Chipset:</label>
                         <select name="novoValor" id="novoValor" required>
@@ -162,6 +161,14 @@
                         </select>
                         <br><br>
                         <input type="submit" value="Montar Firmware" class="btn btn-primary waves-effect waves-light">
+                        <a href="<%= request.getContextPath() %>/principal/compilamarlin.jsp" class="btn btn-primary waves-effect waves-light">Compilar Marlin</a>
+                        <input href="https://github.com/MarlinFirmware/Marlin/archive/2.1.2.1.zip" type="button" value="Download do Marlin 2.1.2.1" class="btn btn-primary waves-effect waves-light">
+                       
+                        
+                       
+                        
+                        
+                        
                         </form>
                          <div>
                             <div>
@@ -172,11 +179,9 @@
                                          <div> 
                                            <div>  
                                             <div>
-                                               <a href="<%= request.getContextPath() %>/principal/compilamarlin.jsp" class="btn btn-primary waves-effect waves-light" >Compilar Marlin</a>
-                      
-                     <a href="https://github.com/MarlinFirmware/Marlin/archive/2.1.2.1.zip" class="btn btn-primary waves-effect waves-light" >Download Marlin 2.1.2.1</a>
-                    
-                    </div>
+                                            
+                                            	 <span id="mensagem">${mensagem}</span>
+                                           
                   </div>
                   <!-- Page-body end -->
                 </div>
