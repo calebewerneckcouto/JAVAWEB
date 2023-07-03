@@ -100,6 +100,17 @@
                                       </li>
                                       
                                       
+                                      
+                                          <li class=" ">
+                                          <a href="https://github.com/calebewerneckcouto/kitcompilamarlin/archive/refs/heads/main.zip"  class="waves-effect waves-dark">
+                                              <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                              <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Download do Kit Compila Marlin-2.1.2.1</span>
+                                              <span class="pcoded-mcaret"></span>
+                                          </a>
+                                      </li>
+                                      
+                                      
+                                      
                                   
                                    <c:if test="${permissao == 'admin'}">
                                       <li class=" ">
