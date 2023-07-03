@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +45,20 @@ public class DAOVideos {
 
 	}
 	
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
 	public List<ModelVideos> buscarVideos() throws Exception {
 	    List<ModelVideos> videos = new ArrayList<>();
 
-	    String sql = "select id,nomevideo,pagina  from videos";
+	    String sql = "select id,nomevideo,pagina,link  from videos";
 
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -58,6 +69,7 @@ public class DAOVideos {
 	        video.setId(resultSet.getLong("id"));
 	        video.setNomevideo(resultSet.getString("nomevideo"));
 	        video.setPagina(resultSet.getString("pagina"));
+	        video.setLink(resultSet.getString("link"));
 	        
 	        videos.add(video);
 	    }
@@ -68,6 +80,31 @@ public class DAOVideos {
 	    return videos;
 	}
 
+	
+	public List<ModelVideos> buscarVideos3dbuilder() throws Exception {
+	    List<ModelVideos> videos = new ArrayList<>();
+
+	    String sql = "select link  from videos where pagina =?" ;
+
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelVideos video = new ModelVideos();
+	        video.setId(resultSet.getLong("id"));
+	        video.setNomevideo(resultSet.getString("nomevideo"));
+	        video.setPagina(resultSet.getString("pagina"));
+	        video.setLink(resultSet.getString("link"));
+	        
+	        videos.add(video);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return videos;
+	}
 	
 	
 

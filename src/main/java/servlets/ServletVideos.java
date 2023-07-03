@@ -32,6 +32,9 @@ public class ServletVideos extends ServletGenericUtil {
 		   
 		    String acao = request.getParameter("acao");
 		    
+		    
+		
+		    
 		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarVideos")) {
 		
 		        // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados

@@ -74,15 +74,13 @@ Lembre-se de substituir "url_do_videoX" pelas URLs reais dos seus vídeos. Você p
     <%@ page import="java.sql.*" %>
 
     <%-- Configurar informações do banco de dados --%>
-    <% String jdbcUrl = "jdbc:postgresql://localhost:5432/curso-jsp?autoReconnect=true";
-       String username = "postgres";
-       String password = "admin";
-
-       // Estabelecer conexão com o banco de dados
-       Connection conn = null;
-       try {
-           Class.forName("org.postgresql.Driver");
-           conn = DriverManager.getConnection(jdbcUrl, username, password);
+    <%String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
+	String user = "cwcdcomb";
+	 String senha = "0E2W+wgH66K[ui";/*senha da sua hospedagem*/
+	 Connection conn = null;
+      try {
+          Class.forName("org.postgresql.Driver");
+          conn = DriverManager.getConnection(banco, user, senha);
 
            // Criar uma instrução SQL parametrizada para recuperar os iframes
            String sql = "SELECT link FROM videos WHERE pagina = ?";

@@ -103,31 +103,36 @@
 										
 										 <span id="msg">${msg}</span>
 										 
-										 <div style="height: 300px; overflow: scroll;">
+										
+														
+														
+													<div style="height: 300px; overflow: scroll;">
 											<table class="table" id="tabelaresultadosview">
 												<thead>
 													<tr>
-														<th scope="col">ID</th>
-														<th scope="col">Nome do Video</th>
-														<th scope="col">Nome da Pagina</th>
-														<th scope="col">Excluir</th>
+															<th scope="col">ID</th>
+									<th scope="col">Nome do Video</th>
+									<th scope="col">Pagina</th>
+									<th scope="col">Link</th>
+									
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items='${videos}' var='f'>
-													      <tr>
-													       <td><c:out value="${f.id}"></c:out></td>
-													       <td><c:out value="${f.nomevideo}"></c:out></td>
-													        <td><c:out value="${f.pagina}"></c:out></td>
-													       <td><a class="btn btn-success" href="<%= request.getContextPath() %>/SertvletVideos?acao=excluir&id=${f.id}" >Excluir</a></td>
-													      </tr>
+													<c:forEach items='${videos}' var='ml'>
+														<tr>
+															<td><c:out value="${ml.id}"></c:out></td>
+															<td><c:out value="${ml.nomevideo}"></c:out></td>
+															<td><c:out value="${ml.pagina}"></c:out></td>
+															<td><c:out value="${ml.link}"></c:out></td>
+														
+															<td><a class="btn btn-success"
+																href="<%= request.getContextPath() %>/ServletVideos?acao=excluir&id=${ml.id}">Excluir</a></td>
+														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
 										</div>
-										 
-										 
-									</div>
+
 
 								</div>
 								<!-- Page-body end -->

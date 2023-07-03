@@ -45,7 +45,8 @@
                       <form action="<%=request.getContextPath()%>/ServletSubstituir" method="post">
                        
                         <br><br>
-                        <h6><label for="novoValor">Selecione o Chipset:</label></h6>
+                        <h6><label for="novoValor">Selecione o Chipset:</label></h6>  
+                        <a href="<%= request.getContextPath() %>/principal/marlin.jsp" style="color: crimson;" target="_new"> Consultar Chipset</a>
                         <select name="novoValor" id="novoValor" required>
                           <option selected="selected" value="">(Selecione o Chipset)</option>
                         
@@ -521,7 +522,7 @@
                         
                         <br><br>
                         
-                         <h6><label for="labelportaserial">Selecione a Porta Serial:</label></h6>
+                         <h6><label for="labelportaserial">Selecione a Porta Serial:[ 0, 1, 2, 3, 4, 5, 6, 7]</label></h6>
                         
                         <select class="form-control" name="portaserial">
                                             <option selected="selected" value="0">0</option>
@@ -532,10 +533,25 @@
                                             <option value="5">5</option>
                                             <option value="6">6</option>
                                             <option value="7">7</option>
+                                            <option value="desabilitado">Desabilitar</option>
                                         </select>
                         
                         <br><br>
                         
+                          <h6><label for="labelbaudrate">Selecione o Baudrate:</label></h6>
+                        
+                        <select class="form-control" name="baudrate">
+                                            <option value="2400">2400</option>
+                                            <option value="9600">9600</option>
+                                            <option value="19200">19200</option>
+                                            <option value="38400">38400</option>
+                                            <option value="57600">57600</option>
+                                            <option value="115200">115200</option>
+                                            <option selected="selected" value="250000">250000</option>
+                                            <option value="500000">500000</option>
+                                            <option value="1000000">1000000</option>
+                                        </select>
+                        <br><br>
                         
                         <input type="submit" value="Montar Firmware" class="btn btn-info waves-effect waves-light">
                         <a href="<%= request.getContextPath() %>/principal/compilamarlin.jsp" class="btn btn-success waves-effect waves-light">Compilar Marlin</a>

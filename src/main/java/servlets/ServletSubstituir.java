@@ -38,11 +38,14 @@ public class ServletSubstituir extends HttpServlet {
         String placa = request.getParameter("placa");
         String novoValor = request.getParameter("novoValor");
         String portaserial = request.getParameter("portaserial");
+        String baudrate = request.getParameter("baudrate");
+        
+        
         
         
 
         try {
-            substituirValor(caminhoPasta, placa,novoValor,portaserial);
+            substituirValor(caminhoPasta, placa,novoValor,portaserial,baudrate);
             request.setAttribute("mensagem", "Firmware Montado com Sucesso!");
             request.getRequestDispatcher("principal/paginacompilarmarlin.jsp").forward(request, response);
         } catch (IOException e) {
@@ -51,25 +54,25 @@ public class ServletSubstituir extends HttpServlet {
         }
     }
 
-    private static void substituirValor(String caminhoPasta, String placa,String novoValor ,String portaserial) throws IOException {
+    private static void substituirValor(String caminhoPasta, String placa,String novoValor ,String portaserial,String baudrate) throws IOException {
         File pasta = new File(caminhoPasta);
-        substituirValorRecursivo(pasta, placa,novoValor,portaserial);
+        substituirValorRecursivo(pasta, placa,novoValor,portaserial,baudrate);
     }
 
-    private static void substituirValorRecursivo(File arquivoOuDiretorio, String placa,String novoValor,String portaserial) throws IOException {
+    private static void substituirValorRecursivo(File arquivoOuDiretorio, String placa,String novoValor,String portaserial,String baudrate) throws IOException {
         if (arquivoOuDiretorio.isDirectory()) {
             File[] arquivos = arquivoOuDiretorio.listFiles();
             if (arquivos != null) {
                 for (File arquivo : arquivos) {
-                    substituirValorRecursivo(arquivo, placa,novoValor,portaserial);
+                    substituirValorRecursivo(arquivo, placa,novoValor,portaserial,baudrate);
                 }
             }
         } else if (arquivoOuDiretorio.isFile()) {
-            substituirValorNoArquivo(arquivoOuDiretorio, placa, novoValor,portaserial);
+            substituirValorNoArquivo(arquivoOuDiretorio, placa, novoValor,portaserial,baudrate);
         }
     }
 
-    private static void substituirValorNoArquivo(File arquivo, String placa,String novoValor,String portaserial) throws IOException {
+    private static void substituirValorNoArquivo(File arquivo, String placa,String novoValor,String portaserial,String baudrate) throws IOException {
         StringBuilder conteudo = new StringBuilder();
         Scanner scanner = new Scanner(arquivo);
 
@@ -81,8 +84,15 @@ public class ServletSubstituir extends HttpServlet {
             if (linha.startsWith("default_envs = ")) {
                 linha = "default_envs = " + novoValor;
             }
-            if (linha.startsWith("#define SERIAL_PORT")) {
-                linha = "#define SERIAL_PORT " + portaserial;
+           if (linha.startsWith("#define SERIAL_PORT")){
+               	 linha = "#define SERIAL_PORT " + portaserial;
+                }
+                   	
+            	
+            	
+            	
+            if (linha.startsWith("#define BAUDRATE")) {
+                linha = "#define BAUDRATE " + baudrate;
             }
             conteudo.append(linha).append(System.lineSeparator());
         }
