@@ -8,18 +8,12 @@
 
 <jsp:include page="head.jsp"></jsp:include>
 <style>
-   .video-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 200vh;
-}
+
 
 iframe {
   width: 1000px; /* Defina a largura desejada */
-  height: 9000px; /* Defina a altura desejada */
-  margin-bottom: 20px; /* Espaçamento entre os vídeos */
+  height: 600px; /* Defina a altura desejada */
+ 
 }
 Nesse exemplo, um <div> com a classe .video-wrapper é usado como um invólucro para os <iframe> dos vídeos. O CSS define que o conteúdo deve ser exibido em coluna (flex-direction: column;), centralizado vertical e horizontalmente (justify-content: center; align-items: center;) dentro do contêiner. A altura do contêiner é definida como 100vh (100% da altura da tela).
 
@@ -92,6 +86,7 @@ Lembre-se de substituir "url_do_videoX" pelas URLs reais dos seus vídeos. Você p
 
            // Exibir os iframes
            while (resultSet.next()) {
+        	  
                String link = resultSet.getString("link");
                out.println(link);
                     }
