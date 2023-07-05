@@ -4,13 +4,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class SingleConnectionBanco {
-	
+	/*
 	private static String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
 	private static String user = "cwcdcomb";
-	private static String senha = "0E2W+wgH66K[ui";/*senha da sua hospedagem*/
+	private static String senha = "0E2W+wgH66K[ui";
 	private static Connection connection = null;
+	*/
 	
-		
+	private static String banco = "jdbc:postgresql://localhost:5432/curso-jsp?autoReconnect=true";
+	private static String user = "postgres";
+	private static String senha = "admin";
+	private static Connection connection = null;
 
 	
 	public static Connection getConnection() {

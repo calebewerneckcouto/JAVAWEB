@@ -43,10 +43,15 @@
     <%@ page import="java.sql.*" %>
 
     <%-- Configurar informações do banco de dados --%>
-    <% String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
+    <% /*String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
 	String user = "cwcdcomb";
-	 String senha = "0E2W+wgH66K[ui";/*senha da sua hospedagem*/
-	 Connection conn = null;
+	 String senha = "0E2W+wgH66K[ui";/*senha da sua hospedagem
+	 Connection conn = null;*/
+	 
+	  String banco = "jdbc:postgresql://localhost:5432/curso-jsp?autoReconnect=true";
+		 String user = "postgres";
+		 String senha = "admin";
+		 Connection conn = null;
       try {
           Class.forName("org.postgresql.Driver");
           conn = DriverManager.getConnection(banco, user, senha);
@@ -78,6 +83,28 @@
        }
     %>
                                               
+                                              <h6>Baixar o Compilador Desktop Marlin CWC3D</h6>
+                                              
+                                              
+                                          <li class=" ">
+                                          <a href="https://github.com/calebewerneckcouto/CompiladorMarlin/archive/refs/heads/main.zip"   class="waves-effect waves-dark">
+                                              <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                              <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Download Marlin 2.1.2.1</span>
+                                              <span class="pcoded-mcaret"></span>
+                                          </a>
+                                      </li>
+                                      
+                                      
+                                      
+                                           <li class=" ">
+                                          <a href = "https://github.com/calebewerneckcouto/EscolherMaquinaCompilaMarlin/archive/refs/heads/import-2.1.x.zip"  class="waves-effect waves-dark">
+                                              <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                              <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Download PAsta Configuração Marlin</span>
+                                              <span class="pcoded-mcaret"></span>
+                                          </a>
+                                      </li>
+                                      
+                                      
                                               
                                               
                                               
