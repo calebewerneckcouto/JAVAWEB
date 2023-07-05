@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Abrir Bloco de Notas</title>
+    <script>
+        function abrirBlocoDeNotas() {
+            fetch('/abrir-bloco-de-notas')
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Bloco de Notas aberto com sucesso!');
+                    } else {
+                        console.error('Erro ao abrir o Bloco de Notas.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao realizar a solicitação:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <button action="<%= request.getContextPath() %>/abrir-bloco-de-notas" method="GET" onclick="abrirBlocoDeNotas()">Abrir Bloco de Notas</button>
+</body>
+</html>

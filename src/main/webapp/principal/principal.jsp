@@ -82,27 +82,19 @@
            }
        }
     %>
-                                              
-                                              <h6>Baixar o Compilador Desktop Marlin CWC3D</h6>
-                                              
-                                              
-                                          <li class=" ">
-                                          <a href="https://github.com/calebewerneckcouto/CompiladorMarlin/archive/refs/heads/main.zip"   class="waves-effect waves-dark">
-                                              <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                              <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Download Marlin 2.1.2.1</span>
-                                              <span class="pcoded-mcaret"></span>
-                                          </a>
-                                      </li>
-                                      
-                                      
-                                      
-                                           <li class=" ">
-                                          <a href = "https://github.com/calebewerneckcouto/EscolherMaquinaCompilaMarlin/archive/refs/heads/import-2.1.x.zip"  class="waves-effect waves-dark">
-                                              <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                              <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Download PAsta Configuração Marlin</span>
-                                              <span class="pcoded-mcaret"></span>
-                                          </a>
-                                      </li>
+    
+    
+           
+    
+    <ul>
+    <h6>Compilando o Marlin</h6>
+        <li>
+            <a href="https://drive.google.com/uc?id=1dmigHB1-NwKgWovHIvUBCI86TJ-_Ji1b">Download Marlin 2.1.2.1</a>
+        </li>
+        <li>
+            <a href="#">Download Compilador Marlin CWC3D</a>
+        </li>
+    </ul>
                                       
                                       
                                               
