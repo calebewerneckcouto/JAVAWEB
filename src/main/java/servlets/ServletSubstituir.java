@@ -34,7 +34,7 @@ public class ServletSubstituir extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
 
-        String caminhoPasta = System.getProperty("user.home") + "\\Downloads\\Marlin-2.1.2.1";
+        String caminhoPasta = "/home2/cwcdcomb/repositories/Marlin1";
         String placa = request.getParameter("placa");
         String novoValor = request.getParameter("novoValor");
         String portaserial = request.getParameter("portaserial");

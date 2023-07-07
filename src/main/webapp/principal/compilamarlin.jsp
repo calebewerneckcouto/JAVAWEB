@@ -53,13 +53,14 @@
 <%
 try {
     // Defina o diretório do projeto Marlin
- String marlinDirectory = System.getProperty("user.home") + "\\Downloads\\Marlin-2.1.2.1";
+ String marlinDirectory = "	/home2/cwcdcomb/repositories/Marlin1";
 
 
 
 
     // Execute o comando de compilação usando o PlatformIO
-    Process process = Runtime.getRuntime().exec("platformio run -d " + marlinDirectory);
+   Process process = Runtime.getRuntime().exec("/home2/cwcdcomb/repositories/marlin/platformio run -d " + marlinDirectory);
+
 
     // Capture a saída do processo
     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
