@@ -59,7 +59,7 @@ try {
 
 
     // Execute o comando de compilação usando o PlatformIO
-   Process process = Runtime.getRuntime().exec("/home2/cwcdcomb/repositories/marlin/platformio run -d " + marlinDirectory);
+   Process process = Runtime.getRuntime().exec("/home2/cwcdcomb/repositories/marlin/platformio.exe run -d " + marlinDirectory);
 
 
     // Capture a saída do processo
