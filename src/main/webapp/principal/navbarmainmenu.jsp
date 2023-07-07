@@ -102,7 +102,7 @@
                                       
                                          <c:if test="${permissao == 'admin'}">
                                           <li class=" ">
-                                          <a href="<%= request.getContextPath() %>/principal/principal.jsp"  class="waves-effect waves-dark">
+                                          <a href="<%= request.getContextPath() %>/principal/paginacompilarmarlin.jsp"  class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                               <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Download do Compilador Marlin CWC3D</span>
                                               <span class="pcoded-mcaret"></span>
