@@ -9,13 +9,12 @@ public class SingleConnectionBanco {
 	private static String user = "cwcdcomb";
 	private static String senha = "cwc3d14694899";
 	private static Connection connection = null;
-	
 	/*
 	private static String banco = "jdbc:postgresql://localhost:5432/curso-jsp?autoReconnect=true";
 	private static String user = "postgres";
 	private static String senha = "admin";
 	private static Connection connection = null;
-*/
+	*/
 	
 	public static Connection getConnection() {
 		return connection;

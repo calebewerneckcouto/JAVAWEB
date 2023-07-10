@@ -1,117 +1,151 @@
-<%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.IOException" %>
-<%@ page import="java.io.InputStreamReader" %>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  	
-
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+    
 <!DOCTYPE html>
 <html lang="en">
 
 
 <jsp:include page="head.jsp"></jsp:include>
-
-<body>
-	<!-- Pre-loader start -->
-
-	<jsp:include page="theme-loader.jsp"></jsp:include>
-
-	<!-- Pre-loader end -->
-	<div id="pcoded" class="pcoded">
-		<div class="pcoded-overlay-box"></div>
-		<div class="pcoded-container navbar-wrapper">
-
-			<jsp:include page="navbar.jsp"></jsp:include>
-
-			<div class="pcoded-main-container">
-				<div class="pcoded-wrapper">
-
-					<jsp:include page="navbarmainmenu.jsp"></jsp:include>
-
-					<div class="pcoded-content">
-						<!-- Page-header start -->
-
-						<jsp:include page="page-header.jsp"></jsp:include>
-
-						<!-- Page-header end -->
-						<div class="pcoded-inner-content">
-							<!-- Main-body start -->
-							<div class="main-body">
-								<div class="page-wrapper">
-									<!-- Page-body start -->
-									<div class="page-body">
-
-										<div class="row">
-											<div class="col-sm-12">
-												<!-- Basic Form Inputs card start -->
-												<div class="card">
-
-													<div class="card-block">
-														<h4 class="sub-title">Resultado Compilação</h4>
+<style>
 
 
-
-<%
-try {
-    // Defina o diretório do projeto Marlin
- String marlinDirectory = "	/home2/cwcdcomb/repositories/Marlin1";
-
-
-
-
-    // Execute o comando de compilação usando o PlatformIO
-   Process process = Runtime.getRuntime().exec("/home2/cwcdcomb/repositories/marlin/platformio.exe run -d " + marlinDirectory);
-
-
-    // Capture a saída do processo
-    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-    String line;
-    while ((line = reader.readLine()) != null) {
-        out.println(line + "<br/>");
-    }
-
-    // Aguarde até que o processo seja concluído
-    int exitCode = process.waitFor();
-    out.println("<br/>Processo de compilação concluído com código de saída: " + exitCode);
-} catch (IOException | InterruptedException e) {
-    e.printStackTrace();
+iframe {
+  width: 1000px; /* Defina a largura desejada */
+  height: 600px; /* Defina a altura desejada */
+ 
 }
-%>
+Nesse exemplo, um <div> com a classe .video-wrapper é usado como um invólucro para os <iframe> dos vídeos. O CSS define que o conteúdo deve ser exibido em coluna (flex-direction: column;), centralizado vertical e horizontalmente (justify-content: center; align-items: center;) dentro do contêiner. A altura do contêiner é definida como 100vh (100% da altura da tela).
 
-													</div>
+Cada <iframe> representa um vídeo e pode ter sua largura e altura definidas de acordo com suas necessidades. O espaçamento entre os vídeos pode ser ajustado usando a propriedade margin-bottom nos <iframe>.
 
-												</div>
-											</div>
-										</div>
-										
-										
-										 <span id="msg">${msg}</span>
-										 
-										 
-										
-										 
-										 
-									</div>
+Lembre-se de substituir "url_do_videoX" pelas URLs reais dos seus vídeos. Você pode adicionar quantos <iframe> de vídeo desejar dentro do <div class="video-wrapper">.
 
-								</div>
-								<!-- Page-body end -->
-							</div>
-							<div id="styleSelector"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<jsp:include page="javascripfile.jsp"></jsp:include>
-	
-	
-<script type="text/javascript">
-$("#numero").keypress(function (event) {
-    return /\d/.test(String.fromCharCode(event.keyCode)); 
- });
 
-</script>	
+
+
+
+
+
+  </style>
+
+  <body>
+  <!-- Pre-loader start -->
+  
+  <jsp:include page="theme-loader.jsp"></jsp:include>
+  
+  <!-- Pre-loader end -->
+  <div id="pcoded" class="pcoded">
+      <div class="pcoded-overlay-box"></div>
+      <div class="pcoded-container navbar-wrapper">
+          
+          <jsp:include page="navbar.jsp"></jsp:include>
+
+          <div class="pcoded-main-container">
+              <div class="pcoded-wrapper">
+                  
+                  <jsp:include page="navbarmainmenu.jsp"></jsp:include>
+                  
+                  <div class="pcoded-content">
+                      <!-- Page-header start -->
+                      
+                      <jsp:include page="page-header.jsp"></jsp:include>
+                     
+                      <!-- Page-header end -->
+                        <div class="pcoded-inner-content">
+                            <!-- Main-body start -->
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <!-- Page-body start -->
+                                    <div class="page-body">
+                                        <div class="row">
+                                                  <div class="video-wrapper">
+ 
+</head>
+<body>
+    <%-- Importar classes necessárias --%>
+    <%@ page import="java.sql.*" %>
+
+    <%-- Configurar informações do banco de dados --%>
+    <%
+	 
+	 
+    /*String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
+   	String user = "cwcdcomb";
+   	 String senha = "0E2W+wgH66K[ui";/*senha da sua hospedagem
+   	 Connection conn = null;*/
+   	 
+   	 String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
+	 String user = "cwcdcomb";
+	 String senha = "cwc3d14694899";
+	 Connection conn = null;
+ 
+   	 
+	 
+	 
+	 
+       try {
+           Class.forName("org.postgresql.Driver");
+           conn = DriverManager.getConnection(banco, user, senha);
+
+           // Criar uma instrução SQL parametrizada para recuperar os iframes
+           String sql = "SELECT nomevideo,link FROM videos WHERE pagina = ?";
+           PreparedStatement statement = conn.prepareStatement(sql);
+           statement.setString(1, "compilamarlin.jsp");
+
+           // Executar a consulta SQL e obter o resultado
+           ResultSet resultSet = statement.executeQuery();
+
+           // Exibir os iframes
+           while (resultSet.next()) {
+        	   
+        	   
+        	   String nomevideo = resultSet.getString("nomevideo");
+               out.println(nomevideo);
+        	  
+               String link = resultSet.getString("link");
+               out.println(link);
+                    }
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           // Fechar a conexão com o banco de dados
+           if (conn != null) {
+               try {
+            	   conn.close();
+               } catch (SQLException e) {
+                   e.printStackTrace();
+               }
+           }
+       }
+    %>
+</body>
+</html>
+ 
+        
+       
+                            
+                                 
+                        <a href="https://1drv.ms/u/s!Av2fL7Bdz7wLgYxTbNGFyjB5zm86Ew?e=97jo96" class="btn btn-primary waves-effect waves-light" >Compilar Marlin</a>
+												          
+            
+                             
+                                
+                                
+                                
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+   
+<jsp:include page="javascripfile.jsp"></jsp:include>
 </body>
 
 </html>
+    

@@ -39,67 +39,7 @@
                                     <div class="page-body">
                                         <div class="row">
                                               
-                                               <%-- Importar classes necessárias --%>
-    <%@ page import="java.sql.*" %>
-
-    <%-- Configurar informações do banco de dados --%>
-    <% /*String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
-	String user = "cwcdcomb";
-	 String senha = "0E2W+wgH66K[ui";/*senha da sua hospedagem
-	 Connection conn = null;*/
-	 
-	 String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
-	 String user = "cwcdcomb";
-	 String senha = "cwc3d14694899";
-	 Connection conn = null;
- 
-      try {
-          Class.forName("org.postgresql.Driver");
-          conn = DriverManager.getConnection(banco, user, senha);
-
-           // Criar uma instrução SQL parametrizada para recuperar os iframes
-           String sql = "SELECT link FROM videos WHERE pagina = ?";
-           PreparedStatement statement = conn.prepareStatement(sql);
-           statement.setString(1, "compilandomarlin.jsp");
-
-           // Executar a consulta SQL e obter o resultado
-           ResultSet resultSet = statement.executeQuery();
-
-           // Exibir os iframes
-           while (resultSet.next()) {
-               String link = resultSet.getString("link");
-               out.println(link);
-                    }
-       } catch (Exception e) {
-           e.printStackTrace();
-       } finally {
-           // Fechar a conexão com o banco de dados
-           if (conn != null) {
-               try {
-                   conn.close();
-               } catch (SQLException e) {
-                   e.printStackTrace();
-               }
-           }
-       }
-    %>
-    
-    
-           
-    
-    <ul>
-    <h6>Compilando o Marlin</h6>
-        <li>
-            <a href="https://drive.google.com/uc?id=1dmigHB1-NwKgWovHIvUBCI86TJ-_Ji1b">Download Marlin 2.1.2.1</a>
-        </li>
-        <li>
-            <a href="#">Download Compilador Marlin CWC3D</a>
-        </li>
-    </ul>
-                                      
-                                      
-                                              
-                                              
+                                 <h6>EM BREVE CALCULADORA DE CUSTOS CWC3D</h6>
                                               
                                         </div>
                                     </div>
