@@ -72,15 +72,13 @@
                                                             
                                                             
 										                        <select name="pagina" id="pagina"  required>
-										                          <option selected="selected" value="">(Selecione a Página)</option>
+										                        <c:forEach items='${videos2}' var='ml'>
+										                          <option selected="selected" <td><c:out value="${ml.pagina}"></c:out></td></option>
 										                        
-                                                                <option value="3dbuilder.jsp">3D Builder</option>
-                                                                <option value="fusion360.jsp">Fusion 360</option>
-                                                                <option value="autocad.jsp">Autocad</option>
-                                                                <option value="solidworks.jsp">Solidworks</option>
-                                                                 <option value="compilamarlin.jsp">Compilador Marlin</option>
+                                                           
+                                                              
                                                             
-                                                             
+                                                             </c:forEach>
                                                               
                                                               
                                                               

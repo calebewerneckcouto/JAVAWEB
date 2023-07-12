@@ -56,12 +56,21 @@
 														
 															
 														<h4 class="sub-title" style="color: blue;">Detalhes da Impressão</h4>
+														
+														
+														
+                                                             
                                                             
-                                                            <div class="form-group form-default form-static-label">
+                                                            
+                                                             <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="impressora" id="impressora" class="form-control" required="required" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Impressora:</label>
                                                             </div>
+                                                           
+                                                              
+                                                              
+                                                           
                                                             
                                                             
                                                              <div class="form-group form-default form-static-label">

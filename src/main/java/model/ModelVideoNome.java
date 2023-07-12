@@ -3,45 +3,21 @@ package model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ModelVideos implements Serializable{
+public class ModelVideoNome implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	
 	private Long id;
-	private String nomevideo;
-	private String link; 
 	private String pagina;
-	
-	
-	
-	
-	
-	
-	
-
-
-	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getNomevideo() {
-		return nomevideo;
-	}
-	public void setNomevideo(String nomevideo) {
-		this.nomevideo = nomevideo;
-	}
-	public String getLink() {
-		return link;
-	}
-	public void setLink(String link) {
-		this.link = link;
 	}
 	public String getPagina() {
 		return pagina;
@@ -49,7 +25,6 @@ public class ModelVideos implements Serializable{
 	public void setPagina(String pagina) {
 		this.pagina = pagina;
 	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -62,13 +37,9 @@ public class ModelVideos implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ModelVideos other = (ModelVideos) obj;
+		ModelVideoNome other = (ModelVideoNome) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
-	
 
+	
 }

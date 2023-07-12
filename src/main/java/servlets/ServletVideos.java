@@ -10,7 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import model.ModelVideoNome;
 import model.ModelVideos;
 
 @WebServlet("/SertvletVideos")
@@ -33,6 +33,7 @@ public class ServletVideos extends ServletGenericUtil {
 		    String acao = request.getParameter("acao");
 		    
 		    
+		    
 		
 		    
 		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarVideos")) {
@@ -42,9 +43,11 @@ public class ServletVideos extends ServletGenericUtil {
 		        
 		        // Chamar o método buscarVideos() para obter os dados do banco de dados
 		        List<ModelVideos> videos = daoVideos.buscarVideos();
+		        List<ModelVideoNome> videos2 = daoVideos.buscarVideosnome();
 		        
 		        // Passar os dados para a página JSP
 		        request.setAttribute("videos", videos);
+		        request.setAttribute("videos2", videos2);
 		        
 		        // Encaminhar a requisição para a página JSP
 		        request.getRequestDispatcher("principal/videos.jsp").forward(request, response);
@@ -57,13 +60,17 @@ public class ServletVideos extends ServletGenericUtil {
 
 					response.getWriter().write("Excluido com sucesso!");
 					
-					 DAOVideos daoVideos = new DAOVideos();
-				        
-				        // Chamar o método buscarVideos() para obter os dados do banco de dados
-				        List<ModelVideos> videos2 = daoVideos.buscarVideos();
-				        
-				        // Passar os dados para a página JSP
-				        request.setAttribute("videos", videos2);
+					 // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
+			        DAOVideos daoVideos = new DAOVideos();
+			        
+			        // Chamar o método buscarVideos() para obter os dados do banco de dados
+			        List<ModelVideos> videos = daoVideos.buscarVideos();
+			        List<ModelVideoNome> videos2 = daoVideos.buscarVideosnome();
+			        
+			        // Passar os dados para a página JSP
+			        request.setAttribute("videos", videos);
+			        request.setAttribute("videos2", videos2);
+			        
 					
 					   request.getRequestDispatcher("principal/videos.jsp").forward(request, response);
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.SingleConnectionBanco;
+import model.ModelVideoNome;
 import model.ModelVideos;
 
 
@@ -49,6 +50,31 @@ public class DAOVideos {
 	
 		
 		
+	
+	public List<ModelVideoNome> buscarVideosnome() throws Exception {
+	    List<ModelVideoNome> videos = new ArrayList<>();
+
+	    String sql = "select id,pagina  from nomepaginas";
+
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelVideoNome video = new ModelVideoNome();
+	        video.setId(resultSet.getLong("id"));
+	        video.setPagina(resultSet.getString("pagina"));
+	       
+	        
+	        videos.add(video);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return videos;
+	}
+
 	
 	
 	
