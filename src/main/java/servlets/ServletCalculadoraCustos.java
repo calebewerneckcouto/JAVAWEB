@@ -57,6 +57,9 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 			String consumiveiscustos = request.getParameter("consumiveiscustos");
 			String subtotal = request.getParameter("subtotal");
 			String incluindoperdas = request.getParameter("incluindoperdas");
+			String lucroporcentagem = request.getParameter("lucroporcentagem");
+			String lucrovalor = request.getParameter("lucrovalor");
+			String precofinal = request.getParameter("precofinal");
 			
 			ModelCalculadora modelCalculadora = new ModelCalculadora();
 			
@@ -82,6 +85,9 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 			modelCalculadora.setConsumiveiscustos(consumiveiscustos);
 			modelCalculadora.setSubtotal(subtotal);
 			modelCalculadora.setIncluindoperdas(incluindoperdas);
+			modelCalculadora.setLucroporcentagem(lucroporcentagem);
+			modelCalculadora.setLucrovalor(lucrovalor);
+			modelCalculadora.setPrecofinal(precofinal);
 			
 			
 			

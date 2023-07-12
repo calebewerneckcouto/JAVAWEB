@@ -32,6 +32,32 @@ public class ModelCalculadora implements Serializable{
 	private String consumiveiscustos;
 	private String subtotal;
 	private String incluindoperdas;
+	private String lucroporcentagem;
+	private String lucrovalor;
+	private String precofinal;
+	
+	
+	
+	
+	
+	public String getPrecofinal() {
+		return precofinal;
+	}
+	public void setPrecofinal(String precofinal) {
+		this.precofinal = precofinal;
+	}
+	public String getLucrovalor() {
+		return lucrovalor;
+	}
+	public void setLucrovalor(String lucrovalor) {
+		this.lucrovalor = lucrovalor;
+	}
+	public String getLucroporcentagem() {
+		return lucroporcentagem;
+	}
+	public void setLucroporcentagem(String lucroporcentagem) {
+		this.lucroporcentagem = lucroporcentagem;
+	}
 	public Long getId() {
 		return id;
 	}

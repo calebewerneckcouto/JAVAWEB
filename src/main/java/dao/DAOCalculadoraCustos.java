@@ -18,7 +18,7 @@ public class DAOCalculadoraCustos {
 
 	public void gravacalculos(ModelCalculadora modelCalculadora) throws Exception {
 
-		String sql = "insert into calculadoracustos (impressora,filamento,peso,tempoimpressao,preparacao,fatiamento,trocamaterial,transferenciaeinicio,somapreparacao,remocaoimpressao,remocaosuportes,trabalhoadicional,somaposprocessamento,consumiveis,filamentovalor,eletricidadevalor,depreciacaomaquina,posprocessamentocustos,consumiveiscustos,subtotal,incluindoperdas) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into calculadoracustos (impressora,filamento,peso,tempoimpressao,preparacao,fatiamento,trocamaterial,transferenciaeinicio,somapreparacao,remocaoimpressao,remocaosuportes,trabalhoadicional,somaposprocessamento,consumiveis,filamentovalor,eletricidadevalor,depreciacaomaquina,posprocessamentocustos,consumiveiscustos,subtotal,incluindoperdas,lucroporcentagem,lucrovalor,precofinal) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -43,6 +43,9 @@ public class DAOCalculadoraCustos {
 		preparedStatement.setString(19,modelCalculadora.getConsumiveiscustos());
 		preparedStatement.setString(20,modelCalculadora.getSubtotal());
 		preparedStatement.setString(21,modelCalculadora.getIncluindoperdas());
+		preparedStatement.setString(22,modelCalculadora.getLucroporcentagem());
+		preparedStatement.setString(23,modelCalculadora.getLucrovalor());
+		preparedStatement.setString(24, modelCalculadora.getPrecofinal());
 
 		preparedStatement.execute();
 
