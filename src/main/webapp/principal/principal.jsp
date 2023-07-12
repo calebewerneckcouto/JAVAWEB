@@ -313,7 +313,47 @@
 										
 										 <span id="msg">${msg}</span>
 										 
-										
+																	
+														
+													<div style="height: 300px; overflow: scroll;">
+											<table class="table" id="tabelaresultadosview">
+												<thead>
+													<tr>
+															<th scope="col">ID</th>
+									<th scope="col">Impressora</th>
+									<th scope="col">Filamento</th>
+									<th scope="col">Peso</th>
+									<th scope="col">Tempo de Impressão</th>
+									<th scope="col">Lucro(%)</th>
+									<th scope="col">Lucro(R$))</th>
+									<th scope="col">Preço Final</th>
+									
+									
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items='${calculadora}' var='ml'>
+														<tr>
+															<td><c:out value="${ml.id}"></c:out></td>
+															<td><c:out value="${ml.impressora}"></c:out></td>
+															<td><c:out value="${ml.filamento}"></c:out></td>
+															<td><c:out value="${ml.peso}"></c:out></td>
+															<td><c:out value="${ml.tempoimpressao}"></c:out></td>
+														    <td><c:out value="${ml.lucroporcentagem}"></c:out></td>
+														    <td><c:out value="${ml.lucrovalor}"></c:out></td>
+														    <td><c:out value="${ml.precofinal}"></c:out></td>
+														
+														
+															<td><a class="btn btn-success"
+																href="<%= request.getContextPath() %>/SertvletCalculadoraCustos?acao=excluir&id=${ml.id}">Excluir</a></td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+
+
+								</div>
 														
 										
 

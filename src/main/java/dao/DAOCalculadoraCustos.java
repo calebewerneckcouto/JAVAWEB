@@ -2,9 +2,13 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import connection.SingleConnectionBanco;
 import model.ModelCalculadora;
+import model.ModelVideos;
 
 
 public class DAOCalculadoraCustos {
@@ -52,4 +56,53 @@ public class DAOCalculadoraCustos {
 		connection.commit();
 
 	}
+	
+	
+	public List<ModelCalculadora> buscarCalculadora() throws Exception {
+	    List<ModelCalculadora> calculos = new ArrayList<>();
+
+	    String sql = "select id,impressora,filamento,peso,tempoimpressao,preparacao,fatiamento,trocamaterial,transferenciaeinicio,somapreparacao,remocaoimpressao,remocaosuportes,trabalhoadicional,somaposprocessamento,consumiveis,filamentovalor,eletricidadevalor,depreciacaomaquina,posprocessamentocustos,consumiveiscustos,subtotal,incluindoperdas,lucroporcentagem,lucrovalor,precofinal  from calculadoracustos";
+
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelCalculadora calculo = new ModelCalculadora();
+	        calculo.setId(resultSet.getLong("id"));
+	        calculo.setImpressora(resultSet.getString("impressora"));
+	        calculo.setFilamento(resultSet.getString("filamento"));
+	        calculo.setPeso(resultSet.getString("peso"));
+	        calculo.setTempoimpressao(resultSet.getString("tempoimpressao"));
+	        calculo.setLucroporcentagem(resultSet.getString("lucroporcentagem"));
+	        calculo.setLucrovalor(resultSet.getString("lucrovalor"));
+	        calculo.setPrecofinal(resultSet.getString("precofinal"));
+	        
+	        
+	        
+	       
+	        calculos.add(calculo);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return calculos;
+	}
+	
+	public void deleteCalculadora(Long id) throws Exception {
+		
+		String sql = "delete from calculadoracustos where id =?";
+		
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+		preparedStatement.setLong(1, id);
+
+		preparedStatement.executeUpdate();
+
+		connection.commit();
+	}
 }
+	
+	
+	

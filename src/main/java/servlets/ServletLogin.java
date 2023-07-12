@@ -1,7 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
+import dao.DAOCalculadoraCustos;
 import dao.DAOLoginRepository;
 import dao.DAOUsuarioRepository;
 import jakarta.servlet.RequestDispatcher;
@@ -10,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.ModelCalculadora;
 import model.ModelLogin;
 
 
@@ -66,7 +69,14 @@ public class ServletLogin extends HttpServlet {
 						modelLogin = daoUsuarioRepository.consultaUsuarioLogado(login);
 						
 					
-						
+						   // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
+				        DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
+				        
+				        // Chamar o método buscarVideos() para obter os dados do banco de dados
+				        List<ModelCalculadora> calculadora = daoCalculadoraCustos.buscarCalculadora();
+				        
+				        // Passar os dados para a página JSP
+				        request.setAttribute("calculadora", calculadora);
 						
 					
 						request.getSession().setAttribute("usuario", modelLogin.getLogin());

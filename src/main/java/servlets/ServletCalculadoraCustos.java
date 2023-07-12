@@ -6,6 +6,7 @@ import java.util.List;
 import dao.DAOCalculadoraCustos;
 import dao.DAOTelefoneRepository;
 import dao.DAOUsuarioRepository;
+import dao.DAOVideos;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelCalculadora;
 import model.ModelLogin;
 import model.ModelTelefone;
+import model.ModelVideos;
 
 @WebServlet("/SertvletCalculadoraCustos")
 public class ServletCalculadoraCustos extends ServletGenericUtil {
@@ -27,8 +29,55 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		try {
+			   
+		    String acao = request.getParameter("acao");
+		    
+		    
 		
+		    
+		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarCalculadora")) {
+		
+		        // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
+		        DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
+		        
+		        // Chamar o método buscarVideos() para obter os dados do banco de dados
+		        List<ModelCalculadora> calculadora = daoCalculadoraCustos.buscarCalculadora();
+		        
+		        // Passar os dados para a página JSP
+		        request.setAttribute("calculadora", calculadora);
+		        
+		        // Encaminhar a requisição para a página JSP
+		        request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
+		        
+		    } else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("excluir")) {
+
+					String id = request.getParameter("id");
+
+					daoCalculadoraCustos.deleteCalculadora(Long.parseLong(id));
+
+					response.getWriter().write("Excluido com sucesso!");
+					
+					 DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
+				        
+				        // Chamar o método buscarVideos() para obter os dados do banco de dados
+				        List<ModelCalculadora> calculadora = daoCalculadoraCustos.buscarCalculadora();
+				        
+				        // Passar os dados para a página JSP
+				        request.setAttribute("calculadora", calculadora);
+					
+					   request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
+
+				}
+		        
+		        
+		  
+		} catch (Exception e) {
+		    e.printStackTrace();
+		    // Tratar qualquer exceção que possa ocorrer
+		}
 	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -95,6 +144,17 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 			
 			
 			daoCalculadoraCustos.gravacalculos(modelCalculadora);
+			
+			
+			 DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
+		        
+		        // Chamar o método buscarVideos() para obter os dados do banco de dados
+		        List<ModelCalculadora> calculadora = daoCalculadoraCustos.buscarCalculadora();
+		        
+		        // Passar os dados para a página JSP
+		        request.setAttribute("calculadora", calculadora);
+			
+			   
 			
 			request.setAttribute("msg", msg);
 			
