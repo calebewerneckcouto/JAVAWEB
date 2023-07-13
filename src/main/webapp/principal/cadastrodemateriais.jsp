@@ -55,7 +55,7 @@
 
 														
 															
-														<h4 class="sub-title" style="color: blue;">Cadastro de Materiais</h4>
+														
 														
 														
 														
