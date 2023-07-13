@@ -171,9 +171,12 @@
 														    <td><c:out value="${ml.consumodeenergia}"></c:out></td>
 														    <td><c:out value="${ml.depreciacao}"></c:out></td>
 														
-														
+														  <c:if test="${permissao == 'admin'}">
 															<td><a class="btn btn-success"
 																href="<%= request.getContextPath() %>/SertvletCadastroImpressoras?acao=excluir&id=${ml.id}">Excluir</a></td>
+														
+														</c:if>
+														
 														</tr>
 													</c:forEach>
 												</tbody>

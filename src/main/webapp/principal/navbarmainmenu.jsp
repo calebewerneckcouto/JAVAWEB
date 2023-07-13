@@ -39,7 +39,7 @@
                                   <a href="<%=request.getContextPath() %>/SertvletCalculadoraCustos?acao=listarCalculadora" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                        
-                                      <span class="pcoded-mtext" data-i18n="nav.dash.main">Página Principal</span>
+                                      <span class="pcoded-mtext" data-i18n="nav.dash.main">Calculadora de Custos</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>

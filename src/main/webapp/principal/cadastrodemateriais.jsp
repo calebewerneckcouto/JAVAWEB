@@ -196,9 +196,13 @@
 														    <td><c:out value="${ml.comprimentorolo}"></c:out></td>
 														    <td><c:out value="${ml.preco}"></c:out></td>
 														
-														
+														  <c:if test="${permissao == 'admin'}">
 															<td><a class="btn btn-success"
 																href="<%= request.getContextPath() %>/SertvletCadastroMateriais?acao=excluir&id=${ml.id}">Excluir</a></td>
+														
+														
+														</c:if>
+														
 														</tr>
 													</c:forEach>
 												</tbody>
