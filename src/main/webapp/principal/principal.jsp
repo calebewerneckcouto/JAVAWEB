@@ -64,9 +64,9 @@
 														
 														
                                                              
-                                                      <div class="form-group form-default form-static-label">
+                                                      <div class="form-group form-default form-static-label" >
 												  <h6>Nome da impressora:</h6>
-												  <select  id="impressora" name="impressora" >
+												  <select  id="impressora" name="impressora" required="required" >
 												    <c:forEach items='${impressoras}' var='ml'     >
 												      <option value="${ml.nomedaimpressora}">${ml.nomedaimpressora}</option>
 												    </c:forEach>
@@ -223,14 +223,26 @@
 	                                                            
 	                                                            
 	                                                            
+	                                                                      
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
+	                                                            
 	                                                                <div class="form-group form-default form-static-label">
 	                                                             
-                                                                <input  <c:forEach items='${outrosdados}' var='ml'>
-                                                            
-										                           value="${ml.depreciacao}"
-                                                              
-                                                            
-                                                             </c:forEach>  type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"      >
+                                                                <input   readonly="readonly"   type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"      >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Depreciação da Impressora(R$):</label>
                                                                
@@ -318,7 +330,7 @@
                                                             
                                                               
 												               <a href="<%=request.getContextPath() %>/SertvletCadastroImpressoras?acao=listarcadastroimpressoras"  class="btn btn-primary waves-effect waves-light" >Cadastro de Impressoras</a>
-												           <a   class="btn btn-info waves-effect waves-light" >Cadastro de Materiais</a>
+												           <a  href="<%=request.getContextPath() %>/SertvletCadastroMateriais?acao=listarmateriais" class="btn btn-info waves-effect waves-light" >Cadastro de Materiais</a>
 												          
 												             
 															
