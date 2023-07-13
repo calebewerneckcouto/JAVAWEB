@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelCadastroImpressoras;
+import model.ModelCadastroMateriais;
 import model.ModelCalculadora;
 import model.ModelLogin;
 
@@ -86,6 +87,12 @@ public class ServletLogin extends HttpServlet {
 				        // Passar os dados para a página JSP
 				      
 				        request.setAttribute("impressoras", impressoras);
+				        
+				        
+				        DAOCalculadoraCustos daoCalculadoraCustos3 = new DAOCalculadoraCustos();
+				        List<ModelCadastroMateriais> materiais = daoCalculadoraCustos3.buscarfabricante();
+				        
+				        request.setAttribute("materiais", materiais);
 						
 					
 						request.getSession().setAttribute("usuario", modelLogin.getLogin());

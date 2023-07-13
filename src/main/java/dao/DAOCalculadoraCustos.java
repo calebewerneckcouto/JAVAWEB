@@ -8,6 +8,7 @@ import java.util.List;
 
 import connection.SingleConnectionBanco;
 import model.ModelCadastroImpressoras;
+import model.ModelCadastroMateriais;
 import model.ModelCalculadora;
 import model.ModelVideos;
 
@@ -92,37 +93,37 @@ public class DAOCalculadoraCustos {
 	}
 	
 	
-	public List<ModelCadastroImpressoras> buscarImpressoraPorNome(String nomeImpressora) throws Exception {
-	    List<ModelCadastroImpressoras> impressorasEncontradas = new ArrayList<>();
-
-	    String sql = "SELECT id, nomedaimpressora, diametrodomaterial, preco, tempodepreciacao, custodereparos, consumodeenergia, depreciacao FROM cadastroimpressoras WHERE nomedaimpressora LIKE ?";
+	
+	public List<ModelCadastroMateriais> buscarfabricante() throws Exception {
+	    List<ModelCadastroMateriais> nomefabricante = new ArrayList<>();
+	    String sql = "select id,fabricante,diametro,precorolo,tamanhorolo,densidade,temperaturanozzle,temperaturamesa,comprimentorolo,preco  from cadastromateriais";
 
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-	    preparedStatement.setString(1, "%" + nomeImpressora + "%");
 
 	    ResultSet resultSet = preparedStatement.executeQuery();
 
 	    while (resultSet.next()) {
-	        ModelCadastroImpressoras impressora = new ModelCadastroImpressoras();
-	        impressora.setId(resultSet.getLong("id"));
-	        impressora.setNomedaimpressora(resultSet.getString("nomedaimpressora"));
-	        impressora.setDiametrodomaterial(resultSet.getString("diametrodomaterial"));
-	        impressora.setPreco(resultSet.getString("preco"));
-	        impressora.setTempodepreciacao(resultSet.getString("tempodepreciacao"));
-	        impressora.setCustodereparos(resultSet.getString("custodereparos"));
-	        impressora.setConsumodeenergia(resultSet.getString("consumodeenergia"));
-	        impressora.setDepreciacao(resultSet.getString("depreciacao"));
+	        ModelCadastroMateriais cadastroMateriais = new ModelCadastroMateriais();
+	        cadastroMateriais.setId(resultSet.getLong("id"));
+	        cadastroMateriais.setFabricante(resultSet.getString("fabricante"));
+	        cadastroMateriais.setDiametro(resultSet.getString("diametro"));
+	        cadastroMateriais.setPrecorolo(resultSet.getString("precorolo"));
+	        cadastroMateriais.setTamanhorolo(resultSet.getString("tamanhorolo"));
+	        cadastroMateriais.setDensidade(resultSet.getString("densidade"));
+	        cadastroMateriais.setTemperaturanozzle(resultSet.getString("temperaturanozzle"));
+	        cadastroMateriais.setTemperaturamesa(resultSet.getString("temperaturamesa"));
+	        cadastroMateriais.setComprimentorolo(resultSet.getString("comprimentorolo"));
+	        cadastroMateriais.setPreco(resultSet.getString("preco"));
+	       
 	        
-	        impressorasEncontradas.add(impressora);
+	        nomefabricante.add(cadastroMateriais);
 	    }
 
 	    resultSet.close();
 	    preparedStatement.close();
 
-	    return impressorasEncontradas;
+	    return nomefabricante;
 	}
-
-	
 	
 	
 	

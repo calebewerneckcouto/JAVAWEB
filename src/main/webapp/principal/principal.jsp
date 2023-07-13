@@ -73,15 +73,21 @@
 												  </select>
 												</div>
 													
+													
+													
+															
+                                                             
+                                                      <div class="form-group form-default form-static-label" >
+												  <h6>Nome do Material/Fabricante:</h6>
+												  <select  id="filamento" name="filamento" required="required" >
+												    <c:forEach items='${materiais}' var='ml'     >
+												      <option value="${ml.fabricante}">${ml.fabricante}</option>
+												    </c:forEach>
+												  </select>
+												</div>
+													
                                                               
                                                           
-                                                            
-                                                            
-                                                             <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="filamento" id="filamento" class="form-control" required="required" >
-                                                                <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Filamento:</label>
-                                                            </div>
                                                             
                                                             
                                                               
