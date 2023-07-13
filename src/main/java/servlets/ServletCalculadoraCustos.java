@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.ModelCadastroImpressoras;
 import model.ModelCalculadora;
 import model.ModelLogin;
 import model.ModelTelefone;
@@ -32,10 +33,30 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 		try {
 			   
 		    String acao = request.getParameter("acao");
+		   
 		    
+		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listaroutrosdados")) {
+		    	
 		    
-		
-		    
+				
+		        // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
+		      
+		        
+		    	 String nomedaimpressora = request.getParameter("nomedaimpressora");
+		        
+		        
+		        DAOCalculadoraCustos  daoCalculadoraCustos2 = new DAOCalculadoraCustos();
+		        
+		        List<ModelCadastroImpressoras> outrosdados = daoCalculadoraCustos2.buscarImpressoraPorNome(nomedaimpressora);
+		        
+		        // Passar os dados para a página JSP
+		     
+		        request.setAttribute("outrosdados", outrosdados);
+		        
+		        // Encaminhar a requisição para a página JSP
+		        request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
+		        
+		    } else 
 		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarCalculadora")) {
 		
 		        // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
@@ -44,8 +65,13 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 		        // Chamar o método buscarVideos() para obter os dados do banco de dados
 		        List<ModelCalculadora> calculadora = daoCalculadoraCustos.buscarCalculadora();
 		        
+		        DAOCalculadoraCustos daoCalculadoraCustos2 = new DAOCalculadoraCustos();
+		        List<ModelCadastroImpressoras>impressoras = daoCalculadoraCustos2.buscarNomeImpressora();
+		        
+		        
 		        // Passar os dados para a página JSP
 		        request.setAttribute("calculadora", calculadora);
+		        request.setAttribute("impressoras", impressoras);
 		        
 		        // Encaminhar a requisição para a página JSP
 		        request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
@@ -65,6 +91,16 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 				        
 				        // Passar os dados para a página JSP
 				        request.setAttribute("calculadora", calculadora);
+				        
+				        
+				        DAOCalculadoraCustos daoCalculadoraCustos2 = new DAOCalculadoraCustos();
+				        
+				        List<ModelCadastroImpressoras>impressoras = daoCalculadoraCustos2.buscarNomeImpressora();
+				        
+				        
+				        // Passar os dados para a página JSP
+				      
+				        request.setAttribute("impressoras", impressoras);
 					
 					   request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
 
@@ -154,7 +190,15 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 		        // Passar os dados para a página JSP
 		        request.setAttribute("calculadora", calculadora);
 			
-			   
+		        DAOCalculadoraCustos daoCalculadoraCustos2 = new DAOCalculadoraCustos();
+		        
+		        List<ModelCadastroImpressoras>impressoras = daoCalculadoraCustos2.buscarNomeImpressora();
+		        
+		        
+		        // Passar os dados para a página JSP
+		      
+		        request.setAttribute("impressoras", impressoras);
+				
 			
 			request.setAttribute("msg", msg);
 			

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.SingleConnectionBanco;
+import model.ModelCadastroImpressoras;
 import model.ModelCalculadora;
 import model.ModelVideos;
 
@@ -89,6 +90,80 @@ public class DAOCalculadoraCustos {
 
 	    return calculos;
 	}
+	
+	
+	public List<ModelCadastroImpressoras> buscarImpressoraPorNome(String nomeImpressora) throws Exception {
+	    List<ModelCadastroImpressoras> impressorasEncontradas = new ArrayList<>();
+
+	    String sql = "SELECT id, nomedaimpressora, diametrodomaterial, preco, tempodepreciacao, custodereparos, consumodeenergia, depreciacao FROM cadastroimpressoras WHERE nomedaimpressora LIKE ?";
+
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+	    preparedStatement.setString(1, "%" + nomeImpressora + "%");
+
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelCadastroImpressoras impressora = new ModelCadastroImpressoras();
+	        impressora.setId(resultSet.getLong("id"));
+	        impressora.setNomedaimpressora(resultSet.getString("nomedaimpressora"));
+	        impressora.setDiametrodomaterial(resultSet.getString("diametrodomaterial"));
+	        impressora.setPreco(resultSet.getString("preco"));
+	        impressora.setTempodepreciacao(resultSet.getString("tempodepreciacao"));
+	        impressora.setCustodereparos(resultSet.getString("custodereparos"));
+	        impressora.setConsumodeenergia(resultSet.getString("consumodeenergia"));
+	        impressora.setDepreciacao(resultSet.getString("depreciacao"));
+	        
+	        impressorasEncontradas.add(impressora);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return impressorasEncontradas;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<ModelCadastroImpressoras> buscarNomeImpressora() throws Exception {
+	    List<ModelCadastroImpressoras> nomedaimpressora = new ArrayList<>();
+
+	    String sql = "select id,nomedaimpressora,diametrodomaterial,preco,tempodepreciacao,custodereparos,consumodeenergia,depreciacao  from cadastroimpressoras";
+
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelCadastroImpressoras nomedasimpressoras = new ModelCadastroImpressoras();
+	        nomedasimpressoras.setId(resultSet.getLong("id"));
+	        nomedasimpressoras.setNomedaimpressora(resultSet.getString("nomedaimpressora"));
+	        nomedasimpressoras.setDiametrodomaterial(resultSet.getString("diametrodomaterial"));
+	        nomedasimpressoras.setPreco(resultSet.getString("preco"));
+	        nomedasimpressoras.setTempodepreciacao(resultSet.getString("tempodepreciacao"));
+	        nomedasimpressoras.setCustodereparos(resultSet.getString("custodereparos"));
+	        nomedasimpressoras.setConsumodeenergia(resultSet.getString("consumodeenergia"));
+	        nomedasimpressoras.setDepreciacao(resultSet.getString("depreciacao"));
+	        
+	        
+	        
+	       
+	        nomedaimpressora.add(nomedasimpressoras);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return nomedaimpressora;
+	}
+	
+
 	
 	public void deleteCalculadora(Long id) throws Exception {
 		

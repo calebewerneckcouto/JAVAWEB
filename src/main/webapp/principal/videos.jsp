@@ -73,9 +73,7 @@
                                                             
 										                        <select name="pagina" id="pagina"  required>
 										                        <c:forEach items='${videos2}' var='ml'>
-										                          <option selected="selected" <td><c:out value="${ml.pagina}"></c:out></td></option>
-										                        
-                                                           
+										                          <option value="${ml.pagina}">${ml.pagina}</option>
                                                               
                                                             
                                                              </c:forEach>

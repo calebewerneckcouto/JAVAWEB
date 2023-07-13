@@ -50,5 +50,14 @@
     <servlet-name>ServletSubstituir</servlet-name>
     <servlet-class>servlets.ServletSubstituir</servlet-class>
   </servlet>
-
+  <servlet>
+    <description></description>
+    <display-name>ServletCadastroImpressoras</display-name>
+    <servlet-name>ServletCadastroImpressoras</servlet-name>
+    <servlet-class>servlets.ServletCadastroImpressoras</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCadastroImpressoras</servlet-name>
+    <url-pattern>/ServletCadastroImpressoras</url-pattern>
+  </servlet-mapping>
 </web-app>

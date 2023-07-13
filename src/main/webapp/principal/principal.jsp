@@ -1,3 +1,6 @@
+<%@page import="dao.DAOCadastroImpressoras"%>
+<%@page import="model.ModelCadastroImpressoras"%>
+<%@page import="java.util.List"%>
 <%@page import="dao.DAOVideos"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.ModelVideos"%>
@@ -5,6 +8,7 @@
 	pageEncoding="ISO-8859-1"%>
 	
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  	
+
 
 
 <!DOCTYPE html>
@@ -60,17 +64,17 @@
 														
 														
                                                              
-                                                            
-                                                            
-                                                             <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="impressora" id="impressora" class="form-control" required="required" >
-                                                                <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Impressora:</label>
-                                                            </div>
-                                                           
+                                                      <div class="form-group form-default form-static-label">
+												  <h6>Nome da impressora:</h6>
+												  <select  id="impressora" name="impressora" >
+												    <c:forEach items='${impressoras}' var='ml'     >
+												      <option value="${ml.nomedaimpressora}">${ml.nomedaimpressora}</option>
+												    </c:forEach>
+												  </select>
+												</div>
+													
                                                               
-                                                              
-                                                           
+                                                          
                                                             
                                                             
                                                              <div class="form-group form-default form-static-label">
@@ -205,7 +209,7 @@
                                                                 <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="filamentovalor" id="filamentovalor" class="form-control"      >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Filamento:</label>
+                                                                <label class="float-label" style="color: black">Filamento(R$):</label>
                                                                 
 	                                                            </div>
 	                                                            
@@ -213,25 +217,31 @@
 	                                                                <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="eletricidadevalor" id="eletricidadevalor" class="form-control"    >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Eletricidade:</label>
+                                                                <label class="float-label" style="color: black">Eletricidade(R$):</label>
                                                                 
 	                                                            </div>
 	                                                            
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"      >
+	                                                             
+                                                                <input  <c:forEach items='${outrosdados}' var='ml'>
+                                                            
+										                           value="${ml.depreciacao}"
+                                                              
+                                                            
+                                                             </c:forEach>  type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"      >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Depreciação da Impressora:</label>
-                                                                
+                                                                <label class="float-label" style="color: black">Depreciação da Impressora(R$):</label>
+                                                               
 	                                                            </div>
-	                                                            
+	                                                           
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="preparacaocustos" id="preparacaocustos" class="form-control"     >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Preparacação:</label>
+                                                                <label class="float-label" style="color: black">Preparacação(R$):</label>
                                                                 
 	                                                            </div>
 	                                                            
@@ -241,7 +251,7 @@
 	                                                                <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="posprocessamentocustos" id="posprocessamentocustos" class="form-control"      >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Pós-Processamento:</label>
+                                                                <label class="float-label" style="color: black">Pós-Processamento(R$):</label>
                                                                 
 	                                                            </div>
 	                                                            
@@ -250,7 +260,7 @@
 	                                                                <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="consumiveiscustos" id="consumiveiscustos" class="form-control"     >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Consumíveis:</label>
+                                                                <label class="float-label" style="color: black">Consumíveis(R$):</label>
                                                                 
 	                                                            </div>
 	                                                            
@@ -259,7 +269,7 @@
 	                                                                <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="subtotal" id="subtotal" class="form-control"      >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Subtotal:</label>
+                                                                <label class="float-label" style="color: black">Subtotal(R$):</label>
                                                                 
 	                                                            </div>
 	                                                            
@@ -268,7 +278,7 @@
 	                                                                <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"     >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Incluindo Perdas:</label>
+                                                                <label class="float-label" style="color: black">Incluindo Perdas(R$):</label>
                                                                 
 	                                                            </div>
 	                                                            
@@ -307,7 +317,8 @@
                                                             <button  class="btn btn-success waves-effect waves-light">Salvar</button>
                                                             
                                                               
-												               <a  class="btn btn-primary waves-effect waves-light" >Cadastro Impressoras e Materiais</a>
+												               <a href="<%=request.getContextPath() %>/SertvletCadastroImpressoras?acao=listarcadastroimpressoras"  class="btn btn-primary waves-effect waves-light" >Cadastro de Impressoras</a>
+												           <a   class="btn btn-info waves-effect waves-light" >Cadastro de Materiais</a>
 												          
 												             
 															
@@ -378,9 +389,15 @@
 	</div>
 
 	<jsp:include page="javascripfile.jsp"></jsp:include>
-	
+
 	
 <script type="text/javascript">
+
+
+
+
+
+
 
 function formatarHora(input) {
     // Remove todos os caracteres que não sejam números ou dois pontos
@@ -467,9 +484,33 @@ function calcularSomaPosProcessamento() {
     var totalMinutos = horas * 60 + minutos;
     return totalMinutos;
   }
+  
+  
+  $(document).ready(function() {
+    // Capturar o evento de mudança do select
+    $('#nomeimpressora').change(function() {
+      // Obter o valor selecionado do select
+      var selectedValue = $(this).val();
+      
+      // Fazer a chamada AJAX para executar o código JSP
+      $.ajax({
+        url: 'principal.jsp',
+        data: { nomeimpressora: selectedValue },
+        success: function(response) {
+          // Manipular a resposta do servidor, se necessário
+          console.log(response);
+        },
+        error: function(xhr, status, error) {
+          // Lidar com erros, se houver
+          console.log(error);
+        }
+      });
+    });
+  });
+  </script>
 
-
-</script>	
+  
+	
 </body>
 
 </html>
