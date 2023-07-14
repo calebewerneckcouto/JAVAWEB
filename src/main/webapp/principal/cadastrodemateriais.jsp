@@ -85,7 +85,7 @@
                                                             
                                                             
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="diametro" id="diametro" class="form-control" required="required" >
+                                                                <input  type="text" name="diametro" id="diametro" class="form-control" required="required" onchange="calcularResultado()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Diâmetro [mm]:</label>
                                                             </div>
@@ -102,7 +102,7 @@
                                                             
                                                               
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="tamanhorolo" id="tamanhorolo" class="form-control" required="required" >
+                                                                <input  type="text" name="tamanhorolo" id="tamanhorolo" class="form-control" required="required" onchange="calcularResultado()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Tamanho do Rolo [KG]:</label>
                                                                 
@@ -110,7 +110,7 @@
                                                             
                                                                 
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="densidade" id="densidade" class="form-control" required="required" >
+                                                                <input  type="text" name="densidade" id="densidade" class="form-control" required="required" onchange="calcularResultado()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Densidade[g/cm³]:</label>
                                                                 
@@ -134,7 +134,7 @@
                                                             
                                                             
                                                               <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="comprimentorolo" id="comprimentorolo" class="form-control" required="required" >
+                                                                <input  type="text" name="comprimentorolo" id="comprimentorolo" class="form-control" required="required"  readonly="readonly">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Comprimento do Rolo [M]:</label>
                                                                 
@@ -255,7 +255,23 @@
 	
 <script type="text/javascript">
 
+function calcularResultado() {
+    
+    const tamanhorolo = parseFloat(document.getElementById('tamanhorolo').value);
+    
+    const densidade = parseFloat(document.getElementById('densidade').value);
+   
+    const diametro = parseFloat(document.getElementById('diametro').value);
 
+    const pi = Math.PI;
+    const resultado = tamanhorolo / densidade * 4 / (pi * Math.pow(diametro / 100, 2)) / 10;
+   
+    
+
+    document.getElementById('comprimentorolo').value = resultado;
+  }
+
+  
 
 </script>	
 </body>
