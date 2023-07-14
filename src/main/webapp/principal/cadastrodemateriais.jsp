@@ -142,7 +142,7 @@
                                                             
                                                             
                                                               <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="preco" id="preco" class="form-control" required="required" >
+                                                                <input  type="text" name="preco" id="preco" class="form-control" required="required"  readonly="readonly">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Preço [R$/KG]:</label>
                                                                 
@@ -257,18 +257,45 @@
 
 function calcularResultado() {
     
-    const tamanhorolo = parseFloat(document.getElementById('tamanhorolo').value);
+    const tamanhorolo = parseFloat(document.getElementById('tamanhorolo').value.replace(',', '.'));
+
+    const densidade = parseFloat(document.getElementById('densidade').value.replace(',', '.'));
+
+    const diametro = parseFloat(document.getElementById('diametro').value.replace(',', '.'));
+
+    const precorolo = parseFloat(document.getElementById('precorolo').value.replace(',', '.'));
+
+    if (isNaN(tamanhorolo)) {
+	tamanhorolo = 0; // Atribuir 0 se o valor não for numérico
+	    }
     
-    const densidade = parseFloat(document.getElementById('densidade').value);
-   
-    const diametro = parseFloat(document.getElementById('diametro').value);
+    if (isNaN(densidade)) {
+	densidade = 0; // Atribuir 0 se o valor não for numérico
+	    }
+    
+    if (isNaN(diametro)) {
+	diametro = 0; // Atribuir 0 se o valor não for numérico
+	    }
+    
+    if (isNaN(precorolo)) {
+	precorolo = 0; // Atribuir 0 se o valor não for numérico
+	    }
+    
+    
+    
+    
 
     const pi = Math.PI;
     const resultado = tamanhorolo / densidade * 4 / (pi * Math.pow(diametro / 100, 2)) / 10;
-   
     
+    const resultadosoma = precorolo / tamanhorolo ;
+    
+    const resultadoArredondado2 = Math.ceil(resultadosoma);
+   
+    const resultadoArredondado = Math.ceil(resultado);
 
-    document.getElementById('comprimentorolo').value = resultado;
+    document.getElementById('comprimentorolo').value = resultadoArredondado;
+    document.getElementById('preco').value = resultadoArredondado2;
   }
 
   

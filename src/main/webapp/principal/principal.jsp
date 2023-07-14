@@ -304,10 +304,7 @@
                                                                 <label class="float-label" style="color: black">Consumíveis(R$):</label>
                                                                 
 	                                                            </div>
-	                                                             <c:forEach items='${}' var='ml'     >
-												      <label hidden="hidden" class="float-label" style="color: black">R${ml.geral}</label>
-												    </c:forEach>
-	                                                             
+	                                                            
                                                                
 	                                                                <div class="form-group form-default form-static-label">
                                                                 <input   type="text" name="subtotal" id="subtotal" class="form-control"   readonly="readonly"   >

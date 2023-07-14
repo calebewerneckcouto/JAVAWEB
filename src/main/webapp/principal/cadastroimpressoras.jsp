@@ -94,7 +94,7 @@
                                                             
                                                               
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="preco" id="preco" class="form-control" required="required" >
+                                                                <input  type="text" name="preco" id="preco" class="form-control" required="required" onchange=" somatotal()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Preço(R$):</label>
                                                                 
@@ -103,7 +103,7 @@
                                                             
                                                               
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="tempodepreciacao" id="tempodepreciacao" class="form-control" required="required" >
+                                                                <input  type="text" name="tempodepreciacao" id="tempodepreciacao" class="form-control" required="required" onchange=" somatotal()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Tempo de Depreciação(Horas):</label>
                                                                 
@@ -111,7 +111,7 @@
                                                             
                                                                 
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="custodereparos" id="custodereparos" class="form-control" required="required" >
+                                                                <input  type="text" name="custodereparos" id="custodereparos" class="form-control" required="required" onchange=" somatotal()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Custo de Reparos(R$):</label>
                                                                 
@@ -126,7 +126,7 @@
                                                             
                                                             
                                                               <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="depreciacao" id="depreciacao" class="form-control" required="required" >
+                                                                <input  type="text" name="depreciacao" id="depreciacao" class="form-control" required="required" readonly="readonly">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Depreciacão(R$/h):</label>
                                                                 
@@ -223,7 +223,36 @@
 	
 	
 <script type="text/javascript">
+function somatotal(){
+    
+    const preco = parseFloat(document.getElementById('preco').value.replace(',', '.'));
+    const custodereparos = parseFloat(document.getElementById('custodereparos').value.replace(',', '.'));
+    const tempodepreciacao = parseFloat(document.getElementById('tempodepreciacao').value.replace(',', '.'));
+   
+    
 
+    // Verificar se os campos contêm valores numéricos válidos
+    if (isNaN(preco)) {
+	preco = 0; // Atribuir 0 se o valor não for numérico
+    }
+    if (isNaN(custodereparos)) {
+	custodereparos = 0; // Atribuir 0 se o valor não for numérico
+    }
+    if (isNaN(tempodepreciacao)) {
+	tempodepreciacao = 0; // Atribuir 0 se o valor não for numérico
+    }
+   
+   
+
+    var soma = (preco + custodereparos)/tempodepreciacao ;
+    
+    soma = soma.toFixed(2);
+
+
+    document.getElementById('depreciacao').value = soma;
+
+    
+}
 
 
 </script>	

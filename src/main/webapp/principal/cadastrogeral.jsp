@@ -210,11 +210,11 @@
 <script type="text/javascript">
 
 function somatotal(){
-    var custoenergia = parseFloat(document.getElementById('custoenergia').value);
-    var custodetrabalho = parseFloat(document.getElementById('custodetrabalho').value);
-    var taxadeperdas = parseFloat(document.getElementById('taxadeperdas').value);
     
-    
+    const custoenergia = parseFloat(document.getElementById('custoenergia').value.replace(',', '.'));
+    const custodetrabalho = parseFloat(document.getElementById('custodetrabalho').value.replace(',', '.'));
+    const taxadeperdas = parseFloat(document.getElementById('taxadeperdas').value.replace(',', '.'));
+   
     
 
     // Verificar se os campos contêm valores numéricos válidos
@@ -234,8 +234,10 @@ function somatotal(){
    
 
     var soma = custoenergia + custodetrabalho + taxadeperdas;
+    
+    const resultadoArredondado = Math.ceil(soma);
 
-    document.getElementById('totalgeral').value = soma;
+    document.getElementById('totalgeral').value = resultadoArredondado;
 
     
 }
