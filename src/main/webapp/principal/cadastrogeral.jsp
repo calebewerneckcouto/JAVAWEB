@@ -55,15 +55,25 @@
 
 														
 															
+														         
 														
-														
-														
+                                                             <div class="form-group form-default form-static-label">
+                                                             
+                                                             
+                                                           
+												        <input readonly="readonly"  value="${usuarioid}" type="text" name="idusuariologado" id="idusuariologado" class="form-control" required="required"  >
+				
+                                                              
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Id do Usuario Logado</label>
+                                                            </div>
+                                                           
 														
                                                              
                                                             
                                                             
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="custoenergia" id="custoenergia" class="form-control" required="required" >
+                                                                <input  type="text" name="custoenergia" id="custoenergia" class="form-control" required="required"  onchange="somatotal()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Custo de Energia[R$/KWh]:</label>
                                                             </div>
@@ -74,7 +84,7 @@
                                                             
                                                             
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="custodetrabalho" id="custodetrabalho" class="form-control" required="required" >
+                                                                <input  type="text" name="custodetrabalho" id="custodetrabalho" class="form-control" required="required" onchange="somatotal()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Custo de Trabalho [R$/h]:</label>
                                                             </div>
@@ -82,13 +92,12 @@
                                                             
                                                               
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="taxadeperdas" id="taxadeperdas" class="form-control" required="required" >
+                                                                <input  type="text" name="taxadeperdas" id="taxadeperdas" class="form-control" required="required" onchange="somatotal()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Taxa de Perdas[%]:</label>
                                                                 
                                                             </div>
-                                                            
-                                                            
+                                                           
                                                               
                                                              <div class="form-group form-default form-static-label">
                                                                 <input  value="R$" readonly="readonly" type="text" name="unidademonetaria" id="unidademonetaria" class="form-control" required="required" >
@@ -99,7 +108,14 @@
                                                             
                                                                 
                                                             
+                                                               <div class="form-group form-default form-static-label">
+                                                                <input   readonly="readonly" type="text" name="totalgeral" id="totalgeral" class="form-control" required="required" >
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Total Geral[R$]:</label>
+                                                                
+                                                            </div>
                                                             
+                                                                
                                                             
                                                             
                                                             
@@ -107,7 +123,12 @@
                                                             <button  class="btn btn-success waves-effect waves-light">Salvar</button>
                                                             
                                                               
-												              
+												                 
+												               <a href="<%=request.getContextPath() %>/SertvletCadastroImpressoras?acao=listarcadastroimpressoras"  class="btn btn-primary waves-effect waves-light" >Cadastro de Impressoras</a>
+												           <a  href="<%=request.getContextPath() %>/SertvletCadastroMateriais?acao=listarmateriais" class="btn btn-info waves-effect waves-light" >Cadastro de Materiais</a>
+												          
+												               <a  href="<%=request.getContextPath() %>/SertvletCadastroGeral?acao=listargeral" class="btn btn-secondary"  >Cadastro Geral</a>
+												        
 												          
 												             
 															
@@ -133,30 +154,36 @@
 									<th scope="col">Custo de Trabalho[R$/h]</th>
 									<th scope="col">Taxa de Perdas[%]</th>
 									<th scope="col">Unidade Monetária[R$]</th>
+									<th scope="col">Total</th>
+									<th scope="col">Id Usuario Logado</th>
 									
 									
 									
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items='${geral}' var='ml'>
-														<tr>
-															<td><c:out value="${ml.id}"></c:out></td>
-															<td><c:out value="${ml.custoenergia}"></c:out></td>
-															<td><c:out value="${ml.custodetrabalho}"></c:out></td>
-															<td><c:out value="${ml.taxadeperdas}"></c:out></td>
-															<td><c:out value="${ml.unidademonetaria}"></c:out></td>
-														   
-														
-														  <c:if test="${permissao == 'admin'}">
-															<td><a class="btn btn-success"
-																href="<%= request.getContextPath() %>/SertvletCadastroGeral?acao=excluir&id=${ml.id}">Excluir</a></td>
-														
-														
-														</c:if>
-														
-														</tr>
-													</c:forEach>
+												
+												
+												<c:forEach items="${geral}" var="ml">
+  <c:if test="${ml.idusuariologado == usuarioid}">
+    <tr>
+      <td><c:out value="${ml.id}"></c:out></td>
+      <td><c:out value="${ml.custoenergia}"></c:out></td>
+      <td><c:out value="${ml.custodetrabalho}"></c:out></td>
+      <td><c:out value="${ml.taxadeperdas}"></c:out></td>
+      <td><c:out value="${ml.unidademonetaria}"></c:out></td>
+      <td><c:out value="${ml.totalgeral}"></c:out></td>
+      <td><c:out value="${ml.idusuariologado}"></c:out></td>
+      
+     
+        <td><a class="btn btn-success"
+          href="<%= request.getContextPath() %>/SertvletCadastroGeral?acao=excluir&id=${ml.id}">Excluir</a></td>
+     
+    </tr>
+  </c:if>
+</c:forEach>
+
+													
 												</tbody>
 											</table>
 										</div>
@@ -182,6 +209,36 @@
 	
 <script type="text/javascript">
 
+function somatotal(){
+    var custoenergia = parseFloat(document.getElementById('custoenergia').value);
+    var custodetrabalho = parseFloat(document.getElementById('custodetrabalho').value);
+    var taxadeperdas = parseFloat(document.getElementById('taxadeperdas').value);
+    
+    
+    
+
+    // Verificar se os campos contêm valores numéricos válidos
+    if (isNaN(custoenergia)) {
+	custoenergia = 0; // Atribuir 0 se o valor não for numérico
+    }
+    if (isNaN(custodetrabalho)) {
+	custodetrabalho = 0; // Atribuir 0 se o valor não for numérico
+    }
+    if (isNaN(taxadeperdas)) {
+	taxadeperdas = 0; // Atribuir 0 se o valor não for numérico
+    }
+   
+    if (isNaN(totalgeral)) {
+	totalgeral = 0;
+    }
+   
+
+    var soma = custoenergia + custodetrabalho + taxadeperdas;
+
+    document.getElementById('totalgeral').value = soma;
+
+    
+}
 
 
 </script>	

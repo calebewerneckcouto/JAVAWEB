@@ -28,7 +28,7 @@ public class DAOCadastroMateriais {
 	
 	public void gravaMateriais(ModelCadastroMateriais modelCadastroMateriais) throws Exception {
 
-		String sql = "insert into cadastromateriais (fabricante,diametro,precorolo,tamanhorolo,densidade,temperaturanozzle,temperaturamesa,comprimentorolo,preco) values (?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into cadastromateriais (fabricante,diametro,precorolo,tamanhorolo,densidade,temperaturanozzle,temperaturamesa,comprimentorolo,preco,idusuariologado) values (?,?,?,?,?,?,?,?,?,?)";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -41,6 +41,7 @@ public class DAOCadastroMateriais {
 		preparedStatement.setString(7,modelCadastroMateriais.getTemperaturamesa());
 		preparedStatement.setString(8,modelCadastroMateriais.getComprimentorolo());
 		preparedStatement.setString(9,modelCadastroMateriais.getPreco());
+		preparedStatement.setString(10,modelCadastroMateriais.getIdusuariologado());
 		
 		
 	
@@ -54,7 +55,7 @@ public class DAOCadastroMateriais {
 	public List<ModelCadastroMateriais> buscarCadastroMateriais() throws Exception {
 	    List<ModelCadastroMateriais> cadastroMaterial = new ArrayList<>();
 
-	    String sql = "select id,fabricante,diametro,precorolo,tamanhorolo,densidade,temperaturanozzle,temperaturamesa,comprimentorolo,preco  from cadastromateriais";
+	    String sql = "select id,fabricante,diametro,precorolo,tamanhorolo,densidade,temperaturanozzle,temperaturamesa,comprimentorolo,preco,idusuariologado  from cadastromateriais";
 
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -72,6 +73,7 @@ public class DAOCadastroMateriais {
 	        cadastroMateriais.setTemperaturamesa(resultSet.getString("temperaturamesa"));
 	        cadastroMateriais.setComprimentorolo(resultSet.getString("comprimentorolo"));
 	        cadastroMateriais.setPreco(resultSet.getString("preco"));
+	        cadastroMateriais.setIdusuariologado(resultSet.getString("idusuariologado"));
 	       
 	        
 	        cadastroMaterial.add(cadastroMateriais);

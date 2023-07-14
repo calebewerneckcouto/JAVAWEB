@@ -22,6 +22,21 @@ public class ModelCadastroMateriais implements Serializable{
 	private String temperaturamesa;
 	private String comprimentorolo;
 	private String preco;
+	private String idusuariologado;
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getIdusuariologado() {
+		return idusuariologado;
+	}
+	public void setIdusuariologado(String idusuariologado) {
+		this.idusuariologado = idusuariologado;
+	}
 	public Long getId() {
 		return id;
 	}

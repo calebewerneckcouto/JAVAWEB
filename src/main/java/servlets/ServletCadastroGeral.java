@@ -33,7 +33,7 @@ public class ServletCadastroGeral extends ServletGenericUtil {
 		try {
 		   
 		    String acao = request.getParameter("acao");
-		    
+		 
 		    
 		    
 		
@@ -43,9 +43,7 @@ public class ServletCadastroGeral extends ServletGenericUtil {
 		        // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
 		        DAOCadastroGeral daoCadastroGeral = new DAOCadastroGeral();
 		        
-		        // Chamar o método buscarVideos() para obter os dados do banco de dados
-		        List<ModelGeral> geral = daoCadastroGeral.buscarCadastroGeral();
-		       
+		   List<ModelGeral> geral = daoCadastroGeral.buscarCadastroGeral();
 		        
 		        // Passar os dados para a página JSP
 		        request.setAttribute("geral", geral);
@@ -98,40 +96,52 @@ public class ServletCadastroGeral extends ServletGenericUtil {
 			String custodetrabalho = request.getParameter("custodetrabalho");
 			String taxadeperdas = request.getParameter("taxadeperdas");
 		    String unidademonetaria = request.getParameter("unidademonetaria");
+		    String totalgeral = request.getParameter("totalgeral");
+		    String idusuariologado = request.getParameter("idusuariologado");
 			ModelGeral modelGeral = new ModelGeral();
 			
 			
-			modelGeral.setCustoenergia(custoenergia);
-			modelGeral.setCustodetrabalho(custodetrabalho);
-			modelGeral.setTaxadeperdas(taxadeperdas);
-			modelGeral.setUnidademonetaria(unidademonetaria);
 			
-			
-			DAOCadastroGeral daoGeral = new DAOCadastroGeral();
-			
-			daoGeral.gravaGeral(modelGeral);
-	
+				
+				modelGeral.setCustoenergia(custoenergia);
+				modelGeral.setCustodetrabalho(custodetrabalho);
+				modelGeral.setTaxadeperdas(taxadeperdas);
+				modelGeral.setUnidademonetaria(unidademonetaria);
+				modelGeral.setTotalgeral(totalgeral);
+				modelGeral.setIdusuariologado(idusuariologado);
+				
+				
+				
+				DAOCadastroGeral daoGeral = new DAOCadastroGeral();
+				
+				daoGeral.gravaGeral(modelGeral);
+		
 
-			 DAOCadastroGeral daoGeral2 = new DAOCadastroGeral();
-		        
-		        // Chamar o método buscarVideos() para obter os dados do banco de dados
-		        List<ModelGeral> geral = daoGeral2.buscarCadastroGeral();
-		        
-		        // Passar os dados para a página JSP
-		        request.setAttribute("geral", geral);
+				 DAOCadastroGeral daoGeral2 = new DAOCadastroGeral();
+			        
+			        // Chamar o método buscarVideos() para obter os dados do banco de dados
+			        List<ModelGeral> geral = daoGeral2.buscarCadastroGeral();
+			        
+			        // Passar os dados para a página JSP
+			        request.setAttribute("geral", geral);
+				
+	  			
+	  			
+				
+				
+				
+				
 			
-  			
-  			
+				request.setAttribute("msg", msg);
+			
+				request.setAttribute("msg", "Salvo com sucesso");
+				request.getRequestDispatcher("principal/cadastrogeral.jsp").forward(request, response);
+			 
+				
 			
 			
 			
-			
-		
-			request.setAttribute("msg", msg);
-		
-			request.setAttribute("msg", "Salvo com sucesso");
-			request.getRequestDispatcher("principal/cadastrogeral.jsp").forward(request, response);
-		 
+	
 		
 		}catch (Exception e) {
 			e.printStackTrace();

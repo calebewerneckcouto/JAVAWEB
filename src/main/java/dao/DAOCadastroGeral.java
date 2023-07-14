@@ -30,7 +30,7 @@ public class DAOCadastroGeral {
 
 	public void gravaGeral(ModelGeral modelGeral) throws Exception {
 
-		String sql = "insert into cadastrogeral (custoenergia,custodetrabalho,taxadeperdas,unidademonetaria) values (?,?,?,?)";
+		String sql = "insert into cadastrogeral (custoenergia,custodetrabalho,taxadeperdas,unidademonetaria,totalgeral,idusuariologado) values (?,?,?,?,?,?)";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -38,7 +38,8 @@ public class DAOCadastroGeral {
 		preparedStatement.setString(2, modelGeral.getCustodetrabalho());
 		preparedStatement.setString(3, modelGeral.getTaxadeperdas());
 		preparedStatement.setString(4,modelGeral.getUnidademonetaria());
-		
+		preparedStatement.setString(5,modelGeral.getTotalgeral());
+		preparedStatement.setString(6,modelGeral.getIdusuariologado());
 		
 	
 
@@ -56,7 +57,7 @@ public class DAOCadastroGeral {
 	public List<ModelGeral> buscarCadastroGeral() throws Exception {
 	    List<ModelGeral> cadastrogeral = new ArrayList<>();
 
-	    String sql = "select id,custoenergia,custodetrabalho,taxadeperdas,unidademonetaria  from cadastrogeral";
+	    String sql = "select id,custoenergia,custodetrabalho,taxadeperdas,unidademonetaria,totalgeral,idusuariologado  from cadastrogeral ";
 
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -69,6 +70,8 @@ public class DAOCadastroGeral {
 	        caGeral.setCustodetrabalho(resultSet.getString("custodetrabalho"));
 	        caGeral.setTaxadeperdas(resultSet.getString("taxadeperdas"));
 	        caGeral.setUnidademonetaria(resultSet.getString("unidademonetaria"));
+	        caGeral.setTotalgeral(resultSet.getString("totalgeral"));
+	        caGeral.setIdusuariologado(resultSet.getString("idusuariologado"));
 	       
 	        
 	        cadastrogeral.add(caGeral);
@@ -80,7 +83,6 @@ public class DAOCadastroGeral {
 	    return cadastrogeral;
 	}
 
-	
 	
 	
 	

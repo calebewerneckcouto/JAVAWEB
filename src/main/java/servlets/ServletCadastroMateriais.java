@@ -108,6 +108,7 @@ public class ServletCadastroMateriais extends HttpServlet {
 			String temperaturamesa =request.getParameter("temperaturamesa");
 			String comprimentorolo= request.getParameter("comprimentorolo");
 			String preco = request.getParameter("preco");
+			String idusuariologado=request.getParameter("idusuariologado");
 
 			ModelCadastroMateriais modelCadastroMateriais = new ModelCadastroMateriais();
 
@@ -120,6 +121,7 @@ public class ServletCadastroMateriais extends HttpServlet {
 			modelCadastroMateriais.setTemperaturamesa(temperaturamesa);
 			modelCadastroMateriais.setComprimentorolo(comprimentorolo);
 			modelCadastroMateriais.setPreco(preco);
+			modelCadastroMateriais.setIdusuariologado(idusuariologado);
 			
 
 			DAOCadastroMateriais daoCadastroMateriais = new DAOCadastroMateriais();

@@ -94,7 +94,7 @@ public class ServletLogin extends HttpServlet {
 				        
 				        request.setAttribute("materiais", materiais);
 						
-					
+				        request.getSession().setAttribute("usuarioid", modelLogin.getId());
 						request.getSession().setAttribute("usuario", modelLogin.getLogin());
 						request.getSession().setAttribute("permissao", modelLogin.getPermissao());
 						

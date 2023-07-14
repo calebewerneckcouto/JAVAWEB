@@ -12,10 +12,30 @@ public class ModelGeral implements Serializable{
 	
 	
 	private Long id;
+	private String idusuariologado;
 	private String custoenergia;
 	private String custodetrabalho; 
 	private String taxadeperdas;
 	private String unidademonetaria;
+	
+	private String totalgeral;
+	
+	
+	
+	
+	
+	public String getIdusuariologado() {
+		return idusuariologado;
+	}
+	public void setIdusuariologado(String idusuariologado) {
+		this.idusuariologado = idusuariologado;
+	}
+	public String getTotalgeral() {
+		return totalgeral;
+	}
+	public void setTotalgeral(String totalgeral) {
+		this.totalgeral = totalgeral;
+	}
 	public Long getId() {
 		return id;
 	}

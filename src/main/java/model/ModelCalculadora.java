@@ -35,11 +35,21 @@ public class ModelCalculadora implements Serializable{
 	private String lucroporcentagem;
 	private String lucrovalor;
 	private String precofinal;
+	private String idusuariologado;
 	
 	
 	
 	
 	
+	
+	
+	
+	public String getIdusuariologado() {
+		return idusuariologado;
+	}
+	public void setIdusuariologado(String idusuariologado) {
+		this.idusuariologado = idusuariologado;
+	}
 	public String getPrecofinal() {
 		return precofinal;
 	}

@@ -47,7 +47,7 @@ public class ServletCadastroImpressoras extends HttpServlet {
 		        
 		        
 		        // Passar os dados para a página JSP
-		        request.setAttribute("cadastroimpressoras", cadastroimpressoras);
+		        request.setAttribute("cadastroimpressora", cadastroimpressoras);
 		       
 		        
 		        // Encaminhar a requisição para a página JSP
@@ -70,7 +70,7 @@ public class ServletCadastroImpressoras extends HttpServlet {
 			       
 			        
 			        // Passar os dados para a página JSP
-			        request.setAttribute("cadastroimpressoras", cadastroimpressoras);
+			        request.setAttribute("cadastroimpressora", cadastroimpressoras);
 			       
 			        
 					
@@ -104,6 +104,7 @@ public class ServletCadastroImpressoras extends HttpServlet {
 			String custodereparos = request.getParameter("custodereparos");
 			String consumodeenergia = request.getParameter("consumodeenergia");
 			String depreciacao =request.getParameter("depreciacao");
+			String idusuariologado = request.getParameter("idusuariologado");
 
 			ModelCadastroImpressoras modelCadastroImpressoras = new ModelCadastroImpressoras();
 
@@ -114,6 +115,7 @@ public class ServletCadastroImpressoras extends HttpServlet {
 			modelCadastroImpressoras.setCustodereparos(custodereparos);
 			modelCadastroImpressoras.setConsumodeenergia(consumodeenergia);
 			modelCadastroImpressoras.setDepreciacao(depreciacao);
+			modelCadastroImpressoras.setIdusuariologado(idusuariologado);
 			
 
 			DAOCadastroImpressoras daoCadastroImpressoras = new DAOCadastroImpressoras();

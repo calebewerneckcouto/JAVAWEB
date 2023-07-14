@@ -20,6 +20,17 @@ public class ModelCadastroImpressoras implements Serializable{
 	private String custodereparos;
 	private String consumodeenergia;
 	private String depreciacao;
+	private String idusuariologado;
+	
+	
+	
+	
+	public String getIdusuariologado() {
+		return idusuariologado;
+	}
+	public void setIdusuariologado(String idusuariologado) {
+		this.idusuariologado = idusuariologado;
+	}
 	public Long getId() {
 		return id;
 	}

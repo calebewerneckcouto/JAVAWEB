@@ -134,6 +134,7 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 			String lucroporcentagem = request.getParameter("lucroporcentagem");
 			String lucrovalor = request.getParameter("lucrovalor");
 			String precofinal = request.getParameter("precofinal");
+			String idusuariologado = request.getParameter("idusuariologado");
 			
 			ModelCalculadora modelCalculadora = new ModelCalculadora();
 			
@@ -162,6 +163,7 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 			modelCalculadora.setLucroporcentagem(lucroporcentagem);
 			modelCalculadora.setLucrovalor(lucrovalor);
 			modelCalculadora.setPrecofinal(precofinal);
+			modelCalculadora.setIdusuariologado(idusuariologado);
 			
 			
 			

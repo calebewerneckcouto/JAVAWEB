@@ -49,7 +49,7 @@
 												<div class="card">
 
 													<div class="card-block">
-														<h6 class="sub-title" style="color: blue;">Cadastro de Impressoras</h6>
+													
 															
 															 <form class="form-material"  action="<%= request.getContextPath() %>/SertvletCadastroImpressoras" method="post" id="formVideos" >
 
@@ -57,7 +57,19 @@
 															
 														<h4 class="sub-title" style="color: blue;">Cadastro de Impressoras</h4>
 														
+														         
 														
+                                                             <div class="form-group form-default form-static-label">
+                                                             
+                                                             
+                                                           
+												        <input readonly="readonly"  value="${usuarioid}" type="text" name="idusuariologado" id="idusuariologado" class="form-control" required="required"  >
+				
+                                                              
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Id do Usuario Logado</label>
+                                                            </div>
+                                                           
 														
                                                              
                                                             
@@ -124,7 +136,12 @@
                                                             
                                                             
                                                             <button  class="btn btn-success waves-effect waves-light">Salvar</button>
-                                                            
+                                                               
+												               <a href="<%=request.getContextPath() %>/SertvletCadastroImpressoras?acao=listarcadastroimpressoras"  class="btn btn-primary waves-effect waves-light" >Cadastro de Impressoras</a>
+												           <a  href="<%=request.getContextPath() %>/SertvletCadastroMateriais?acao=listarmateriais" class="btn btn-info waves-effect waves-light" >Cadastro de Materiais</a>
+												          
+												               <a  href="<%=request.getContextPath() %>/SertvletCadastroGeral?acao=listargeral" class="btn btn-secondary"  >Cadastro Geral</a>
+												        
                                                               
 												              
 												          
@@ -148,6 +165,7 @@
 												<thead>
 													<tr>
 															<th scope="col">ID</th>
+															<th scope="col">ID Usuario Logado</th>
 									<th scope="col">Nome da Impressora</th>
 									<th scope="col">Diâmetro do Material</th>
 									<th scope="col">Preço</th>
@@ -160,9 +178,11 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items='${cadastroimpressoras}' var='ml'>
+													<c:forEach items='${cadastroimpressora}' var='ml'>
+													 <c:if test="${ml.idusuariologado == usuarioid}">
 														<tr>
 															<td><c:out value="${ml.id}"></c:out></td>
+															<td><c:out value="${ml.idusuariologado}"></c:out></td>
 															<td><c:out value="${ml.nomedaimpressora}"></c:out></td>
 															<td><c:out value="${ml.diametrodomaterial}"></c:out></td>
 															<td><c:out value="${ml.preco}"></c:out></td>
@@ -171,13 +191,13 @@
 														    <td><c:out value="${ml.consumodeenergia}"></c:out></td>
 														    <td><c:out value="${ml.depreciacao}"></c:out></td>
 														
-														  <c:if test="${permissao == 'admin'}">
+														  
 															<td><a class="btn btn-success"
 																href="<%= request.getContextPath() %>/SertvletCadastroImpressoras?acao=excluir&id=${ml.id}">Excluir</a></td>
-														
-														</c:if>
+													
 														
 														</tr>
+														</c:if>
 													</c:forEach>
 												</tbody>
 											</table>

@@ -27,7 +27,7 @@ public class DAOCadastroImpressoras {
 	
 	public void gravaImpressora(ModelCadastroImpressoras modelCadastroImpressoras) throws Exception {
 
-		String sql = "insert into cadastroimpressoras (nomedaimpressora,diametrodomaterial,preco,tempodepreciacao,custodereparos,consumodeenergia,depreciacao) values (?,?,?,?,?,?,?)";
+		String sql = "insert into cadastroimpressoras (nomedaimpressora,diametrodomaterial,preco,tempodepreciacao,custodereparos,consumodeenergia,depreciacao,idusuariologado) values (?,?,?,?,?,?,?,?)";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -38,6 +38,7 @@ public class DAOCadastroImpressoras {
 		preparedStatement.setString(5,modelCadastroImpressoras.getCustodereparos());
 		preparedStatement.setString(6,modelCadastroImpressoras.getConsumodeenergia());
 		preparedStatement.setString(7,modelCadastroImpressoras.getDepreciacao());
+		preparedStatement.setString(8,modelCadastroImpressoras.getIdusuariologado());
 		
 		
 	
@@ -51,7 +52,7 @@ public class DAOCadastroImpressoras {
 	public List<ModelCadastroImpressoras> buscarCadastroImpressora() throws Exception {
 	    List<ModelCadastroImpressoras> cadastroimpressoras = new ArrayList<>();
 
-	    String sql = "select id,nomedaimpressora,diametrodomaterial,preco,tempodepreciacao,custodereparos,consumodeenergia,depreciacao  from cadastroimpressoras";
+	    String sql = "select id,nomedaimpressora,diametrodomaterial,preco,tempodepreciacao,custodereparos,consumodeenergia,depreciacao,idusuariologado  from cadastroimpressoras";
 
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -67,6 +68,7 @@ public class DAOCadastroImpressoras {
 	        cadastroimpressora.setCustodereparos(resultSet.getString("custodereparos"));
 	        cadastroimpressora.setConsumodeenergia(resultSet.getString("consumodeenergia"));
 	        cadastroimpressora.setDepreciacao(resultSet.getString("depreciacao"));
+	        cadastroimpressora.setIdusuariologado(resultSet.getString("idusuariologado"));
 	       
 	        
 	        cadastroimpressoras.add(cadastroimpressora);

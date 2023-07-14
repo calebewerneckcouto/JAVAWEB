@@ -63,12 +63,33 @@
 														
 														
 														
+														
+														    
+                                                              
+                                                             <div class="form-group form-default form-static-label">
+                                                                <input value="${usuarioid}" readonly="readonly" type="text" name="idusuariologado" id="idusuariologado" class="form-control" required="required" >
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Id Usuario Logado:</label>
+                                                                
+                                                            </div>
+                                                            
+                                                            
+														
+														
+														
+														
+														
                                                              
                                                       <div class="form-group form-default form-static-label" >
 												  <h6>Nome da impressora:</h6>
 												  <select  id="impressora" name="impressora" required="required" >
 												    <c:forEach items='${impressoras}' var='ml'     >
+												   
+ 									    
 												      <option value="${ml.nomedaimpressora}">${ml.nomedaimpressora}</option>
+												     
+												      
+                                                 
 												    </c:forEach>
 												  </select>
 												</div>
@@ -81,7 +102,9 @@
 												  <h6>Nome do Material/Fabricante:</h6>
 												  <select  id="filamento" name="filamento" required="required" >
 												    <c:forEach items='${materiais}' var='ml'     >
+												     
 												      <option value="${ml.fabricante}">${ml.fabricante}</option>
+												 
 												    </c:forEach>
 												  </select>
 												</div>
@@ -213,7 +236,7 @@
                                                              
                                                              
                                                                 <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="filamentovalor" id="filamentovalor" class="form-control"      >
+                                                                <input  type="text" name="filamentovalor" id="filamentovalor" class="form-control"  onchange="somasubtotalincluindoperdas()"    >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Filamento(R$):</label>
                                                                 
@@ -221,7 +244,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="eletricidadevalor" id="eletricidadevalor" class="form-control"    >
+                                                                <input  type="text" name="eletricidadevalor" id="eletricidadevalor" class="form-control"  onchange="somasubtotalincluindoperdas()"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Eletricidade(R$):</label>
                                                                 
@@ -229,7 +252,7 @@
 	                                                            
 	                                                            
 	                                                            
-	                                                                      
+
 	                                                            
 	                                                            
 	                                                            
@@ -248,7 +271,7 @@
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
 	                                                             
-                                                                <input   readonly="readonly"   type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"      >
+                                                                <input     type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"   onchange="somasubtotalincluindoperdas()"    >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Depreciação da Impressora(R$):</label>
                                                                
@@ -257,7 +280,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="preparacaocustos" id="preparacaocustos" class="form-control"     >
+                                                                <input  type="text" name="preparacaocustos" id="preparacaocustos" class="form-control"  onchange="somasubtotalincluindoperdas()"    >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Preparacação(R$):</label>
                                                                 
@@ -265,9 +288,9 @@
 	                                                            
 	                                                            
 	                                                              
-	                                                            
+	                                                  
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="posprocessamentocustos" id="posprocessamentocustos" class="form-control"      >
+                                                                <input  type="text" name="posprocessamentocustos" id="posprocessamentocustos" class="form-control"    onchange="somasubtotalincluindoperdas()"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Pós-Processamento(R$):</label>
                                                                 
@@ -276,16 +299,18 @@
 	                                                            
 	                                                             
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="consumiveiscustos" id="consumiveiscustos" class="form-control"     >
+                                                                <input  type="text" name="consumiveiscustos" id="consumiveiscustos" class="form-control"  onchange="somasubtotalincluindoperdas()"    >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Consumíveis(R$):</label>
                                                                 
 	                                                            </div>
-	                                                            
-	                                                            
+	                                                             <c:forEach items='${}' var='ml'     >
+												      <label hidden="hidden" class="float-label" style="color: black">R${ml.geral}</label>
+												    </c:forEach>
+	                                                             
                                                                
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="subtotal" id="subtotal" class="form-control"      >
+                                                                <input   type="text" name="subtotal" id="subtotal" class="form-control"   readonly="readonly"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Subtotal(R$):</label>
                                                                 
@@ -294,7 +319,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"     >
+                                                                <input  type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"    readonly="readonly" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Incluindo Perdas(R$):</label>
                                                                 
@@ -359,6 +384,7 @@
 												<thead>
 													<tr>
 															<th scope="col">ID</th>
+																<th scope="col">ID Usuario Logado</th>
 									<th scope="col">Impressora</th>
 									<th scope="col">Filamento</th>
 									<th scope="col">Peso</th>
@@ -371,22 +397,24 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items='${calculadora}' var='ml'>
-														<tr>
-															<td><c:out value="${ml.id}"></c:out></td>
-															<td><c:out value="${ml.impressora}"></c:out></td>
-															<td><c:out value="${ml.filamento}"></c:out></td>
-															<td><c:out value="${ml.peso}"></c:out></td>
-															<td><c:out value="${ml.tempoimpressao}"></c:out></td>
-														    <td><c:out value="${ml.lucroporcentagem}"></c:out></td>
-														    <td><c:out value="${ml.lucrovalor}"></c:out></td>
-														    <td><c:out value="${ml.precofinal}"></c:out></td>
-														
-														
-															<td><a class="btn btn-success"
-																href="<%= request.getContextPath() %>/SertvletCalculadoraCustos?acao=excluir&id=${ml.id}">Excluir</a></td>
-														</tr>
-													</c:forEach>
+													<c:forEach items="${calculadora}" var="ml">
+  <c:if test="${ml.idusuariologado == usuarioid}">
+
+    <tr>
+      <td><c:out value="${ml.id}"></c:out></td>
+      <td><c:out value="${ml.idusuariologado}"></c:out></td>
+      <td><c:out value="${ml.impressora}"></c:out></td>
+      <td><c:out value="${ml.filamento}"></c:out></td>
+      <td><c:out value="${ml.peso}"></c:out></td>
+      <td><c:out value="${ml.tempoimpressao}"></c:out></td>
+      <td><c:out value="${ml.lucroporcentagem}"></c:out></td>
+      <td><c:out value="${ml.lucrovalor}"></c:out></td>
+      <td><c:out value="${ml.precofinal}"></c:out></td>
+      <td><a class="btn btn-success" href="<%= request.getContextPath() %>/SertvletCalculadoraCustos?acao=excluir&id=${ml.id}">Excluir</a></td>
+    </tr>
+  </c:if>
+</c:forEach>
+
 												</tbody>
 											</table>
 										</div>
@@ -468,6 +496,43 @@ function calcularSomaPreparoImpressao() {
   }
 
 
+function somasubtotalincluindoperdas(){
+    var preparacaocustos = parseFloat(document.getElementById('preparacaocustos').value);
+    var posprocessamentocustos = parseFloat(document.getElementById('posprocessamentocustos').value);
+    var depreciacaomaquina = parseFloat(document.getElementById('depreciacaomaquina').value);
+    var filamentovalor = parseFloat(document.getElementById('filamentovalor').value);
+    var eletricidadevalor = parseFloat(document.getElementById('eletricidadevalor').value);
+    var consumiveiscustos = parseFloat(document.getElementById('consumiveiscustos').value);
+   
+    
+
+    // Verificar se os campos contêm valores numéricos válidos
+    if (isNaN(preparacaocustos)) {
+      preparacaocustos = 0; // Atribuir 0 se o valor não for numérico
+    }
+   
+    if (isNaN(posprocessamentocustos)) {
+      posprocessamentocustos = 0;
+    }
+    if (isNaN(depreciacaomaquina)) {
+	depreciacaomaquina = 0; // Atribuir 0 se o valor não for numérico
+	    }
+    if (isNaN(filamentovalor)) {
+      filamentovalor = 0;
+    }
+    if (isNaN(eletricidadevalor)) {
+      eletricidadevalor = 0;
+    }
+    if (isNaN(consumiveiscustos)) {
+      consumiveiscustos = 0;
+    }
+
+    var soma = preparacaocustos + posprocessamentocustos + filamentovalor + eletricidadevalor + consumiveiscustos + depreciacaomaquina;
+
+    document.getElementById('subtotal').value = soma;
+
+    
+}
 
 
 

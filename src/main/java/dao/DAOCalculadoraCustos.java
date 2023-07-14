@@ -24,7 +24,7 @@ public class DAOCalculadoraCustos {
 
 	public void gravacalculos(ModelCalculadora modelCalculadora) throws Exception {
 
-		String sql = "insert into calculadoracustos (impressora,filamento,peso,tempoimpressao,preparacao,fatiamento,trocamaterial,transferenciaeinicio,somapreparacao,remocaoimpressao,remocaosuportes,trabalhoadicional,somaposprocessamento,consumiveis,filamentovalor,eletricidadevalor,depreciacaomaquina,posprocessamentocustos,consumiveiscustos,subtotal,incluindoperdas,lucroporcentagem,lucrovalor,precofinal) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into calculadoracustos (impressora,filamento,peso,tempoimpressao,preparacao,fatiamento,trocamaterial,transferenciaeinicio,somapreparacao,remocaoimpressao,remocaosuportes,trabalhoadicional,somaposprocessamento,consumiveis,filamentovalor,eletricidadevalor,depreciacaomaquina,posprocessamentocustos,consumiveiscustos,subtotal,incluindoperdas,lucroporcentagem,lucrovalor,precofinal,idusuariologado) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -52,6 +52,7 @@ public class DAOCalculadoraCustos {
 		preparedStatement.setString(22,modelCalculadora.getLucroporcentagem());
 		preparedStatement.setString(23,modelCalculadora.getLucrovalor());
 		preparedStatement.setString(24, modelCalculadora.getPrecofinal());
+		preparedStatement.setString(25, modelCalculadora.getIdusuariologado());
 
 		preparedStatement.execute();
 
@@ -63,7 +64,7 @@ public class DAOCalculadoraCustos {
 	public List<ModelCalculadora> buscarCalculadora() throws Exception {
 	    List<ModelCalculadora> calculos = new ArrayList<>();
 
-	    String sql = "select id,impressora,filamento,peso,tempoimpressao,preparacao,fatiamento,trocamaterial,transferenciaeinicio,somapreparacao,remocaoimpressao,remocaosuportes,trabalhoadicional,somaposprocessamento,consumiveis,filamentovalor,eletricidadevalor,depreciacaomaquina,posprocessamentocustos,consumiveiscustos,subtotal,incluindoperdas,lucroporcentagem,lucrovalor,precofinal  from calculadoracustos";
+	    String sql = "select id,impressora,filamento,peso,tempoimpressao,preparacao,fatiamento,trocamaterial,transferenciaeinicio,somapreparacao,remocaoimpressao,remocaosuportes,trabalhoadicional,somaposprocessamento,consumiveis,filamentovalor,eletricidadevalor,depreciacaomaquina,posprocessamentocustos,consumiveiscustos,subtotal,incluindoperdas,lucroporcentagem,lucrovalor,precofinal,idusuariologado  from calculadoracustos";
 
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -79,6 +80,7 @@ public class DAOCalculadoraCustos {
 	        calculo.setLucroporcentagem(resultSet.getString("lucroporcentagem"));
 	        calculo.setLucrovalor(resultSet.getString("lucrovalor"));
 	        calculo.setPrecofinal(resultSet.getString("precofinal"));
+	        calculo.setIdusuariologado(resultSet.getString("idusuariologado"));
 	        
 	        
 	        
@@ -96,7 +98,7 @@ public class DAOCalculadoraCustos {
 	
 	public List<ModelCadastroMateriais> buscarfabricante() throws Exception {
 	    List<ModelCadastroMateriais> nomefabricante = new ArrayList<>();
-	    String sql = "select id,fabricante,diametro,precorolo,tamanhorolo,densidade,temperaturanozzle,temperaturamesa,comprimentorolo,preco  from cadastromateriais";
+	    String sql = "select id,fabricante,diametro,precorolo,tamanhorolo,densidade,temperaturanozzle,temperaturamesa,comprimentorolo,preco,idusuariologado  from cadastromateriais";
 
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -114,6 +116,7 @@ public class DAOCalculadoraCustos {
 	        cadastroMateriais.setTemperaturamesa(resultSet.getString("temperaturamesa"));
 	        cadastroMateriais.setComprimentorolo(resultSet.getString("comprimentorolo"));
 	        cadastroMateriais.setPreco(resultSet.getString("preco"));
+	        cadastroMateriais.setIdusuariologado(resultSet.getString("idusuariologado"));
 	       
 	        
 	        nomefabricante.add(cadastroMateriais);
@@ -135,7 +138,7 @@ public class DAOCalculadoraCustos {
 	public List<ModelCadastroImpressoras> buscarNomeImpressora() throws Exception {
 	    List<ModelCadastroImpressoras> nomedaimpressora = new ArrayList<>();
 
-	    String sql = "select id,nomedaimpressora,diametrodomaterial,preco,tempodepreciacao,custodereparos,consumodeenergia,depreciacao  from cadastroimpressoras";
+	    String sql = "select id,nomedaimpressora,diametrodomaterial,preco,tempodepreciacao,custodereparos,consumodeenergia,depreciacao,idusuariologado  from cadastroimpressoras";
 
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -151,6 +154,7 @@ public class DAOCalculadoraCustos {
 	        nomedasimpressoras.setCustodereparos(resultSet.getString("custodereparos"));
 	        nomedasimpressoras.setConsumodeenergia(resultSet.getString("consumodeenergia"));
 	        nomedasimpressoras.setDepreciacao(resultSet.getString("depreciacao"));
+	        nomedasimpressoras.setIdusuariologado(resultSet.getString("idusuariologado"));
 	        
 	        
 	        
