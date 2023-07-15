@@ -14,10 +14,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <jsp:include page="head.jsp"></jsp:include>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <body>
 	<!-- Pre-loader start -->
 
@@ -94,9 +94,7 @@
 												    </c:forEach>
 												  </select>
 												</div>
-													
-													
-													
+													     
 															
                                                              
                                                       <div class="form-group form-default form-static-label" >
@@ -138,7 +136,7 @@
                                                               
                                                                
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="preparacao" id="preparacao" class="form-control"   onchange="calcularSomaPreparoImpressao();"     oninput="formatarHora(this)" >
+                                                                <input value="00:00" type="text" name="preparacao" id="preparacao" class="form-control"   onchange="calcularSomaPreparoImpressao();"     oninput="formatarHora(this)"  onchange="somacustos()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Preparação: (minutos)</label>
                                                                 
@@ -147,7 +145,7 @@
  
                                                                  
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="fatiamento" id="fatiamento" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)" >
+                                                                <input value="00:00" type="text" name="fatiamento" id="fatiamento" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)"  onchange="somacustos()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Fatiamento: (minutos)</label>
                                                                 
@@ -156,7 +154,7 @@
                                                           
                                                                    
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="trocamaterial" id="trocamaterial" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)" >
+                                                                <input value="00:00" type="text" name="trocamaterial" id="trocamaterial" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)"  onchange="somacustos()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Troca de Material: (minutos)</label>
                                                                 
@@ -165,7 +163,7 @@
                                                           
                                                                           
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="transferenciaeinicio" id="transferenciaeinicio" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)" >
+                                                                <input value="00:00" type="text" name="transferenciaeinicio" id="transferenciaeinicio" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)" onchange="somacustos()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Transferência e Inicio: (minutos)</label>
                                                                 
@@ -173,7 +171,7 @@
                                                             
                                                                             
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="somapreparacao" id="somapreparacao"     class="form-control"  readonly="readonly"   >
+                                                                <input value="0" type="text" name="somapreparacao" id="somapreparacao"     class="form-control"  readonly="readonly" onchange="somacustos()"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Soma: (minutos)</label>
                                                                 
@@ -184,7 +182,7 @@
                                                             
                                                                               
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="remocaoimpressao" id="remocaoimpressao" class="form-control"   onchange="calcularSomaPosProcessamento();"  oninput="formatarHora(this)"   >
+                                                                <input value="00:00" type="text" name="remocaoimpressao" id="remocaoimpressao" class="form-control"   onchange="calcularSomaPosProcessamento();"  oninput="formatarHora(this)"   onchange="somacustos()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Remoção da Impressão: (minutos)</label>
                                                                 
@@ -193,7 +191,7 @@
                                                             
                                                                                 
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="remocaosuportes" id="remocaosuportes" class="form-control"  onchange="calcularSomaPosProcessamento();" oninput="formatarHora(this)"  >
+                                                                <input value="00:00" type="text" name="remocaosuportes" id="remocaosuportes" class="form-control"  onchange="calcularSomaPosProcessamento();" oninput="formatarHora(this)" onchange="somacustos()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Remoção dos Suportes: (minutos)</label>
                                                                 
@@ -202,7 +200,7 @@
                                                             
                                                                                   
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="trabalhoadicional" id="trabalhoadicional" class="form-control" onchange="calcularSomaPosProcessamento();" oninput="formatarHora(this)"   >
+                                                                <input value="00:00" type="text" name="trabalhoadicional" id="trabalhoadicional" class="form-control" onchange="calcularSomaPosProcessamento();" oninput="formatarHora(this)"   onchange="somacustos()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Trabalho Adicional: (minutos)</label>
                                                                 
@@ -212,7 +210,7 @@
                                                               
                                                                             
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="somaposprocessamento"     id="somaposprocessamento" class="form-control"  readonly="readonly"   >
+                                                                <input value="0"  type="text" name="somaposprocessamento"     id="somaposprocessamento" class="form-control"  readonly="readonly"  onchange="somacustos()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Soma: (minutos)</label>
                                                                 
@@ -225,19 +223,24 @@
                                                             
                                                                                        
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="consumiveis" id="consumiveis" class="form-control" oninput="formatarHora(this)"   >
+                                                                <input value="00:00" type="text" name="consumiveis" id="consumiveis" class="form-control"   oninput="formatarHora(this)"  onchange="valorconsumiveis ()" onchange="somacustos()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Consumíveis: (minutos)</label>
                                                                 
                                                             </div>
                                                             
-                                                            
+                                                             <div class="form-group form-default form-static-label">
+                                                                <input  type="text" name="somaconsumiveis"  value="0"   id="somaconsumiveis" class="form-control"  readonly="readonly" onchange="somacustos()" onchange="somacustos()" >
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Soma: (minutos)</label>
+                                                                
+                                                            </div>
                                                             
                                                              <h4 class="sub-title" style="color: blue;">Custos</h4>
                                                              
                                                              
                                                                 <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="filamentovalor" id="filamentovalor" class="form-control"  onchange="somasubtotalincluindoperdas()"    >
+                                                                <input value="0"  type="text" name="filamentovalor" id="filamentovalor" class="form-control"  onchange="somasubtotalincluindoperdas()"  onchange="somacustos()"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Filamento(R$):</label>
                                                                 
@@ -247,7 +250,7 @@
 	                                                             
 	                                                                <div class="form-group form-default form-static-label">
 	                                                             
-                                                                <input   value="${consumoenergia}"  type="text" name="eletricidadevalor" id="eletricidadevalor" class="form-control"   onchange="somasubtotalincluindoperdas()"    >
+                                                                <input  value="0"  type="text" name="eletricidadevalor" id="eletricidadevalor" class="form-control"   onchange="somasubtotalincluindoperdas()" onchange="somacustos()"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Eletricidade(R$):</label>
                                                                
@@ -258,7 +261,7 @@
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
 	                                                             
-                                                                <input     type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"   onchange="somasubtotalincluindoperdas()"    >
+                                                                <input   value="0"  type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"   onchange="somasubtotalincluindoperdas()"  onchange="somacustos()"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Depreciação da Impressora(R$):</label>
                                                                
@@ -267,7 +270,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="preparacaocustos" id="preparacaocustos" class="form-control"  onchange="somasubtotalincluindoperdas()"    >
+                                                                <input  value="0" type="text" name="preparacaocustos" id="preparacaocustos" class="form-control"  onchange="somasubtotalincluindoperdas()"  onchange="somavalorespreparacaoposconsumiveis()" readonly="readonly" onchange="somacustos()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Preparacação(R$):</label>
                                                                 
@@ -277,7 +280,7 @@
 	                                                              
 	                                                  
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="posprocessamentocustos" id="posprocessamentocustos" class="form-control"    onchange="somasubtotalincluindoperdas()"   >
+                                                                <input value="0" type="text" name="posprocessamentocustos" id="posprocessamentocustos" class="form-control"    onchange="somasubtotalincluindoperdas()" onchange="somavalorespreparacaoposconsumiveis()" readonly="readonly" onchange="somacustos()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Pós-Processamento(R$):</label>
                                                                 
@@ -286,7 +289,7 @@
 	                                                            
 	                                                             
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="consumiveiscustos" id="consumiveiscustos" class="form-control"  onchange="somasubtotalincluindoperdas()"    >
+                                                                <input value="0" type="text" name="consumiveiscustos" id="consumiveiscustos" class="form-control"   readonly="readonly"  onchange="somacustos()" onchange="somasubtotalincluindoperdas()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Consumíveis(R$):</label>
                                                                 
@@ -294,7 +297,7 @@
 	                                                            
                                                                
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input   type="text" name="subtotal" id="subtotal" class="form-control"   readonly="readonly"   >
+                                                                <input  value="0" type="text" name="subtotal" id="subtotal" class="form-control"   readonly="readonly" onchange="somasubtotalincluindoperdas()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Subtotal(R$):</label>
                                                                 
@@ -303,7 +306,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"    onchange="lucroreal()"  >
+                                                                <input value="0" type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"    onchange="lucroreal()" onchange="somasubtotalincluindoperdas()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Incluindo Perdas(R$):</label>
                                                                 
@@ -313,7 +316,7 @@
 
 	                                                             
 	                                                                   <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="lucroporcentagem" id="lucroporcentagem" class="form-control"   onchange="lucroreal()"   >
+                                                                <input  type="text" name="lucroporcentagem" id="lucroporcentagem" class="form-control"   onchange="lucroreal()"  onchange="somasubtotalincluindoperdas()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Informe a Porcentagem de Lucro que deseja (%):</label>
                                                                 
@@ -323,7 +326,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="lucrovalor" id="lucrovalor" class="form-control"   readonly="readonly"   >
+                                                                <input  type="text" name="lucrovalor" id="lucrovalor" class="form-control"   readonly="readonly"  onchange="somasubtotalincluindoperdas()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Lucro(R$):</label>
                                                                 
@@ -333,7 +336,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="precofinal" id="precofinal" class="form-control"     >
+                                                                <input  type="text" name="precofinal" id="precofinal" class="form-control"   onchange="somasubtotalincluindoperdas()"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Preço Final(R$):</label>
                                                                 
@@ -349,6 +352,7 @@
 												          
 												               <a  href="<%=request.getContextPath() %>/SertvletCadastroGeral?acao=listargeral" class="btn btn-secondary"  >Cadastro Geral</a>
 												        
+													
 															
 
 														</form>
@@ -395,6 +399,7 @@
       <td><c:out value="${ml.lucrovalor}"></c:out></td>
       <td><c:out value="${ml.precofinal}"></c:out></td>
       <td><a class="btn btn-success" href="<%= request.getContextPath() %>/SertvletCalculadoraCustos?acao=excluir&id=${ml.id}">Excluir</a></td>
+     
     </tr>
   </c:if>
 </c:forEach>
@@ -455,7 +460,17 @@ function formatarHora(input) {
     // Atualiza o valor no formato "hh:mm"
     input.value = horas + ':' + minutos;
   }
-
+  
+  
+function valorconsumiveis (){
+    
+    var consumiveis = document.getElementById('consumiveis').value;
+    var consumiveisMinutos = converterParaMinutos(consumiveis);
+ 
+    document.getElementById('somaconsumiveis').value = consumiveisMinutos;
+    document.getElementById('consumiveiscustos').value = consumiveisMinutos;
+    
+}
 
 
 function calcularSomaPreparoImpressao() {
@@ -468,29 +483,32 @@ function calcularSomaPreparoImpressao() {
     var fatiamento = document.getElementById('fatiamento').value;
     var trocamaterial = document.getElementById('trocamaterial').value;
     var transferenciaeinicio = document.getElementById('transferenciaeinicio').value;
-    
+  
     
     // Converter para minutos
     var preparacaoMinutos = converterParaMinutos(preparacao);
     var fatiamentoMinutos = converterParaMinutos(fatiamento);
     var trocamaterialMinutos = converterParaMinutos(trocamaterial);
     var transferenciaeinicioMinutos = converterParaMinutos(transferenciaeinicio);
+    
 
     // Calcular a soma
     var soma = preparacaoMinutos + fatiamentoMinutos + trocamaterialMinutos + transferenciaeinicioMinutos ;
-
+   
     // Atualizar o valor do campo de soma
     document.getElementById('somapreparacao').value = soma;
+    document.getElementById('preparacaocustos').value = soma;
+    
   }
 
 
 function somasubtotalincluindoperdas(){
-    var preparacaocustos = parseFloat(document.getElementById('preparacaocustos').value);
-    var posprocessamentocustos = parseFloat(document.getElementById('posprocessamentocustos').value);
-    var depreciacaomaquina = parseFloat(document.getElementById('depreciacaomaquina').value);
-    var filamentovalor = parseFloat(document.getElementById('filamentovalor').value);
-    var eletricidadevalor = parseFloat(document.getElementById('eletricidadevalor').value);
-    var consumiveiscustos = parseFloat(document.getElementById('consumiveiscustos').value);
+    var preparacaocustos = parseFloat(document.getElementById('preparacaocustos').value.replace(',', '.'));
+    var posprocessamentocustos = parseFloat(document.getElementById('posprocessamentocustos').value.replace(',', '.'));
+    var depreciacaomaquina = parseFloat(document.getElementById('depreciacaomaquina').value.replace(',', '.'));
+    var filamentovalor = parseFloat(document.getElementById('filamentovalor').value.replace(',', '.'));
+    var eletricidadevalor = parseFloat(document.getElementById('eletricidadevalor').value.replace(',', '.'));
+    var consumiveiscustos = parseFloat(document.getElementById('consumiveiscustos').value.replace(',', '.'));
    
     
 
@@ -555,6 +573,9 @@ function lucroreal(){
 
 
 
+
+
+
 function calcularSomaPosProcessamento() {
     // Obter os valores dos campos de entrada
     var remocaoimpressao = document.getElementById('remocaoimpressao').value;
@@ -571,6 +592,10 @@ function calcularSomaPosProcessamento() {
 
     // Atualizar o valor do campo de soma
     document.getElementById('somaposprocessamento').value = soma;
+    document.getElementById('posprocessamentocustos').value = soma;
+   
+   
+    
   }
 
   function converterParaMinutos(horaMinuto) {
@@ -584,28 +609,10 @@ function calcularSomaPosProcessamento() {
     return totalMinutos;
   }
   
+ 
+
   
-  $(document).ready(function() {
-    // Capturar o evento de mudança do select
-    $('#nomeimpressora').change(function() {
-      // Obter o valor selecionado do select
-      var selectedValue = $(this).val();
-      
-      // Fazer a chamada AJAX para executar o código JSP
-      $.ajax({
-        url: 'principal.jsp',
-        data: { nomeimpressora: selectedValue },
-        success: function(response) {
-          // Manipular a resposta do servidor, se necessário
-          console.log(response);
-        },
-        error: function(xhr, status, error) {
-          // Lidar com erros, se houver
-          console.log(error);
-        }
-      });
-    });
-  });
+ 
   </script>
 
   

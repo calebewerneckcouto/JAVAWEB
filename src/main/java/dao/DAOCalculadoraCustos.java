@@ -168,32 +168,43 @@ public class DAOCalculadoraCustos {
 	    return nomedaimpressora;
 	}
 	
-	
-	
-	
-	
-	public String buscarConsumoEnergia(String nomedaimpressora) throws Exception {
-	    String sql = "SELECT consumodeenergia FROM cadastroimpressoras WHERE nomedaimpressora = ?";
-	    
+	public List<ModelCadastroImpressoras> buscarconsumoimpressora() throws Exception {
+	    List<ModelCadastroImpressoras> consumoimpressora = new ArrayList<>();
+
+	    String sql = "select consumodeenergia  from cadastroimpressoras where nomedaimpressora =?";
+
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-	    preparedStatement.setString(1, nomedaimpressora);
-	    
+
 	    ResultSet resultSet = preparedStatement.executeQuery();
-	    
-	    String consumoDeEnergia = null;
 
 	    while (resultSet.next()) {
-	        consumoDeEnergia = resultSet.getString("consumodeenergia");
+	        ModelCadastroImpressoras consumoenergiamaquina = new ModelCadastroImpressoras();
+	        consumoenergiamaquina.setId(resultSet.getLong("id"));
+	        consumoenergiamaquina.setNomedaimpressora(resultSet.getString("nomedaimpressora"));
+	        consumoenergiamaquina.setDiametrodomaterial(resultSet.getString("diametrodomaterial"));
+	        consumoenergiamaquina.setPreco(resultSet.getString("preco"));
+	        consumoenergiamaquina.setTempodepreciacao(resultSet.getString("tempodepreciacao"));
+	        consumoenergiamaquina.setCustodereparos(resultSet.getString("custodereparos"));
+	        consumoenergiamaquina.setConsumodeenergia(resultSet.getString("consumodeenergia"));
+	        consumoenergiamaquina.setDepreciacao(resultSet.getString("depreciacao"));
+	        consumoenergiamaquina.setIdusuariologado(resultSet.getString("idusuariologado"));
+	        
+	        
+	        
+	       
+	        consumoimpressora.add(consumoenergiamaquina);
 	    }
 
 	    resultSet.close();
 	    preparedStatement.close();
 
-	    return consumoDeEnergia;
+	    return consumoimpressora;
 	}
-
 	
-
+	
+	
+	
+	
 
 	
 

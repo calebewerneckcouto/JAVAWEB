@@ -31,8 +31,7 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 			   
 		    String acao = request.getParameter("acao");
 		   
-		    
-		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarCalculadora")) {
+		      if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarCalculadora")) {
 		    	
 		    	
 		    	
@@ -46,11 +45,17 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 		        DAOCalculadoraCustos daoCalculadoraCustos2 = new DAOCalculadoraCustos();
 		        List<ModelCadastroImpressoras>impressoras = daoCalculadoraCustos2.buscarNomeImpressora();
 		        
+		        
+		        
 		       
 		        DAOCalculadoraCustos daoCalculadoraCustos3 = new DAOCalculadoraCustos();
 		        List<ModelCadastroMateriais> materiais = daoCalculadoraCustos3.buscarfabricante();
 		        
-		   
+		        
+		        DAOCalculadoraCustos daoCalculadoraCustos4 = new DAOCalculadoraCustos();
+		       
+		        List<ModelCadastroImpressoras> consumoimpressora =daoCalculadoraCustos4.buscarconsumoimpressora();
+		        request.setAttribute("consumoimpressora", consumoimpressora);
 		        request.setAttribute("materiais", materiais);
 		        // Passar os dados para a página JSP
 		        request.setAttribute("calculadora", calculadora);
