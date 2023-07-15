@@ -70,29 +70,7 @@ public class ServletLogin extends HttpServlet {
 						
 						modelLogin = daoUsuarioRepository.consultaUsuarioLogado(login);
 						
-					
-						   // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
-				        DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
-				        
-				        // Chamar o método buscarVideos() para obter os dados do banco de dados
-				        List<ModelCalculadora> calculadora = daoCalculadoraCustos.buscarCalculadora();
-				        
-				        // Passar os dados para a página JSP
-				        request.setAttribute("calculadora", calculadora);
-				        DAOCalculadoraCustos daoCalculadoraCustos2 = new DAOCalculadoraCustos();
-				        
-				        List<ModelCadastroImpressoras>impressoras = daoCalculadoraCustos2.buscarNomeImpressora();
-				        
-				        
-				        // Passar os dados para a página JSP
-				      
-				        request.setAttribute("impressoras", impressoras);
-				        
-				        
-				        DAOCalculadoraCustos daoCalculadoraCustos3 = new DAOCalculadoraCustos();
-				        List<ModelCadastroMateriais> materiais = daoCalculadoraCustos3.buscarfabricante();
-				        
-				        request.setAttribute("materiais", materiais);
+				
 						
 				        request.getSession().setAttribute("usuarioid", modelLogin.getId());
 						request.getSession().setAttribute("usuario", modelLogin.getLogin());

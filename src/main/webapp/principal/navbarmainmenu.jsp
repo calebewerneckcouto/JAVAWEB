@@ -36,7 +36,7 @@
                           <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"></div>
                           <ul class="pcoded-item pcoded-left-item">
                               <li class="active">
-                                  <a href="<%=request.getContextPath() %>/SertvletCalculadoraCustos?acao=listarCalculadora" class="waves-effect waves-dark">
+                                  <a href="<%= request.getContextPath() %>/principal/principal.jsp" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                        
                                       <span class="pcoded-mtext" data-i18n="nav.dash.main">Calculadora de Custos</span>

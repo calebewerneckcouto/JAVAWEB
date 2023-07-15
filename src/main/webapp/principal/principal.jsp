@@ -1,3 +1,6 @@
+<%@page import="model.ModelCadastroMateriais"%>
+<%@page import="model.ModelCalculadora"%>
+<%@page import="dao.DAOCalculadoraCustos"%>
 <%@page import="dao.DAOCadastroImpressoras"%>
 <%@page import="model.ModelCadastroImpressoras"%>
 <%@page import="java.util.List"%>
@@ -78,22 +81,53 @@
 														
 														
 														
-														
-														
-                                                             
+	
+  
+  
+  
+  
+  
+  
+ <%
+ // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
+ DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
+ 
+ // Chamar o método buscarVideos() para obter os dados do banco de dados
+ List<ModelCalculadora> calculadora = daoCalculadoraCustos.buscarCalculadora();
+ 
+ DAOCalculadoraCustos daoCalculadoraCustos2 = new DAOCalculadoraCustos();
+ List<ModelCadastroImpressoras>impressoras = daoCalculadoraCustos2.buscarNomeImpressora();
+ 
+ 
+ 
+
+ DAOCalculadoraCustos daoCalculadoraCustos3 = new DAOCalculadoraCustos();
+ List<ModelCadastroMateriais> materiais = daoCalculadoraCustos3.buscarfabricante();
+ 
+ 
+ 
+ request.setAttribute("materiais", materiais);
+ // Passar os dados para a página JSP
+ request.setAttribute("calculadora", calculadora);
+ request.setAttribute("impressoras", impressoras);
+ 
+ 
+%>
+
+  
+         
                                                       <div class="form-group form-default form-static-label" >
-												  <h6>Nome da impressora:</h6>
+												  <h6>Nome da Impressora:</h6>
 												  <select  id="impressora" name="impressora" required="required" >
 												    <c:forEach items='${impressoras}' var='ml'     >
-												   
- 									    
-												      <option value="${ml.nomedaimpressora}">${ml.nomedaimpressora}</option>
 												     
-												      
-                                                 
+												      <option value="${ml.nomedaimpressora}">${ml.nomedaimpressora}</option>
+												 
 												    </c:forEach>
 												  </select>
 												</div>
+													
+  
 													     
 															
                                                              
@@ -121,7 +155,7 @@
                                                             </div>
                                                             
                                                             
-                                                            
+                                                             
                                                                  
                                                              <div class="form-group form-default form-static-label">
                                                               <input value="00:00" type="text" name="tempoimpressao" id="tempoimpressao" class="form-control" required="required" oninput="formatarHora(this)">
@@ -610,10 +644,13 @@ function calcularSomaPosProcessamento() {
   }
   
  
+  
+ 
+</script>
 
   
  
-  </script>
+
 
   
 	
