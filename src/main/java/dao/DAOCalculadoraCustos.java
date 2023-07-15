@@ -168,6 +168,34 @@ public class DAOCalculadoraCustos {
 	    return nomedaimpressora;
 	}
 	
+	
+	
+	
+	
+	public String buscarConsumoEnergia(String nomedaimpressora) throws Exception {
+	    String sql = "SELECT consumodeenergia FROM cadastroimpressoras WHERE nomedaimpressora = ?";
+	    
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+	    preparedStatement.setString(1, nomedaimpressora);
+	    
+	    ResultSet resultSet = preparedStatement.executeQuery();
+	    
+	    String consumoDeEnergia = null;
+
+	    while (resultSet.next()) {
+	        consumoDeEnergia = resultSet.getString("consumodeenergia");
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return consumoDeEnergia;
+	}
+
+	
+
+
+	
 
 	
 	public void deleteCalculadora(Long id) throws Exception {

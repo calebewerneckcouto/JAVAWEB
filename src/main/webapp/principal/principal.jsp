@@ -11,12 +11,13 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 
 <jsp:include page="head.jsp"></jsp:include>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
 	<!-- Pre-loader start -->
 
@@ -243,29 +244,15 @@
 	                                                            </div>
 	                                                            
 	                                                            
+	                                                             
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="eletricidadevalor" id="eletricidadevalor" class="form-control"  onchange="somasubtotalincluindoperdas()"   >
+	                                                             
+                                                                <input   value="${consumoenergia}"  type="text" name="eletricidadevalor" id="eletricidadevalor" class="form-control"   onchange="somasubtotalincluindoperdas()"    >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Eletricidade(R$):</label>
-                                                                
+                                                               
 	                                                            </div>
-	                                                            
-	                                                            
-	                                                            
-
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
-	                                                            
+	                                                           
 	                                                            
 	                                                            
 	                                                            
@@ -316,7 +303,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"    readonly="readonly" >
+                                                                <input  type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"    onchange="lucroreal()"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Incluindo Perdas(R$):</label>
                                                                 
@@ -326,7 +313,7 @@
 
 	                                                             
 	                                                                   <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="lucroporcentagem" id="lucroporcentagem" class="form-control"      >
+                                                                <input  type="text" name="lucroporcentagem" id="lucroporcentagem" class="form-control"   onchange="lucroreal()"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Informe a Porcentagem de Lucro que deseja (%):</label>
                                                                 
@@ -336,7 +323,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="lucrovalor" id="lucrovalor" class="form-control"     >
+                                                                <input  type="text" name="lucrovalor" id="lucrovalor" class="form-control"   readonly="readonly"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Lucro(R$):</label>
                                                                 
@@ -441,6 +428,10 @@
 
 
 
+ 
+
+
+
 
 
 function formatarHora(input) {
@@ -531,6 +522,33 @@ function somasubtotalincluindoperdas(){
     
 }
 
+
+function lucroreal(){
+    var incluindoperdas = parseFloat(document.getElementById('incluindoperdas').value.replace(',', '.'));
+    var lucroporcentagem = parseFloat(document.getElementById('lucroporcentagem').value.replace(',', '.'));
+   
+    
+    
+
+    // Verificar se os campos contêm valores numéricos válidos
+    if (isNaN(incluindoperdas)) {
+	incluindoperdas = 0; // Atribuir 0 se o valor não for numérico
+    }
+   
+    if (isNaN(lucroporcentagem)) {
+	lucroporcentagem = 0;
+    }
+   
+
+    var soma = (incluindoperdas * lucroporcentagem)/ 100;
+   
+
+    document.getElementById('lucrovalor').value = soma.toFixed(2);
+    var precofinal = incluindoperdas + soma;
+    document.getElementById('precofinal').value = precofinal.toFixed(2);
+    
+    
+}
 
 
 

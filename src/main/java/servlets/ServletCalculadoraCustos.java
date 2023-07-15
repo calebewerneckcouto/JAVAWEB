@@ -3,10 +3,9 @@ package servlets;
 import java.io.IOException;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import dao.DAOCalculadoraCustos;
-import dao.DAOTelefoneRepository;
-import dao.DAOUsuarioRepository;
-import dao.DAOVideos;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,9 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelCadastroImpressoras;
 import model.ModelCadastroMateriais;
 import model.ModelCalculadora;
-import model.ModelLogin;
-import model.ModelTelefone;
-import model.ModelVideos;
 
 @WebServlet("/SertvletCalculadoraCustos")
 public class ServletCalculadoraCustos extends ServletGenericUtil {
@@ -35,8 +31,11 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 			   
 		    String acao = request.getParameter("acao");
 		   
-		   
+		    
 		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarCalculadora")) {
+		    	
+		    	
+		    	
 		
 		        // Criar uma instância da classe de acesso aos dados (DAO) ou qualquer classe que lide com a recuperação dos dados do banco de dados
 		        DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
@@ -47,13 +46,17 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 		        DAOCalculadoraCustos daoCalculadoraCustos2 = new DAOCalculadoraCustos();
 		        List<ModelCadastroImpressoras>impressoras = daoCalculadoraCustos2.buscarNomeImpressora();
 		        
+		       
 		        DAOCalculadoraCustos daoCalculadoraCustos3 = new DAOCalculadoraCustos();
 		        List<ModelCadastroMateriais> materiais = daoCalculadoraCustos3.buscarfabricante();
 		        
+		   
 		        request.setAttribute("materiais", materiais);
 		        // Passar os dados para a página JSP
 		        request.setAttribute("calculadora", calculadora);
 		        request.setAttribute("impressoras", impressoras);
+		        
+		        
 		        
 		        // Encaminhar a requisição para a página JSP
 		        request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
