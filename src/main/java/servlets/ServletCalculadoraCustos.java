@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import dao.DAOCalculadoraCustos;
@@ -30,6 +31,35 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 		try {
 			
 		    String acao = request.getParameter("acao");
+		    
+		    
+		    
+		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarconsumodeenergia")) {
+
+				String nomedamimpressora = request.getParameter("impressora");
+				
+				
+				
+
+				DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
+				List<ModelCadastroImpressoras> consumoenergia = daoCalculadoraCustos.buscarconsumodeenergia(nomedamimpressora);
+
+				JSONArray consumoEnergiaJsonArray = new JSONArray();
+
+				for (ModelCadastroImpressoras impressora : consumoenergia) {
+				    JSONObject impressoraJson = new JSONObject();
+				    impressoraJson.put("consumodeenergia", impressora.getConsumodeenergia());
+
+				    consumoEnergiaJsonArray.put(impressoraJson);
+				}
+
+				String respostaJson = consumoEnergiaJsonArray.toString();
+				request.setAttribute("respostaJson", respostaJson);
+				request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
+
+				
+				
+			}else 
 		   
 		 if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("excluir")) {
 

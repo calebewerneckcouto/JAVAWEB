@@ -112,23 +112,47 @@
  request.setAttribute("impressoras", impressoras);
  
  
+ 
+
+ 
+
+     
+
 %>
 
   
          
                                                       <div class="form-group form-default form-static-label" >
 												  <h6>Nome da Impressora:</h6>
-												  <select  id="impressora" name="impressora" required="required" >
+												  <select     id="impressora" name="impressora" required="required" onchange="updateConsumoEnergia()" >
 												    <c:forEach items='${impressoras}' var='ml'     >
 												     
-												      <option value="${ml.nomedaimpressora}">${ml.nomedaimpressora}</option>
+												     <option  value="${ml.consumodeenergia}">
+                ${ml.nomedaimpressora} 
+            </option>
+												     
 												 
 												    </c:forEach>
 												  </select>
+												 
+												  
 												</div>
 													
-  
-													     
+													
+													
+													   
+                                                             <div class="form-group form-default form-static-label">
+                                                             
+                                                       
+												     
+												     <input   readonly="readonly"   type="text" name="consumo" id="consumo" class="form-control" required="required"     >
+                                
+                                                                
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Consumo de Energia (Impressora):</label>
+                                                                
+                                                            </div>
+                                                            
 															
                                                              
                                                       <div class="form-group form-default form-static-label" >
@@ -142,13 +166,15 @@
 												  </select>
 												</div>
 													
-                                                              
-                                                          
-                                                            
-                                                            
+								
+													
+													        
                                                               
                                                              <div class="form-group form-default form-static-label">
+                                                             
                                                                 <input  type="text" name="peso" id="peso" class="form-control" required="required" >
+                                                           
+                                                              
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Peso (gramas):</label>
                                                                 
@@ -605,7 +631,21 @@ function lucroreal(){
 
 
 
+function updateConsumoEnergia() {
+    var impressora = document.getElementById("impressora").value;
+    
+    
 
+    
+    consumo.value = impressora;
+}
+
+window.onload = function() {
+    updateConsumoEnergia();
+
+    // Adiciona o evento onchange no elemento select
+    document.getElementById("impressora").onchange = updateConsumoEnergia;
+};
 
 
 
@@ -643,7 +683,6 @@ function calcularSomaPosProcessamento() {
     return totalMinutos;
   }
   
- 
   
  
 </script>

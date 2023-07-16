@@ -36,6 +36,7 @@ public class ModelCalculadora implements Serializable{
 	private String lucrovalor;
 	private String precofinal;
 	private String idusuariologado;
+	private String ConsumoEnergiaResponse;
 	
 	
 	
@@ -43,7 +44,12 @@ public class ModelCalculadora implements Serializable{
 	
 	
 	
-	
+	public String getConsumoEnergiaResponse() {
+		return ConsumoEnergiaResponse;
+	}
+	public void setConsumoEnergiaResponse(String consumoEnergiaResponse) {
+		ConsumoEnergiaResponse = consumoEnergiaResponse;
+	}
 	public String getIdusuariologado() {
 		return idusuariologado;
 	}
@@ -220,6 +226,20 @@ public class ModelCalculadora implements Serializable{
 			return false;
 		ModelCalculadora other = (ModelCalculadora) obj;
 		return Objects.equals(id, other.id);
+	}
+	@Override
+	public String toString() {
+		return "ModelCalculadora [id=" + id + ", impressora=" + impressora + ", filamento=" + filamento + ", peso="
+				+ peso + ", tempoimpressao=" + tempoimpressao + ", preparacao=" + preparacao + ", fatiamento="
+				+ fatiamento + ", trocamaterial=" + trocamaterial + ", transferenciaeinicio=" + transferenciaeinicio
+				+ ", somapreparacao=" + somapreparacao + ", remocaoimpressao=" + remocaoimpressao + ", remocaosuportes="
+				+ remocaosuportes + ", trabalhoadicional=" + trabalhoadicional + ", somaposprocessamento="
+				+ somaposprocessamento + ", consumiveis=" + consumiveis + ", filamentovalor=" + filamentovalor
+				+ ", eletricidadevalor=" + eletricidadevalor + ", depreciacaomaquina=" + depreciacaomaquina
+				+ ", preparacaocustos=" + preparacaocustos + ", posprocessamentocustos=" + posprocessamentocustos
+				+ ", consumiveiscustos=" + consumiveiscustos + ", subtotal=" + subtotal + ", incluindoperdas="
+				+ incluindoperdas + ", lucroporcentagem=" + lucroporcentagem + ", lucrovalor=" + lucrovalor
+				+ ", precofinal=" + precofinal + ", idusuariologado=" + idusuariologado + "]";
 	}
 	
 	

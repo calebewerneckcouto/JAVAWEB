@@ -168,41 +168,37 @@ public class DAOCalculadoraCustos {
 	    return nomedaimpressora;
 	}
 	
-	public List<ModelCadastroImpressoras> buscarconsumoimpressora() throws Exception {
-	    List<ModelCadastroImpressoras> consumoimpressora = new ArrayList<>();
+	
+	
+	
+	public List<ModelCadastroImpressoras> buscarconsumodeenergia(String nomedaimpressora) throws Exception {
+	    List<ModelCadastroImpressoras> consumodeenergias = new ArrayList<>();
 
-	    String sql = "select consumodeenergia  from cadastroimpressoras where nomedaimpressora =?";
-
+	    String sql = "SELECT id, nomedaimpressora, diametrodomaterial, preco, tempodepreciacao, custodereparos, consumodeenergia, depreciacao, idusuariologado FROM cadastroimpressoras WHERE nomedaimpressora = ?";
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
+	    preparedStatement.setString(1, nomedaimpressora); // Definir valor para o parâmetro
 	    ResultSet resultSet = preparedStatement.executeQuery();
 
+
 	    while (resultSet.next()) {
-	        ModelCadastroImpressoras consumoenergiamaquina = new ModelCadastroImpressoras();
-	        consumoenergiamaquina.setId(resultSet.getLong("id"));
-	        consumoenergiamaquina.setNomedaimpressora(resultSet.getString("nomedaimpressora"));
-	        consumoenergiamaquina.setDiametrodomaterial(resultSet.getString("diametrodomaterial"));
-	        consumoenergiamaquina.setPreco(resultSet.getString("preco"));
-	        consumoenergiamaquina.setTempodepreciacao(resultSet.getString("tempodepreciacao"));
-	        consumoenergiamaquina.setCustodereparos(resultSet.getString("custodereparos"));
-	        consumoenergiamaquina.setConsumodeenergia(resultSet.getString("consumodeenergia"));
-	        consumoenergiamaquina.setDepreciacao(resultSet.getString("depreciacao"));
-	        consumoenergiamaquina.setIdusuariologado(resultSet.getString("idusuariologado"));
+	        ModelCadastroImpressoras consumodeenergia = new ModelCadastroImpressoras();
+	        
+	        
+	     
+	        consumodeenergia.setConsumodeenergia(resultSet.getString("consumodeenergia"));
+	       
 	        
 	        
 	        
 	       
-	        consumoimpressora.add(consumoenergiamaquina);
+	        consumodeenergias.add(consumodeenergia);
 	    }
 
 	    resultSet.close();
 	    preparedStatement.close();
 
-	    return consumoimpressora;
+	    return consumodeenergias;
 	}
-	
-	
-	
 	
 	
 
