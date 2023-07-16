@@ -1,3 +1,4 @@
+<%@page import="model.ModelGeral"%>
 <%@page import="model.ModelCadastroMateriais"%>
 <%@page import="model.ModelCalculadora"%>
 <%@page import="dao.DAOCalculadoraCustos"%>
@@ -106,6 +107,12 @@
  
  
  
+ DAOCalculadoraCustos daoCalculadoraCustos4 = new DAOCalculadoraCustos();
+	List<ModelGeral> consumoenergia = daoCalculadoraCustos4.buscarconsumodeenergiausuario();
+ 
+	request.setAttribute("consumoenergia", consumoenergia);
+	System.out.println(consumoenergia);
+ 
  request.setAttribute("materiais", materiais);
  // Passar os dados para a página JSP
  request.setAttribute("calculadora", calculadora);
@@ -124,7 +131,7 @@
          
                                                       <div class="form-group form-default form-static-label" >
 												  <h6>Nome da Impressora:</h6>
-												  <select     id="impressora" name="impressora" required="required" onchange="updateConsumoEnergia()" >
+												  <select     id="impressora" name="impressora" required="required" onchange="updateConsumoEnergia()" onchange="valoreletricidadecustos()" >
 												    <c:forEach items='${impressoras}' var='ml'     >
 												     
 												     <option  value="${ml.consumodeenergia}">
@@ -145,13 +152,43 @@
                                                              
                                                        
 												     
-												     <input   readonly="readonly"   type="text" name="consumo" id="consumo" class="form-control" required="required"     >
+												     <input  value="${consumoenergiausuario}" readonly="readonly"   type="text" name="consumo" id="consumo" class="form-control" required="required"     >
                                 
                                                                 
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Consumo de Energia (Impressora):</label>
                                                                 
                                                             </div>
+                                                            
+                                                             <div class="form-group form-default form-static-label" >
+												
+												  <select  hidden="hidden"   id="custodeenergiacadastradopelousuario" name="custodeenergiacadastradopelousuario" required="required" onchange="updateConsumoEnergia()" >
+												    <c:forEach items='${consumoenergia}' var='ml'     >
+												     <c:if test="${ml.idusuariologado == usuarioid}">
+												     <option  value="${ml.custoenergia}">
+                ${ml.idusuariologado} 
+            </option>
+												</c:if>     
+												 
+												    </c:forEach>
+												  </select>
+												 
+												  
+												</div>
+                                                            
+                                                              
+                                                             <div class="form-group form-default form-static-label">
+                                                             
+                                                       
+												   
+												     <input    readonly="readonly"   type="text" name="valorcustodeenergia" id="valorcustodeenergia" class="form-control" required="required"  onchange="valoreletricidadecustos()"   >
+                                                                     
+                                                                
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Valor do Consumo de Energia (Usuario):</label>
+                                                                
+                                                            </div>
+                                                            
                                                             
 															
                                                              
@@ -184,11 +221,24 @@
                                                              
                                                                  
                                                              <div class="form-group form-default form-static-label">
-                                                              <input value="00:00" type="text" name="tempoimpressao" id="tempoimpressao" class="form-control" required="required" oninput="formatarHora(this)">
+                                                              <input value="00:00" type="text" name="tempoimpressao" id="tempoimpressao" class="form-control" required="required" oninput="formatarHora(this)" onchange="valoreletricidadecustos()">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Tempo Impressão:(hh:mm)</label>
                                                                 
                                                             </div>
+                                                            
+                                                            
+                                                                   
+                                                             <div class="form-group form-default form-static-label">
+                                                              <input  type="text" name="tempoimpressaoconvertidominutos" id="tempoimpressaoconvertidominutos" class="form-control" required="required" oninput="formatarHora(this)" onchange="valoreletricidadecustos()">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Tempo Impressão:(minutos)</label>
+                                                                
+                                                            </div>
+                                                            
+                                                         
+                                                            
+                                                            
                                                             
                                                              
                                                               <h4 class="sub-title" style="color: blue;">Preparo da Impressão</h4>
@@ -557,7 +607,7 @@ function calcularSomaPreparoImpressao() {
    
     // Atualizar o valor do campo de soma
     document.getElementById('somapreparacao').value = soma;
-    document.getElementById('preparacaocustos').value = soma;
+   
     
   }
 
@@ -634,18 +684,59 @@ function lucroreal(){
 function updateConsumoEnergia() {
     var impressora = document.getElementById("impressora").value;
     
-    
-
+    var custodeenergiacadastradopelousuario = document.getElementById("custodeenergiacadastradopelousuario").value;
+    valorcustodeenergia.value = custodeenergiacadastradopelousuario;
     
     consumo.value = impressora;
 }
 
 window.onload = function() {
     updateConsumoEnergia();
-
+    valoreletricidadecustos();
     // Adiciona o evento onchange no elemento select
     document.getElementById("impressora").onchange = updateConsumoEnergia;
+    document.getElementById("custodeenergiacadastradopelousuario").value;
 };
+
+
+
+
+
+function converteparaminutos(){
+    
+    var consumo = parseFloat(document.getElementById('consumo').value.replace(',', '.'));
+    
+    
+}
+
+
+    function valoreletricidadecustos(){
+	
+	
+	
+	
+	   
+	
+	var consumo = parseFloat(document.getElementById('consumo').value.replace(',', '.'));
+	var valorcustodeenergia = parseFloat(document.getElementById('valorcustodeenergia').value.replace(',', '.'));
+
+
+   
+
+    // Calcular a soma
+    var soma = consumo *  valorcustodeenergia  ;
+
+    // Atualizar o valor do campo de soma
+    document.getElementById('eletricidadevalor').value =soma.toFixed(2);
+   
+   
+   
+    
+  }
+
+
+
+
 
 
 
@@ -666,7 +757,7 @@ function calcularSomaPosProcessamento() {
 
     // Atualizar o valor do campo de soma
     document.getElementById('somaposprocessamento').value = soma;
-    document.getElementById('posprocessamentocustos').value = soma;
+   
    
    
     

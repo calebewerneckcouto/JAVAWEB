@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelCadastroImpressoras;
 import model.ModelCadastroMateriais;
 import model.ModelCalculadora;
+import model.ModelGeral;
 
 @WebServlet("/SertvletCalculadoraCustos")
 public class ServletCalculadoraCustos extends ServletGenericUtil {
@@ -33,33 +34,7 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 		    String acao = request.getParameter("acao");
 		    
 		    
-		    
-		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarconsumodeenergia")) {
-
-				String nomedamimpressora = request.getParameter("impressora");
-				
-				
-				
-
-				DAOCalculadoraCustos daoCalculadoraCustos = new DAOCalculadoraCustos();
-				List<ModelCadastroImpressoras> consumoenergia = daoCalculadoraCustos.buscarconsumodeenergia(nomedamimpressora);
-
-				JSONArray consumoEnergiaJsonArray = new JSONArray();
-
-				for (ModelCadastroImpressoras impressora : consumoenergia) {
-				    JSONObject impressoraJson = new JSONObject();
-				    impressoraJson.put("consumodeenergia", impressora.getConsumodeenergia());
-
-				    consumoEnergiaJsonArray.put(impressoraJson);
-				}
-
-				String respostaJson = consumoEnergiaJsonArray.toString();
-				request.setAttribute("respostaJson", respostaJson);
-				request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
-
-				
-				
-			}else 
+		  
 		   
 		 if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("excluir")) {
 

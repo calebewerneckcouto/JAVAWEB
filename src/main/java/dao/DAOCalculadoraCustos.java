@@ -10,6 +10,7 @@ import connection.SingleConnectionBanco;
 import model.ModelCadastroImpressoras;
 import model.ModelCadastroMateriais;
 import model.ModelCalculadora;
+import model.ModelGeral;
 import model.ModelVideos;
 
 
@@ -200,6 +201,30 @@ public class DAOCalculadoraCustos {
 	    return consumodeenergias;
 	}
 	
+	
+	
+	public List<ModelGeral> buscarconsumodeenergiausuario() throws Exception {
+	    List<ModelGeral> consumodeenergias = new ArrayList<>();
+
+	    String sql = "SELECT id, custoenergia, idusuariologado FROM cadastrogeral";
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelGeral consumodeenergiausuario = new ModelGeral();
+
+	        consumodeenergiausuario.setCustoenergia(resultSet.getString("custoenergia"));
+	        consumodeenergiausuario.setIdusuariologado(resultSet.getString("idusuariologado"));
+
+	        consumodeenergias.add(consumodeenergiausuario);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return consumodeenergias;
+	}
+
 	
 
 	
