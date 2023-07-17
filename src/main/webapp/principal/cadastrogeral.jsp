@@ -1,3 +1,6 @@
+<%@page import="model.ModelGeral"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.DAOCadastroGeral"%>
 <%@page import="dao.DAOVideos"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.ModelVideos"%>
@@ -55,6 +58,16 @@
 
 														
 															
+													
+															
+															
+															
+															
+															
+															
+															
+															
+															
 														         
 														
                                                              <div class="form-group form-default form-static-label">
@@ -67,7 +80,12 @@
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Id do Usuario Logado</label>
                                                             </div>
-                                                           
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                                                                           
 														
                                                              
                                                             
@@ -109,7 +127,7 @@
                                                                 
                                                             
                                                                <div class="form-group form-default form-static-label">
-                                                                <input   readonly="readonly" type="text" name="totalgeral" id="totalgeral" class="form-control" required="required" >
+                                                                <input   readonly="readonly" type="text" name="totalgeral" id="totalgeral" class="form-control" required="required"  onchange="verificarInput();">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Total Geral[R$]:</label>
                                                                 
@@ -122,7 +140,8 @@
                                                             
                                                             <button  class="btn btn-success waves-effect waves-light">Salvar</button>
                                                             
-                                                              
+                                                 
+
 												                 
 												               <a href="<%=request.getContextPath() %>/SertvletCadastroImpressoras?acao=listarcadastroimpressoras"  class="btn btn-primary waves-effect waves-light" >Cadastro de Impressoras</a>
 												           <a  href="<%=request.getContextPath() %>/SertvletCadastroMateriais?acao=listarmateriais" class="btn btn-info waves-effect waves-light" >Cadastro de Materiais</a>
@@ -175,10 +194,10 @@
       <td><c:out value="${ml.totalgeral}"></c:out></td>
       <td><c:out value="${ml.idusuariologado}"></c:out></td>
       
-     
+   <td><a     href="<%=request.getContextPath() %>/principal/principal.jsp" id="calculadoraBtn" class="btn btn-dark" >Calculadora de Custos</a></td>
         <td><a class="btn btn-success"
           href="<%= request.getContextPath() %>/SertvletCadastroGeral?acao=excluir&id=${ml.id}">Excluir</a></td>
-     
+            
     </tr>
   </c:if>
 </c:forEach>
@@ -208,6 +227,23 @@
 	
 	
 <script type="text/javascript">
+
+
+
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
 
 function somatotal(){
     

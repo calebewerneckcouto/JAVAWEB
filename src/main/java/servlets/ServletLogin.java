@@ -77,7 +77,7 @@ public class ServletLogin extends HttpServlet {
 						request.getSession().setAttribute("permissao", modelLogin.getPermissao());
 						
 						if (url == null || url.equals("null")) {
-							url = "principal/principal.jsp";
+							url = "principal/cadastrogeral.jsp";
 						}
 						
 						RequestDispatcher redirecionar = request.getRequestDispatcher(url);

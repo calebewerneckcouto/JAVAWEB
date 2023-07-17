@@ -338,7 +338,7 @@
                                                             
                                                                    
                                                              <div class="form-group form-default form-static-label">
-                                                              <input  type="text" name="tempoimpressaoconvertidominutos" id="tempoimpressaoconvertidominutos" class="form-control" required="required"  onchange="valoreletricidadecustos();calculoscustos();somacustostotal();">
+                                                              <input  type="text" name="tempoimpressaoconvertidominutos" id="tempoimpressaoconvertidominutos" class="form-control"  required="required" onchange="valoreletricidadecustos();calculoscustos();somacustostotal();">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Tempo Impressão:(minutos)</label>
                                                                 
@@ -521,7 +521,7 @@
 
 	                                                             
 	                                                                   <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="lucroporcentagem" id="lucroporcentagem" class="form-control"   onchange="lucroreal()"  onchange="somasubtotalincluindoperdas()" >
+                                                                <input  type="text" name="lucroporcentagem" id="lucroporcentagem" class="form-control"   required="required" onchange="lucroreal();somasubtotalincluindoperdas()" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Informe a Porcentagem de Lucro que deseja (%):</label>
                                                                 
@@ -578,13 +578,12 @@
 													<tr>
 															<th scope="col">ID</th>
 																<th scope="col">ID Usuario Logado</th>
-									<th scope="col">Impressora</th>
-									<th scope="col">Filamento</th>
-									<th scope="col">Peso</th>
-									<th scope="col">Tempo de Impressão</th>
+									
+									<th scope="col">Peso(g)</th>
+									<th scope="col">Tempo de Impressão(hh:mm)</th>
 									<th scope="col">Lucro(%)</th>
-									<th scope="col">Lucro(R$))</th>
-									<th scope="col">Preço Final</th>
+									<th scope="col">Lucro(R$)</th>
+									<th scope="col">Preço Final(R$)</th>
 									
 									
 													</tr>
@@ -596,8 +595,7 @@
     <tr>
       <td><c:out value="${ml.id}"></c:out></td>
       <td><c:out value="${ml.idusuariologado}"></c:out></td>
-      <td><c:out value="${ml.impressora}"></c:out></td>
-      <td><c:out value="${ml.filamento}"></c:out></td>
+     
       <td><c:out value="${ml.peso}"></c:out></td>
       <td><c:out value="${ml.tempoimpressao}"></c:out></td>
       <td><c:out value="${ml.lucroporcentagem}"></c:out></td>

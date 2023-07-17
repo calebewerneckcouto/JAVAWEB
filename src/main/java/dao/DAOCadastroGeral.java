@@ -84,7 +84,28 @@ public class DAOCadastroGeral {
 	}
 
 	
-	
+	public List<ModelGeral> buscaridgeral() throws Exception {
+	    List<ModelGeral> idcadastrogeral = new ArrayList<>();
+
+	    String sql = "select id,custoenergia,custodetrabalho,taxadeperdas,unidademonetaria,totalgeral,idusuariologado  from cadastrogeral ";
+
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelGeral caGeral = new ModelGeral();
+	        
+	        
+	        idcadastrogeral.add(caGeral);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return idcadastrogeral;
+	}
+
 	
 	
 	
