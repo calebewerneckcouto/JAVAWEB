@@ -109,6 +109,13 @@
  
  DAOCalculadoraCustos daoCalculadoraCustos4 = new DAOCalculadoraCustos();
 	List<ModelGeral> consumoenergia = daoCalculadoraCustos4.buscarconsumodeenergiausuario();
+	
+	
+	
+	
+	
+	
+	
  
 	request.setAttribute("consumoenergia", consumoenergia);
 	System.out.println(consumoenergia);
@@ -131,12 +138,12 @@
          
                                                       <div class="form-group form-default form-static-label" >
 												  <h6>Nome da Impressora:</h6>
-												  <select     id="impressora" name="impressora" required="required" onchange="updateConsumoEnergia()" onchange="valoreletricidadecustos()" >
+												  <select     id="impressora" name="impressora" required="required" onchange="updateConsumoEnergia();valoreletricidadecustos();" >
 												    <c:forEach items='${impressoras}' var='ml'     >
-												     
-												     <option  value="${ml.consumodeenergia}">
-                ${ml.nomedaimpressora} 
-            </option>
+												     <option value="${ml.consumodeenergia}#${ml.depreciacao}">${ml.nomedaimpressora}</option>
+												    
+               
+           
 												     
 												 
 												    </c:forEach>
@@ -147,12 +154,30 @@
 													
 													
 													
+													
+													 <div class="form-group form-default form-static-label">
+                                                             
+                                                       
+												     
+												     <input   readonly="readonly"   type="text" name="depreciacaodamaquinavalor" id="depreciacaodamaquinavalor" class="form-control" required="required"  onchange="calculoscustos()"    >
+                                
+                                                                
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Depreciação (R$/H) (Impressora):</label>
+                                                                
+                                                            </div>
+													
+													
+													
+													
+													
+													
 													   
                                                              <div class="form-group form-default form-static-label">
                                                              
                                                        
 												     
-												     <input  value="${consumoenergiausuario}" readonly="readonly"   type="text" name="consumo" id="consumo" class="form-control" required="required"     >
+												     <input   readonly="readonly"   type="text" name="consumo" id="consumo" class="form-control" required="required"     >
                                 
                                                                 
                                                                 <span class="form-bar"></span>
@@ -194,22 +219,66 @@
                                                              
                                                       <div class="form-group form-default form-static-label" >
 												  <h6>Nome do Material/Fabricante:</h6>
-												  <select  id="filamento" name="filamento" required="required" >
+												  <select  id="filamento" name="filamento" required="required" onchange="mudatudo();calculoscustos();">
 												    <c:forEach items='${materiais}' var='ml'     >
 												     
-												      <option value="${ml.fabricante}">${ml.fabricante}</option>
+												     <option value="${ml.densidade}#${ml.diametro}#${ml.preco}">${ml.fabricante}</option>
+
 												 
 												    </c:forEach>
 												  </select>
 												</div>
 													
 								
+								
+								
+								<div class="form-group form-default form-static-label">
+                                                             
+                                                                <input readonly="readonly" type="text" name="densidadevalor" id="densidadevalor" class="form-control" required="required" >
+                                                           
+                                                              
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Densidade do Filamento (g/cm³):</label>
+                                                                
+                                                            </div>
+								
+								
+								
+								<div class="form-group form-default form-static-label">
+                                                             
+                                                                <input readonly="readonly" type="text" name="diametrofilamento" id="diametrofilamento" class="form-control" required="required" >
+                                                           
+                                                              
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Diametro Filamento (mm):</label>
+                                                                
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                            <div class="form-group form-default form-static-label">
+                                                           
+												        
+												    <input type="text" name="valorfilamentokilo" id="valorfilamentokilo" class="form-control" required="required" readonly="readonly" >
+												
+												  
+                                                             
+                                                                
+                                                           
+                                                              
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Valor do  Filamento (R$/Kg):</label>
+                                                                
+                                                            </div>
+								
+							
+								
 													
 													        
                                                               
                                                              <div class="form-group form-default form-static-label">
                                                              
-                                                                <input  type="text" name="peso" id="peso" class="form-control" required="required" >
+                                                                <input  type="text" name="peso" id="peso" class="form-control" required="required"  onchange="calculoscustos()">
                                                            
                                                               
                                                                 <span class="form-bar"></span>
@@ -221,7 +290,7 @@
                                                              
                                                                  
                                                              <div class="form-group form-default form-static-label">
-                                                              <input value="00:00" type="text" name="tempoimpressao" id="tempoimpressao" class="form-control" required="required" oninput="formatarHora(this)" onchange="valoreletricidadecustos()">
+                                                              <input value="00:00" type="text" name="tempoimpressao" id="tempoimpressao" class="form-control" required="required" oninput="formatarHora(this)"   onchange="calcularSomaPreparoImpressao();valoreletricidadecustos();calculoscustos();">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Tempo Impressão:(hh:mm)</label>
                                                                 
@@ -230,16 +299,14 @@
                                                             
                                                                    
                                                              <div class="form-group form-default form-static-label">
-                                                              <input  type="text" name="tempoimpressaoconvertidominutos" id="tempoimpressaoconvertidominutos" class="form-control" required="required" oninput="formatarHora(this)" onchange="valoreletricidadecustos()">
+                                                              <input  type="text" name="tempoimpressaoconvertidominutos" id="tempoimpressaoconvertidominutos" class="form-control" required="required" oninput="formatarHora(this)" onchange="valoreletricidadecustos();calculoscustos();">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Tempo Impressão:(minutos)</label>
                                                                 
                                                             </div>
                                                             
                                                          
-                                                            
-                                                            
-                                                            
+                                                           
                                                              
                                                               <h4 class="sub-title" style="color: blue;">Preparo da Impressão</h4>
                                                               
@@ -333,18 +400,13 @@
                                                             
                                                                                        
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="consumiveis" id="consumiveis" class="form-control"   oninput="formatarHora(this)"  onchange="valorconsumiveis ()" onchange="somacustos()">
+                                                                <input  type="text" name="consumiveis" id="consumiveis" class="form-control"   onchange="somasubtotalincluindoperdas()" >
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Consumíveis: (minutos)</label>
+                                                                <label class="float-label" style="color: black">Consumíveis: (R$)</label>
                                                                 
                                                             </div>
                                                             
-                                                             <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="somaconsumiveis"  value="0"   id="somaconsumiveis" class="form-control"  readonly="readonly" onchange="somacustos()" onchange="somacustos()" >
-                                                                <span class="form-bar"></span>
-                                                                <label class="float-label" style="color: black">Soma: (minutos)</label>
-                                                                
-                                                            </div>
+                                                            
                                                             
                                                              <h4 class="sub-title" style="color: blue;">Custos</h4>
                                                              
@@ -572,23 +634,17 @@ function formatarHora(input) {
   }
   
   
-function valorconsumiveis (){
-    
-    var consumiveis = document.getElementById('consumiveis').value;
-    var consumiveisMinutos = converterParaMinutos(consumiveis);
- 
-    document.getElementById('somaconsumiveis').value = consumiveisMinutos;
-    document.getElementById('consumiveiscustos').value = consumiveisMinutos;
-    
-}
+
 
 
 function calcularSomaPreparoImpressao() {
     // Obter os valores dos campos de entrada
     
-    
+     
+                                                            
+                                                            
             
-    
+    var tempoimpressao = document.getElementById('tempoimpressao').value;
     var preparacao = document.getElementById('preparacao').value;
     var fatiamento = document.getElementById('fatiamento').value;
     var trocamaterial = document.getElementById('trocamaterial').value;
@@ -596,6 +652,8 @@ function calcularSomaPreparoImpressao() {
   
     
     // Converter para minutos
+    
+     var tempoimpressaoMinutos = converterParaMinutos(tempoimpressao);
     var preparacaoMinutos = converterParaMinutos(preparacao);
     var fatiamentoMinutos = converterParaMinutos(fatiamento);
     var trocamaterialMinutos = converterParaMinutos(trocamaterial);
@@ -607,7 +665,11 @@ function calcularSomaPreparoImpressao() {
    
     // Atualizar o valor do campo de soma
     document.getElementById('somapreparacao').value = soma;
-   
+    
+    var divide = tempoimpressaoMinutos/60;
+    
+    document.getElementById('tempoimpressaoconvertidominutos').value = divide.toFixed(2);
+    
     
   }
 
@@ -618,7 +680,7 @@ function somasubtotalincluindoperdas(){
     var depreciacaomaquina = parseFloat(document.getElementById('depreciacaomaquina').value.replace(',', '.'));
     var filamentovalor = parseFloat(document.getElementById('filamentovalor').value.replace(',', '.'));
     var eletricidadevalor = parseFloat(document.getElementById('eletricidadevalor').value.replace(',', '.'));
-    var consumiveiscustos = parseFloat(document.getElementById('consumiveiscustos').value.replace(',', '.'));
+    var consumiveis = parseFloat(document.getElementById('consumiveis').value.replace(',', '.'));
    
     
 
@@ -643,9 +705,12 @@ function somasubtotalincluindoperdas(){
       consumiveiscustos = 0;
     }
 
-    var soma = preparacaocustos + posprocessamentocustos + filamentovalor + eletricidadevalor + consumiveiscustos + depreciacaomaquina;
+    var soma = preparacaocustos + posprocessamentocustos + filamentovalor + eletricidadevalor + consumiveis + depreciacaomaquina;
 
     document.getElementById('subtotal').value = soma;
+    
+    
+    document.getElementById('consumiveiscustos').value = consumiveis;
 
     
 }
@@ -678,10 +743,72 @@ function lucroreal(){
     
 }
 
-
+function calculoscustos(){
+    
+    
+    var peso = parseFloat(document.getElementById('peso').value.replace(',', '.'));
+    
+    var valorfilamentokilo = parseFloat(document.getElementById('valorfilamentokilo').value.replace(',', '.'));
+    
+    
+    var depreciacaodamaquina = parseFloat(document.getElementById('depreciacaodamaquinavalor').value.replace(',', '.'));
+    
+    
+    var tempoimpressaoconvertidominutos = parseFloat(document.getElementById('tempoimpressaoconvertidominutos').value.replace(',', '.'));
+    
+    
+    if (isNaN(depreciacaodamaquina)) {
+	depreciacaodamaquina = 0; // Atribuir 0 se o valor não for numérico
+	    }
+    if (isNaN(tempoimpressaoconvertidominutos)) {
+	tempoimpressaoconvertidominutos = 0; // Atribuir 0 se o valor não for numérico
+	    }    
+    
+    
+    if (isNaN(peso)) {
+	peso = 0; // Atribuir 0 se o valor não for numérico
+	    }
+	   
+	    if (isNaN(valorfilamentokilo)) {
+		valorfilamentokilo = 0;
+	    }
+	    
+	    
+	    var calculodepreciacao = depreciacaodamaquina * tempoimpressaoconvertidominutos;
+    
+    var calculo = (peso/1000)*valorfilamentokilo;
+    
+    
+    document.getElementById('filamentovalor').value = calculo.toFixed(2);
+    
+    document.getElementById('depreciacaomaquina').value = calculodepreciacao.toFixed(2);
+    
+    
+    
+    
+    
+    
+    
+    
+}
 
 
 function updateConsumoEnergia() {
+    
+    
+    var optionValue = document.getElementById("impressora").value;
+    var values = optionValue.split("#");
+    var consumo = values[0];
+    var depreciacao = values[1];
+   
+    
+    document.getElementById("consumo").value = consumo;
+    
+    document.getElementById("depreciacaodamaquinavalor").value = depreciacao;
+    
+    
+    
+    
     var impressora = document.getElementById("impressora").value;
     
     var custodeenergiacadastradopelousuario = document.getElementById("custodeenergiacadastradopelousuario").value;
@@ -693,6 +820,7 @@ function updateConsumoEnergia() {
 window.onload = function() {
     updateConsumoEnergia();
     valoreletricidadecustos();
+    mudatudo();
     // Adiciona o evento onchange no elemento select
     document.getElementById("impressora").onchange = updateConsumoEnergia;
     document.getElementById("custodeenergiacadastradopelousuario").value;
@@ -720,11 +848,31 @@ function converteparaminutos(){
 	var consumo = parseFloat(document.getElementById('consumo').value.replace(',', '.'));
 	var valorcustodeenergia = parseFloat(document.getElementById('valorcustodeenergia').value.replace(',', '.'));
 
-
+	var tempoimpressaoconvertidominutos = parseFloat(document.getElementById('tempoimpressaoconvertidominutos').value.replace(',', '.'));
    
 
+	 if (isNaN(consumo)) {
+	     consumo = 0;
+	    }
+	 if (isNaN(valorcustodeenergia)) {
+	     valorcustodeenergia = 0;
+	    }
+	 if (isNaN(tempoimpressaoconvertidominutos)) {
+	     tempoimpressaoconvertidominutos = 0;
+	    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     // Calcular a soma
-    var soma = consumo *  valorcustodeenergia  ;
+    var soma = consumo *  valorcustodeenergia * tempoimpressaoconvertidominutos ;
 
     // Atualizar o valor do campo de soma
     document.getElementById('eletricidadevalor').value =soma.toFixed(2);
@@ -734,7 +882,24 @@ function converteparaminutos(){
     
   }
 
-
+function mudatudo(){
+    
+    
+    
+    var optionValue = document.getElementById("filamento").value;
+    var values = optionValue.split("#");
+    var densidade = values[0];
+    var diametro = values[1];
+    var preco = values[2];
+    
+    document.getElementById("densidadevalor").value = densidade;
+    document.getElementById("diametrofilamento").value = diametro;
+    document.getElementById("valorfilamentokilo").value = preco;
+    
+	  
+   
+    
+}
 
 
 
