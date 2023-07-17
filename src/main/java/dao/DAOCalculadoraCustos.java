@@ -206,14 +206,15 @@ public class DAOCalculadoraCustos {
 	public List<ModelGeral> buscarconsumodeenergiausuario() throws Exception {
 	    List<ModelGeral> consumodeenergias = new ArrayList<>();
 
-	    String sql = "SELECT id, custoenergia, idusuariologado FROM cadastrogeral";
+	    String sql = "SELECT id, custoenergia,custodetrabalho,taxadeperdas, idusuariologado FROM cadastrogeral";
 	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
 	    ResultSet resultSet = preparedStatement.executeQuery();
 
 	    while (resultSet.next()) {
 	        ModelGeral consumodeenergiausuario = new ModelGeral();
-
+	        consumodeenergiausuario.setTaxadeperdas(resultSet.getString("taxadeperdas"));
 	        consumodeenergiausuario.setCustoenergia(resultSet.getString("custoenergia"));
+	        consumodeenergiausuario.setCustodetrabalho(resultSet.getString("custodetrabalho"));
 	        consumodeenergiausuario.setIdusuariologado(resultSet.getString("idusuariologado"));
 
 	        consumodeenergias.add(consumodeenergiausuario);

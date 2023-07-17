@@ -138,7 +138,7 @@
          
                                                       <div class="form-group form-default form-static-label" >
 												  <h6>Nome da Impressora:</h6>
-												  <select     id="impressora" name="impressora" required="required" onchange="updateConsumoEnergia();valoreletricidadecustos();" >
+												  <select     id="impressora" name="impressora" required="required" onchange="updateConsumoEnergia();valoreletricidadecustos();preparacaocustosvalor();" >
 												    <c:forEach items='${impressoras}' var='ml'     >
 												     <option value="${ml.consumodeenergia}#${ml.depreciacao}">${ml.nomedaimpressora}</option>
 												    
@@ -159,7 +159,7 @@
                                                              
                                                        
 												     
-												     <input   readonly="readonly"   type="text" name="depreciacaodamaquinavalor" id="depreciacaodamaquinavalor" class="form-control" required="required"  onchange="calculoscustos()"    >
+												     <input   readonly="readonly"   type="text" name="depreciacaodamaquinavalor" id="depreciacaodamaquinavalor" class="form-control" required="required"  onchange="calculoscustos();"    >
                                 
                                                                 
                                                                 <span class="form-bar"></span>
@@ -187,7 +187,7 @@
                                                             
                                                              <div class="form-group form-default form-static-label" >
 												
-												  <select  hidden="hidden"   id="custodeenergiacadastradopelousuario" name="custodeenergiacadastradopelousuario" required="required" onchange="updateConsumoEnergia()" >
+												  <select  hidden="hidden"   id="custodeenergiacadastradopelousuario" name="custodeenergiacadastradopelousuario" required="required" onchange="updateConsumoEnergia();" >
 												    <c:forEach items='${consumoenergia}' var='ml'     >
 												     <c:if test="${ml.idusuariologado == usuarioid}">
 												     <option  value="${ml.custoenergia}">
@@ -201,12 +201,51 @@
 												  
 												</div>
                                                             
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+														                                                            <div class="form-group form-default form-static-label">
+                                                             
+                                                        <c:forEach items='${consumoenergia}' var='ml'     >
+												     <c:if test="${ml.idusuariologado == usuarioid}">
+												     <input value="${ml.custodetrabalho}"   readonly="readonly"   type="text" name="custotrabalhogeral" id="custotrabalhogeral" class="form-control" required="required"  onchange="valoreletricidadecustos();"   >
+												   </c:if>
+												   </c:forEach>
+												    
+                                                                     
+                                                                
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Custo de Trabalho (Usuario):</label>
+                                                                
+                                                            </div>
+                                                            
+                                                            
+                                                                 
+														                                                            <div class="form-group form-default form-static-label">
+                                                             
+                                                        <c:forEach items='${consumoenergia}' var='ml'     >
+												     <c:if test="${ml.idusuariologado == usuarioid}">
+												     <input value="${ml.taxadeperdas}"   readonly="readonly"   type="text" name="taxadeperdasdousuario" id="taxadeperdasdousuario" class="form-control" required="required"  onchange="valoreletricidadecustos();"   >
+												   </c:if>
+												   </c:forEach>
+												    
+                                                                     
+                                                                
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label" style="color: black">Taxa de Perdas (%):</label>
+                                                                
+                                                            </div>
+                                                            
+                                                            
                                                               
                                                              <div class="form-group form-default form-static-label">
                                                              
                                                        
 												   
-												     <input    readonly="readonly"   type="text" name="valorcustodeenergia" id="valorcustodeenergia" class="form-control" required="required"  onchange="valoreletricidadecustos()"   >
+												     <input    readonly="readonly"   type="text" name="valorcustodeenergia" id="valorcustodeenergia" class="form-control" required="required"  onchange="valoreletricidadecustos();"   >
                                                                      
                                                                 
                                                                 <span class="form-bar"></span>
@@ -278,7 +317,7 @@
                                                               
                                                              <div class="form-group form-default form-static-label">
                                                              
-                                                                <input  type="text" name="peso" id="peso" class="form-control" required="required"  onchange="calculoscustos()">
+                                                                <input  type="text" name="peso" id="peso" class="form-control" required="required"  onchange="calculoscustos();somacustostotal();">
                                                            
                                                               
                                                                 <span class="form-bar"></span>
@@ -290,7 +329,7 @@
                                                              
                                                                  
                                                              <div class="form-group form-default form-static-label">
-                                                              <input value="00:00" type="text" name="tempoimpressao" id="tempoimpressao" class="form-control" required="required" oninput="formatarHora(this)"   onchange="calcularSomaPreparoImpressao();valoreletricidadecustos();calculoscustos();">
+                                                              <input value="00:00" type="text" name="tempoimpressao" id="tempoimpressao" class="form-control" required="required" oninput="formatarHora(this)"   onchange="calcularSomaPreparoImpressao();valoreletricidadecustos();calculoscustos();somacustostotal();">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Tempo Impressão:(hh:mm)</label>
                                                                 
@@ -299,7 +338,7 @@
                                                             
                                                                    
                                                              <div class="form-group form-default form-static-label">
-                                                              <input  type="text" name="tempoimpressaoconvertidominutos" id="tempoimpressaoconvertidominutos" class="form-control" required="required" oninput="formatarHora(this)" onchange="valoreletricidadecustos();calculoscustos();">
+                                                              <input  type="text" name="tempoimpressaoconvertidominutos" id="tempoimpressaoconvertidominutos" class="form-control" required="required"  onchange="valoreletricidadecustos();calculoscustos();somacustostotal();">
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Tempo Impressão:(minutos)</label>
                                                                 
@@ -313,7 +352,7 @@
                                                               
                                                                
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="preparacao" id="preparacao" class="form-control"   onchange="calcularSomaPreparoImpressao();"     oninput="formatarHora(this)"  onchange="somacustos()">
+                                                                <input value="00:00" type="text" name="preparacao" id="preparacao" class="form-control"   onchange="preencheconsumiveis();calcularSomaPreparoImpressao();somacustostotal();"     oninput="formatarHora(this)"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Preparação: (minutos)</label>
                                                                 
@@ -322,7 +361,7 @@
  
                                                                  
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="fatiamento" id="fatiamento" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)"  onchange="somacustos()">
+                                                                <input value="00:00" type="text" name="fatiamento" id="fatiamento" class="form-control" onchange="preencheconsumiveis();calcularSomaPreparoImpressao();somacustostotal();"  oninput="formatarHora(this)"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Fatiamento: (minutos)</label>
                                                                 
@@ -331,7 +370,7 @@
                                                           
                                                                    
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="trocamaterial" id="trocamaterial" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)"  onchange="somacustos()">
+                                                                <input value="00:00" type="text" name="trocamaterial" id="trocamaterial" class="form-control" onchange="preencheconsumiveis();calcularSomaPreparoImpressao();somacustostotal();"  oninput="formatarHora(this)"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Troca de Material: (minutos)</label>
                                                                 
@@ -340,7 +379,7 @@
                                                           
                                                                           
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="transferenciaeinicio" id="transferenciaeinicio" class="form-control" onchange="calcularSomaPreparoImpressao();" oninput="formatarHora(this)" onchange="somacustos()" >
+                                                                <input value="00:00" type="text" name="transferenciaeinicio" id="transferenciaeinicio" class="form-control" onchange="preencheconsumiveis();calcularSomaPreparoImpressao();somacustostotal();"  oninput="formatarHora(this)"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Transferência e Inicio: (minutos)</label>
                                                                 
@@ -348,7 +387,7 @@
                                                             
                                                                             
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="0" type="text" name="somapreparacao" id="somapreparacao"     class="form-control"  readonly="readonly" onchange="somacustos()"  >
+                                                                <input value="0" type="text" name="somapreparacao" id="somapreparacao"     class="form-control"  readonly="readonly" onchange="preencheconsumiveis();calcularSomaPreparoImpressao();somacustostotal();"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Soma: (minutos)</label>
                                                                 
@@ -359,7 +398,7 @@
                                                             
                                                                               
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="remocaoimpressao" id="remocaoimpressao" class="form-control"   onchange="calcularSomaPosProcessamento();"  oninput="formatarHora(this)"   onchange="somacustos()">
+                                                                <input value="00:00" type="text" name="remocaoimpressao" id="remocaoimpressao" class="form-control"   onchange="calcularSomaPosProcessamento();somacustostotal();"  oninput="formatarHora(this)"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Remoção da Impressão: (minutos)</label>
                                                                 
@@ -368,7 +407,7 @@
                                                             
                                                                                 
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="remocaosuportes" id="remocaosuportes" class="form-control"  onchange="calcularSomaPosProcessamento();" oninput="formatarHora(this)" onchange="somacustos()" >
+                                                                <input value="00:00" type="text" name="remocaosuportes" id="remocaosuportes" class="form-control"  onchange="calcularSomaPosProcessamento();somacustostotal();" oninput="formatarHora(this)"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Remoção dos Suportes: (minutos)</label>
                                                                 
@@ -377,7 +416,7 @@
                                                             
                                                                                   
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="00:00" type="text" name="trabalhoadicional" id="trabalhoadicional" class="form-control" onchange="calcularSomaPosProcessamento();" oninput="formatarHora(this)"   onchange="somacustos()">
+                                                                <input value="00:00" type="text" name="trabalhoadicional" id="trabalhoadicional" class="form-control" onchange="calcularSomaPosProcessamento();somacustostotal();" oninput="formatarHora(this)"   >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Trabalho Adicional: (minutos)</label>
                                                                 
@@ -387,7 +426,7 @@
                                                               
                                                                             
                                                              <div class="form-group form-default form-static-label">
-                                                                <input value="0"  type="text" name="somaposprocessamento"     id="somaposprocessamento" class="form-control"  readonly="readonly"  onchange="somacustos()" >
+                                                                <input value="0"  type="text" name="somaposprocessamento"     id="somaposprocessamento" class="form-control"  readonly="readonly"  onchange="somacustostotal();" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Soma: (minutos)</label>
                                                                 
@@ -400,7 +439,7 @@
                                                             
                                                                                        
                                                              <div class="form-group form-default form-static-label">
-                                                                <input  type="text" name="consumiveis" id="consumiveis" class="form-control"   onchange="somasubtotalincluindoperdas()" >
+                                                                <input  type="text" name="consumiveis" id="consumiveis" class="form-control"   onchange=" preencheconsumiveis();somacustostotal();" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Consumíveis: (R$)</label>
                                                                 
@@ -430,7 +469,6 @@
 	                                                           
 	                                                            
 	                                                            
-	                                                            
 	                                                                <div class="form-group form-default form-static-label">
 	                                                             
                                                                 <input   value="0"  type="text" name="depreciacaomaquina" id="depreciacaomaquina" class="form-control"   onchange="somasubtotalincluindoperdas()"  onchange="somacustos()"  >
@@ -439,18 +477,13 @@
                                                                
 	                                                            </div>
 	                                                           
-	                                                            
-	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input  value="0" type="text" name="preparacaocustos" id="preparacaocustos" class="form-control"  onchange="somasubtotalincluindoperdas()"  onchange="somavalorespreparacaoposconsumiveis()" readonly="readonly" onchange="somacustos()" >
+                                                                <input  value="0" type="text" name="preparacaocustos" id="preparacaocustos" class="form-control"  onchange="somasubtotalincluindoperdas();somavalorespreparacaoposconsumiveis();somacustos();" readonly="readonly"  >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Preparacação(R$):</label>
                                                                 
 	                                                            </div>
-	                                                            
-	                                                            
-	                                                              
-	                                                  
+	                                                          
 	                                                                <div class="form-group form-default form-static-label">
                                                                 <input value="0" type="text" name="posprocessamentocustos" id="posprocessamentocustos" class="form-control"    onchange="somasubtotalincluindoperdas()" onchange="somavalorespreparacaoposconsumiveis()" readonly="readonly" onchange="somacustos()">
                                                                 <span class="form-bar"></span>
@@ -478,7 +511,7 @@
 	                                                            
 	                                                            
 	                                                                <div class="form-group form-default form-static-label">
-                                                                <input value="0" type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"    onchange="lucroreal()" onchange="somasubtotalincluindoperdas()" >
+                                                                <input value="0" type="text" name="incluindoperdas" id="incluindoperdas" class="form-control"    onchange="lucroreal()" onchange="somasubtotalincluindoperdas();somacustostotal();" >
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Incluindo Perdas(R$):</label>
                                                                 
@@ -674,46 +707,6 @@ function calcularSomaPreparoImpressao() {
   }
 
 
-function somasubtotalincluindoperdas(){
-    var preparacaocustos = parseFloat(document.getElementById('preparacaocustos').value.replace(',', '.'));
-    var posprocessamentocustos = parseFloat(document.getElementById('posprocessamentocustos').value.replace(',', '.'));
-    var depreciacaomaquina = parseFloat(document.getElementById('depreciacaomaquina').value.replace(',', '.'));
-    var filamentovalor = parseFloat(document.getElementById('filamentovalor').value.replace(',', '.'));
-    var eletricidadevalor = parseFloat(document.getElementById('eletricidadevalor').value.replace(',', '.'));
-    var consumiveis = parseFloat(document.getElementById('consumiveis').value.replace(',', '.'));
-   
-    
-
-    // Verificar se os campos contêm valores numéricos válidos
-    if (isNaN(preparacaocustos)) {
-      preparacaocustos = 0; // Atribuir 0 se o valor não for numérico
-    }
-   
-    if (isNaN(posprocessamentocustos)) {
-      posprocessamentocustos = 0;
-    }
-    if (isNaN(depreciacaomaquina)) {
-	depreciacaomaquina = 0; // Atribuir 0 se o valor não for numérico
-	    }
-    if (isNaN(filamentovalor)) {
-      filamentovalor = 0;
-    }
-    if (isNaN(eletricidadevalor)) {
-      eletricidadevalor = 0;
-    }
-    if (isNaN(consumiveiscustos)) {
-      consumiveiscustos = 0;
-    }
-
-    var soma = preparacaocustos + posprocessamentocustos + filamentovalor + eletricidadevalor + consumiveis + depreciacaomaquina;
-
-    document.getElementById('subtotal').value = soma;
-    
-    
-    document.getElementById('consumiveiscustos').value = consumiveis;
-
-    
-}
 
 
 function lucroreal(){
@@ -746,6 +739,7 @@ function lucroreal(){
 function calculoscustos(){
     
     
+    
     var peso = parseFloat(document.getElementById('peso').value.replace(',', '.'));
     
     var valorfilamentokilo = parseFloat(document.getElementById('valorfilamentokilo').value.replace(',', '.'));
@@ -756,7 +750,8 @@ function calculoscustos(){
     
     var tempoimpressaoconvertidominutos = parseFloat(document.getElementById('tempoimpressaoconvertidominutos').value.replace(',', '.'));
     
-    
+   
+   
     if (isNaN(depreciacaodamaquina)) {
 	depreciacaodamaquina = 0; // Atribuir 0 se o valor não for numérico
 	    }
@@ -774,23 +769,22 @@ function calculoscustos(){
 	    }
 	    
 	    
+	    
+	   
+	    
 	    var calculodepreciacao = depreciacaodamaquina * tempoimpressaoconvertidominutos;
     
     var calculo = (peso/1000)*valorfilamentokilo;
+   
     
     
     document.getElementById('filamentovalor').value = calculo.toFixed(2);
     
     document.getElementById('depreciacaomaquina').value = calculodepreciacao.toFixed(2);
     
-    
-    
-    
-    
-    
-    
-    
 }
+
+
 
 
 function updateConsumoEnergia() {
@@ -836,6 +830,21 @@ function converteparaminutos(){
     
     
 }
+
+
+
+
+
+function custostrabalhogeral(){
+    var custotrabalhogeral = parseFloat(document.getElementById('custotrabalhogeral').value.replace(',', '.'));
+    
+    
+    
+    document.getElementById('preparacaocustos').value =custotrabalhogeral.toFixed(2);
+    
+}
+
+
 
 
     function valoreletricidadecustos(){
@@ -902,7 +911,85 @@ function mudatudo(){
 }
 
 
+function somacustostotal(){
+    
+    
+    var filamentovalor = parseFloat(document.getElementById('filamentovalor').value.replace(',', '.'));
+    var eletricidadevalor = parseFloat(document.getElementById('eletricidadevalor').value.replace(',', '.'));
+    var depreciacaomaquina = parseFloat(document.getElementById('depreciacaomaquina').value.replace(',', '.'));
+    var preparacaocustos = parseFloat(document.getElementById('preparacaocustos').value.replace(',', '.'));
+    var posprocessamentocustos = parseFloat(document.getElementById('posprocessamentocustos').value.replace(',', '.'));
+    var consumiveiscustos = parseFloat(document.getElementById('consumiveiscustos').value.replace(',', '.'));
+    var taxadeperdasdousuario = parseFloat(document.getElementById('taxadeperdasdousuario').value.replace(',', '.'));
+    
 
+	 if (isNaN(taxadeperdasdousuario)) {
+	     taxadeperdasdousuario = 0;
+	    }
+	 
+	 
+      
+    
+    var soma = filamentovalor + eletricidadevalor + depreciacaomaquina + preparacaocustos + posprocessamentocustos + consumiveiscustos;
+
+    document.getElementById('subtotal').value = soma.toFixed(2);
+
+    var subtotal = parseFloat(document.getElementById('subtotal').value.replace(',', '.'));
+    
+    
+    var somaincluindoperdas = subtotal*(taxadeperdasdousuario/100+1);
+    
+    document.getElementById('incluindoperdas').value = somaincluindoperdas.toFixed(2);
+
+}
+
+
+function preencheconsumiveis(){
+    
+	var consumiveis = parseFloat(document.getElementById('consumiveis').value.replace(',', '.'));
+	
+	var custotrabalhogeral = parseFloat(document.getElementById('custotrabalhogeral').value.replace(',', '.'));
+	var somapreparacao = parseFloat(document.getElementById('somapreparacao').value.replace(',', '.'));
+	var somaposprocessamento = parseFloat(document.getElementById('somaposprocessamento').value.replace(',', '.'));
+	
+	
+	
+	
+
+	
+	 if (isNaN(somaposprocessamento)) {
+	     somaposprocessamento = 0;
+	    }
+	 if (isNaN(somapreparacao)) {
+	     somapreparacao = 0;
+	    }
+	 if (isNaN(custotrabalhogeral)) {
+	     custotrabalhogeral = 0;
+	    }
+	 if (isNaN(consumiveis)) {
+	     consumiveis = 0;
+	    }
+	 
+	 
+	 
+	 
+	 var soma = (somapreparacao/60)*custotrabalhogeral;
+	 
+	 var soma2 = (somaposprocessamento/60)*custotrabalhogeral;
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+   
+    document.getElementById('consumiveiscustos').value = consumiveis;
+    document.getElementById('preparacaocustos').value = soma.toFixed(2);
+    document.getElementById('posprocessamentocustos').value = soma2.toFixed(2);
+    
+}
 
 
 
