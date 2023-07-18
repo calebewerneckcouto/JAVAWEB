@@ -19,7 +19,7 @@ public class SingleConnectionBanco {
 	private static String senha = "admin";
 	private static Connection connection = null;
 	
-	
+
 	
 	
 	public static Connection getConnection() {

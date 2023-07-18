@@ -54,7 +54,7 @@
 													<div class="card-block">
 														<h6 class="sub-title" style="color: blue;">Cadastro Geral</h6>
 															
-															 <form class="form-material"  action="<%= request.getContextPath() %>/SertvletCadastroGeral" method="post" id="formVideos" >
+															 <form class="form-material"  action="<%= request.getContextPath() %>/SertvletCadastroGeral?id=${usuarioid}" method="post" id="formVideos" >
 
 														
 															

@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelGeral;
+import model.ModelLogin;
 import model.ModelVideoNome;
 import model.ModelVideos;
 
@@ -88,6 +89,10 @@ public class ServletCadastroGeral extends ServletGenericUtil {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		String usuariologado = request.getParameter("id");
+		
+		
 		try {
 			
 			String msg = "Operação realizada com sucesso!";
@@ -100,7 +105,21 @@ public class ServletCadastroGeral extends ServletGenericUtil {
 		    String idusuariologado = request.getParameter("idusuariologado");
 			ModelGeral modelGeral = new ModelGeral();
 			
+			  
+				
+				
+				
+				  
+				DAOCadastroGeral daoCadastroGeral = new DAOCadastroGeral();
+				List<ModelGeral > usuariologadogeral = daoCadastroGeral.buscaridusuariologado(usuariologado);
+				
+			     
+				
+				 
 			
+			
+		if(usuariologadogeral.size() == 0) {
+			  
 			
 				
 				modelGeral.setCustoenergia(custoenergia);
@@ -124,17 +143,32 @@ public class ServletCadastroGeral extends ServletGenericUtil {
 			        
 			        // Passar os dados para a página JSP
 			        request.setAttribute("geral", geral);
+			        
+			        request.setAttribute("msg", msg);
+					
+					request.setAttribute("msg", "Salvo com sucesso");
 				
-	  			
+		}else {
+			
+			  request.setAttribute("msg", msg);
+				
+				request.setAttribute("msg", "Ja Possui Cadastro!!!!!");
+				 DAOCadastroGeral daoGeral2 = new DAOCadastroGeral();
+			        
+			        // Chamar o método buscarVideos() para obter os dados do banco de dados
+			        List<ModelGeral> geral = daoGeral2.buscarCadastroGeral();
+			        
+			        // Passar os dados para a página JSP
+			        request.setAttribute("geral", geral);
+			
+		}
 	  			
 				
 				
 				
 				
 			
-				request.setAttribute("msg", msg);
-			
-				request.setAttribute("msg", "Salvo com sucesso");
+				
 				request.getRequestDispatcher("principal/cadastrogeral.jsp").forward(request, response);
 			 
 				
