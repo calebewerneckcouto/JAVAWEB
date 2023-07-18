@@ -9,6 +9,7 @@ import java.util.List;
 
 import connection.SingleConnectionBanco;
 import model.ModelGeral;
+import model.ModelLogin;
 import model.ModelVideoNome;
 import model.ModelVideos;
 
@@ -95,7 +96,7 @@ public class DAOCadastroGeral {
 
 	    while (resultSet.next()) {
 	        ModelGeral caGeral = new ModelGeral();
-	        
+	        caGeral.setIdusuariologado(resultSet.getString("idusuariologado"));
 	        
 	        idcadastrogeral.add(caGeral);
 	    }
@@ -108,8 +109,29 @@ public class DAOCadastroGeral {
 
 	
 	
-	
-	
+	public List<ModelGeral> buscaridusuariologado(String idusuariologado) throws Exception {
+	    List<ModelGeral> idcadastrogeral = new ArrayList<>();
+
+	    String sql = "select idusuariologado from cadastrogeral where idusuariologado=?";
+
+	    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+	    
+	    preparedStatement.setString(1, idusuariologado);
+
+	    ResultSet resultSet = preparedStatement.executeQuery();
+
+	    while (resultSet.next()) {
+	        ModelGeral caGeral = new ModelGeral();
+	        caGeral.setIdusuariologado(resultSet.getString("idusuariologado"));
+	        
+	        idcadastrogeral.add(caGeral);
+	    }
+
+	    resultSet.close();
+	    preparedStatement.close();
+
+	    return  idcadastrogeral;
+	}
 
 	
 	

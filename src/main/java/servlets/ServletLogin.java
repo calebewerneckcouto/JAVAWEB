@@ -1,8 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import dao.DAOCadastroGeral;
 import dao.DAOCalculadoraCustos;
 import dao.DAOLoginRepository;
 import dao.DAOUsuarioRepository;
@@ -15,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.ModelCadastroImpressoras;
 import model.ModelCadastroMateriais;
 import model.ModelCalculadora;
+import model.ModelGeral;
 import model.ModelLogin;
 
 
@@ -68,16 +71,40 @@ public class ServletLogin extends HttpServlet {
 					
 					if (daoLoginRepository.validarAutenticacao(modelLogin)) { /*Simulando login*/
 						
+						
+						
+						
+						
+						
+						
 						modelLogin = daoUsuarioRepository.consultaUsuarioLogado(login);
 						
-				
+						  request.getSession().setAttribute("usuarioid", modelLogin.getId());
+						  
+						  Long iduser = modelLogin.getId();
+						String iduser1 = String.valueOf(iduser); 
 						
-				        request.getSession().setAttribute("usuarioid", modelLogin.getId());
+						
+						  
+						 
+						  
+						DAOCadastroGeral daoCadastroGeral = new DAOCadastroGeral();
+						List<ModelGeral > usuariologadogeral = daoCadastroGeral.buscaridusuariologado(iduser1);
+						
+					     
+						 request.getSession().setAttribute("usuariologadogeral", usuariologadogeral);
+						 
+						 
+						 				
+				       
 						request.getSession().setAttribute("usuario", modelLogin.getLogin());
 						request.getSession().setAttribute("permissao", modelLogin.getPermissao());
 						
-						if (url == null || url.equals("null")) {
+						if (usuariologadogeral.size()==0 )  {
 							url = "principal/cadastrogeral.jsp";
+						}else {
+							
+							url = "principal/principal.jsp";
 						}
 						
 						RequestDispatcher redirecionar = request.getRequestDispatcher(url);
