@@ -99,9 +99,6 @@
                                                                 <label class="float-label" style="color: black">Preço(R$):</label>
                                                                 
                                                             </div>
-                                                            
-                                                            
-                                                              
                                                              <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="tempodepreciacao" id="tempodepreciacao" class="form-control" required="required" onchange=" somatotal()">
                                                                 <span class="form-bar"></span>
@@ -131,9 +128,7 @@
                                                                 <label class="float-label" style="color: black">Depreciacão(R$/h):</label>
                                                                 
                                                             </div>
-                                                            
-                                                            
-                                                            
+                                                                              
                                                             
                                                             <button  class="btn btn-success waves-effect waves-light">Salvar</button>
                                                                
@@ -223,6 +218,36 @@
 	
 	
 <script type="text/javascript">
+
+
+$("#diametrodomaterial").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+$("#preco").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+$("#tempodepreciacao").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+$("#custodereparos").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+$("#depreciacao").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+$("#consumodeenergia").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+
+
+
+
+
+
+
 function somatotal(){
     
     const preco = parseFloat(document.getElementById('preco').value.replace(',', '.'));

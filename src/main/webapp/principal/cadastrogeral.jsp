@@ -106,9 +106,7 @@
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label" style="color: black">Custo de Trabalho [R$/h]:</label>
                                                             </div>
-                                                            
-                                                            
-                                                              
+                                                           
                                                              <div class="form-group form-default form-static-label">
                                                                 <input  type="text" name="taxadeperdas" id="taxadeperdas" class="form-control" required="required" onchange="somatotal()">
                                                                 <span class="form-bar"></span>
@@ -194,7 +192,7 @@
       <td><c:out value="${ml.totalgeral}"></c:out></td>
       <td><c:out value="${ml.idusuariologado}"></c:out></td>
       
-   <td><a     href="<%=request.getContextPath() %>/principal/principal.jsp" id="calculadoraBtn" class="btn btn-dark" >Calculadora de Custos</a></td>
+  
         <td><a class="btn btn-success"
           href="<%= request.getContextPath() %>/SertvletCadastroGeral?acao=excluir&id=${ml.id}">Excluir</a></td>
             
@@ -230,10 +228,21 @@
 
 
 
+$("#custoenergia").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
     
-    
-    
-    
+$("#custodetrabalho").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+ 
+ 
+$("#taxadeperdas").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+ 
+  
     
 
 

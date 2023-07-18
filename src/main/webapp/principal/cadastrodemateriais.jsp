@@ -255,6 +255,41 @@
 	
 <script type="text/javascript">
 
+
+
+
+$("#tamanhorolo").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+$("#precorolo").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+$("#diametro").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+$("#preco").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+$("#comprimentorolo").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+$("#temperaturamesa").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+$("#temperaturanozzle").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+ 
+$("#densidade").keypress(function (event) {
+    return /\d/.test(String.fromCharCode(event.keyCode)); 
+ });
+
+
+
 function calcularResultado() {
     
     const tamanhorolo = parseFloat(document.getElementById('tamanhorolo').value.replace(',', '.'));
