@@ -6,7 +6,9 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import dao.DAOCadastroGeral;
 import dao.DAOCalculadoraCustos;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import model.ModelCadastroImpressoras;
 import model.ModelCadastroMateriais;
 import model.ModelCalculadora;
 import model.ModelGeral;
+import model.ModelLogin;
 
 @WebServlet("/SertvletCalculadoraCustos")
 public class ServletCalculadoraCustos extends ServletGenericUtil {
@@ -29,12 +32,44 @@ public class ServletCalculadoraCustos extends ServletGenericUtil {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
+		
+		
+		
 		try {
 			
 		    String acao = request.getParameter("acao");
 		    
 		    
-		  
+		    if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("temdados")) {
+
+				String id = request.getParameter("id");
+				
+				
+				DAOCadastroGeral daoCadastroGeral = new DAOCadastroGeral();
+				List<ModelGeral > usuariologadogeral = daoCadastroGeral.buscaridusuariologado(id);
+				
+			     
+				 request.getSession().setAttribute("usuariologadogeral", usuariologadogeral);
+				 
+				 
+				 				
+		       
+				
+				if (usuariologadogeral.size()==0 )  {
+					 request.getRequestDispatcher("principal/cadastrogeral.jsp").forward(request, response);
+				}else {
+					
+					 request.getRequestDispatcher("principal/principal.jsp").forward(request, response);
+				}
+				
+				
+				
+		    }else
+
+			
+	        
 		   
 		 if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("excluir")) {
 
