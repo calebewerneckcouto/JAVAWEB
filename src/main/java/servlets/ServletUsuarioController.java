@@ -1,23 +1,29 @@
 package servlets;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
-import org.apache.tomcat.jakartaee.commons.compress.utils.IOUtils;
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 import dao.DAOUsuarioRepository;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import model.ModelLogin;
+
 
 @MultipartConfig
 @WebServlet(urlPatterns = { "/ServletUsuarioController" })
@@ -40,21 +46,14 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {
 
 				String idUser = request.getParameter("id");
-				
 
 				daoUsuarioRepository.deletarUser(idUser);
 
 				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
-				
+
 				request.setAttribute("modelLogins", modelLogins);
-			
 
 				request.setAttribute("msg", "Excluido com sucesso!");
-				
-				
-				
-			
-		
 
 				request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
 
@@ -64,16 +63,8 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				String idUser = request.getParameter("id");
 
 				daoUsuarioRepository.deletarUser(idUser);
-				
 
-				
-				
-			
-
-				
-				
 				response.getWriter().write("Excluido com sucesso!");
-			  
 
 			}
 
@@ -89,9 +80,7 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				String json = mapper.writeValueAsString(dadosJsonUser);
 
 				response.getWriter().write(json);
-				
-				
-				
+
 				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
 				request.setAttribute("modelLogins", modelLogins);
 				request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
@@ -134,28 +123,27 @@ public class ServletUsuarioController extends ServletGenericUtil {
 					response.setHeader("Content-Disposition",
 							"attachment;filename=arquivo." + modelLogin.getExtensaofotouser());
 					new Base64();
-					response.getOutputStream()
-							.write(Base64.decodeBase64(modelLogin.getFotouser().split("\\,")[1]));
+					response.getOutputStream().write(Base64.decodeBase64(modelLogin.getFotouser().split("\\,")[1]));
 				}
 			}
 
-			 else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("paginar")) {
-				 Integer offset = Integer.parseInt(request.getParameter("pagina"));
-				 
-				 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioListPaginada(this.getUserLogado(request), offset);
-				 
-				 request.setAttribute("modelLogins", modelLogins);
-			     request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
-				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
-			 }
-			
-			 else {
-				 List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
-			     request.setAttribute("modelLogins", modelLogins);
-			     request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
-				 request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
-			 }
-			 
+			else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("paginar")) {
+				Integer offset = Integer.parseInt(request.getParameter("pagina"));
+
+				List<ModelLogin> modelLogins = daoUsuarioRepository
+						.consultaUsuarioListPaginada(this.getUserLogado(request), offset);
+
+				request.setAttribute("modelLogins", modelLogins);
+				request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
+				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+			}
+
+			else {
+				List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
+				request.setAttribute("modelLogins", modelLogins);
+				request.setAttribute("totalPagina", daoUsuarioRepository.totalPagina(this.getUserLogado(request)));
+				request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -179,7 +167,6 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 			String permissao = request.getParameter("permissao");
-			
 
 			ModelLogin modelLogin = new ModelLogin();
 
@@ -189,13 +176,13 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			modelLogin.setLogin(login);
 			modelLogin.setSenha(senha);
 			modelLogin.setPermissao(permissao);
-			
 
-			if (ServletFileUpload.isMultipartContent(request)) {
+			if (request.getPart("fileFoto") != null) {
 				Part part = request.getPart("fileFoto");/* Pega a foto no frontend */
 
 				if (part.getSize() > 0) {
 					byte[] foto = IOUtils.toByteArray(part.getInputStream());
+
 					String imagemBase64 = "data:image/" + part.getContentType() + ";base64,"
 							+ new org.apache.tomcat.util.codec.binary.Base64().encodeBase64String(foto);
 

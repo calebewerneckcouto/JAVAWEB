@@ -3,21 +3,17 @@ package servlets;
 import java.io.IOException;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import dao.DAOCadastroGeral;
 import dao.DAOCalculadoraCustos;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import model.ModelCadastroImpressoras;
 import model.ModelCadastroMateriais;
 import model.ModelCalculadora;
 import model.ModelGeral;
-import model.ModelLogin;
 
 @WebServlet("/SertvletCalculadoraCustos")
 public class ServletCalculadoraCustos extends ServletGenericUtil {
