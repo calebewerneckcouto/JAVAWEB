@@ -28,7 +28,7 @@ public class FilterAutenticao implements Filter {
     }
 
     /*Encerra os processo quando o servidor � parado*/
-    /*Mataria os processo de conex�o com banco*/
+    /*Mataria os processo de conexão com banco*/
 	public void destroy() {
 		try {
 			connection.close();
@@ -39,8 +39,8 @@ public class FilterAutenticao implements Filter {
 
 	/*Intercepta as requisicoes e a as respostas no sistema*/
 	/*Tudo que fizer no sistema vai fazer por aqui*/
-	/*Valida��o de autenticao*/
-	/*Dar commit e rolback de transa�oes do banco*/
+	/*Validação de autenticao*/
+	/*Dar commit e rolback de transações do banco*/
 	/*Validar e fazer redirecionamento de paginas*/
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
 			throws IOException, ServletException {
@@ -63,7 +63,7 @@ public class FilterAutenticao implements Filter {
 				RequestDispatcher redireciona = request.getRequestDispatcher("/index.jsp?url=" + urlParaAutenticar);
 				request.setAttribute("msg", "Por favor realize o login!");
 				redireciona.forward(request, response);
-				return; /*Para a execu��o e redireciona para o login*/
+				return; /*Para a execução e redireciona para o login*/
 				
 			}else {
 				chain.doFilter(request, response);

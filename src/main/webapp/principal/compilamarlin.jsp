@@ -76,11 +76,11 @@ Lembre-se de substituir "url_do_videoX" pelas URLs reais dos seus vídeos. Você p
    	 String senha = "0E2W+wgH66K[ui";/*senha da sua hospedagem
    	 Connection conn = null;*/
    	 
-   	 String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso-jsp?autoReconnect=true";
-	 String user = "cwcdcomb";
-	 String senha = "cwc3d14694899";
-	 Connection conn = null;
- 
+   	 String banco = "jdbc:postgresql://localhost:5432/cwcdcomb_curso_jsp?autoReconnect=true";
+		String user = "cwcdcomb_cwc3d";
+		String senha = "cwc3d14694899";
+		Connection conn = null;
+
    	 
 	 
 	 
